@@ -26,11 +26,11 @@
                     <% switch(task.direction) {
                         case 'increased' : %>
                             <option selected>increased</option>
-                            <option>descreased</option>
+                            <option>decreased</option>
                         <% break; %>
                         <% case 'decreased' : %>
                             <option>increased</option>
-                            <option selected>descreased</option>
+                            <option selected>decreased</option>
                         <% break; %>
                     <% } %>
                 </select>
@@ -47,8 +47,6 @@
                 <input class="form-control" id="detail" name="detail" value="<%=task.detail%>"></textarea>
             
                 <input id="isComplete" name="isComplete" type="hidden" value="<%=task.isComplete%>">
-                <label for="duedate" class="text-primary">Due Date:</label>
-                <input type="date" class="form-control" id="duedate" name="dueDate" value="<%=task.dueDate%>">
             </div>
                 <input type="submit" class="btn btn-primary" value="Save Task">
         </form>
