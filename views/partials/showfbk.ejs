@@ -2,7 +2,7 @@
     <div class="card-header">
     <div class="row">
         <div class="col-sm">
-            On:  
+            On   
             <%if (task.dueDate != '') { %>
                 <%=task.dueDate%> 
             <% } else  { %>
@@ -26,7 +26,14 @@
     </div>
     <div class="card-body">
         <h5 class ="card-title"><%=task.fbkee%> <%=task.direction%> <%=task.type%></h5>
-        <p class="card-text"><%=task.detail%></p>
+         
+            <%if (task.details != '') { %>
+                <p class="card-text"><%=task.detail%></p>
+            <% } else  { %>
+                <p class="card-text">No comment</p>
+            <% } %>
+        
+        
     </div>
     <div class="card-footer">
         <div class = "row">
