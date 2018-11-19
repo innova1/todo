@@ -3,8 +3,8 @@ const { ObjectId } = require('mongodb');
 const debug = require('debug')('app:editController');
 
 exports.editFbk = async (req, res) => {
-    console.log("Hello Newman 1!");
   try {
+    console.log("Hello Newman 1!");
     const { id } = req.params;
     const dbParams = await util.setupDB();
     const task = await dbParams.collection.findOne({ _id: new ObjectId(id) });
@@ -18,8 +18,8 @@ exports.editFbk = async (req, res) => {
 };
 
 exports.commitEdit = async (req, res) => {
-    console.log("Hello Newman 2!");
   try {
+    console.log("Hello Newman 2!");
     const { id } = req.params;
     const task = req.body;
     const dbParams = await util.setupDB();
