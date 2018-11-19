@@ -6,25 +6,38 @@
   </head>
   <body>
     <div class="container">
-        <% include ./partials/nav %>
+        <% include ./partials/navfbk %>
         <div class="card" style="width: 50%">
         <form method="post" action="/task/add/" style="padding: 20px">
             <div class="form-group">
-                <label for="summary" class="text-primary">Summary</label>
-                <input class="form-control" id="summary" name="summary"></textarea>
-
-                <label for="detail" class="text-primary">Details</label>
-                <textarea class="form-control" id="detail" rows="3" name="detail"></textarea>
-            
-                <label for="priority" class="text-primary">Priority</label>
-                <select class="form-control" id="priority" name="priority">
-                    <option>Low</option>
-                    <option>Normal</option>
-                    <option>High</option>
-                </select>
-
+                
                 <label for="duedate" class="text-primary">Due Date:</label>
                 <input type="date" class="form-control" id="duedate" name="dueDate">
+                
+                <label for="fbkee" class="text-primary">Who do you want to give feedback to?</label>
+                <select class="form-control" id="fbkee" name="fbkee">
+                    <option>Tom</option>
+                    <option>Steve</option>
+                    <option>Brendan</option>
+                </select>
+            
+                <label for="direction" class="text-primary">Direction</label>
+                <select class="form-control" id="direction" name="direction">
+                    <option>increases</option>
+                    <option>descreases</option>
+                </select>
+                
+                <label for="type" class="text-primary">Type of feedback</label>
+                <select class="form-control" id="type" name="type">
+                    <option>Safety</option>
+                    <option>Awesomeness</option>
+                    <option>Delivery</option>
+                    <option>knowledge</option>
+                </select>
+                
+                <label for="detail" class="text-primary">Details</label>
+                <textarea class="form-control" id="detail" rows="3" name="detail"></textarea>
+                
                 <input id="isComplete" name="isComplete" type="hidden" value="false">
             </div>
                 <input type="submit" class="btn btn-primary" value="Add Task">
