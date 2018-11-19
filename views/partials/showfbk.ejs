@@ -38,13 +38,6 @@
     <div class="card-footer">
         <div class = "row">
             <div class = "col-sm">
-                <% if (task.isComplete == 'false') {%>
-                    <h4><span class="badge badge-secondary">Incomplete</span></h4>
-                <%} else { %>
-                    <h4><span class="badge badge-secondary">Complete</span></h4>
-                <%}%>
-            </div>
-            <div class = "col-sm">
                 <ul class="nav justify-content-end nav-pills card-header-pills">
                     <% if (task.isComplete == 'false') {%>
                         <li class="nav-item">
