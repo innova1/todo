@@ -21,9 +21,13 @@ exports.commitEdit = async (req, res) => {
   try {
     console.log("Hello Newman 2!");
     const { id } = req.params;
+    console.log("Hello Newman 3!");
     const task = req.body;
+    console.log("Hello Newman 4!");
     const dbParams = await util.setupDB();
+    console.log("Hello Newman 5!");
     await dbParams.collection.findOneAndUpdate({ _id: new ObjectId(id) }, task);
+    console.log("Hello Newman 6!");
     dbParams.client.close();
     res.redirect('/');
   }
