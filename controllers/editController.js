@@ -17,6 +17,7 @@ exports.editFbk = async (req, res) => {
 };
 
 exports.commitEdit = async (req, res) => {
+    console.log("Hello Newman!");
   try {
     const { id } = req.params;
     const task = req.body;

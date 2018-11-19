@@ -3,7 +3,7 @@ const util = require('./utilController');
 const debug = require('debug')('app:addController');
 
 exports.addTask = (req, res) => {
-  res.render('addTask', { title: 'Adding a Task' });
+  res.render('addTask', { title: 'Adding some feedback' });
 };
 
 exports.saveTask = async (req, res) => {
