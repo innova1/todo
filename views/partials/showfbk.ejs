@@ -2,15 +2,9 @@
     <div class="card-header">
     <div class="row">
         <div class="col-sm">
-            Feedback on:  
+            On:  
             <%if (task.dueDate != '') { %>
                 <%=task.dueDate%> 
-            <% } else  { %>
-                Not specified
-            <% } %>
-            Feedback for:  
-            <%if (task.fbkee != '') { %>
-                <%=task.fbkee%> 
             <% } else  { %>
                 Not specified
             <% } %>
