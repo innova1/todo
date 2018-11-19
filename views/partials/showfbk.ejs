@@ -39,25 +39,12 @@
         <div class = "row">
             <div class = "col-sm">
                 <ul class="nav justify-content-end nav-pills card-header-pills">
-                    <% if (task.isComplete == 'false') {%>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/task/edit/<%=task._id%>"> <i class="fas fa-edit"></i></a>
-                        </li>
-                    <%}%>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/task/edit/<%=task._id%>"> <i class="fas fa-edit"></i></a>
+                    </li>
                     <li cl
                     <li class="nav-item">
                         <a class="nav-link" href="/task/delete/<%=task._id%>"> <i class="fas fa-trash-alt"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <form method="post" action="/task/complete/<%=task._id%>">
-                            <button type="submit" class="btn btn-link">
-                                <% if (task.isComplete == 'false') {%>
-                                    <i class="fas fa-check"></i> 
-                                <%} else { %>
-                                    <i class="fas fa-redo-alt"></i>
-                                <%}%>
-                            </button>
-                        </form>
                     </li>
                 </ul>
             </div>  
