@@ -10,7 +10,7 @@ const completeController = require('../controllers/completeController');
 router.post('/task/complete/:id', completeController.commitComplete);
 router.get('/task/delete/:id', deleteController.deleteTask);
 router.post('/task/delete/:id', deleteController.confirmDelete);
-router.get('/task/edit/:id', editController.editTask);
+router.get('/task/edit/:id', editController.editFbk);
 router.post('/task/edit/:id', editController.commitEdit);
 router.get('/task/add/', addController.addTask);
 router.post('/task/add/', addController.saveTask);
