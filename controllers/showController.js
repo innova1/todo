@@ -9,7 +9,7 @@ exports.showFbks = async function (req, res) {
     const dbParams = await util.setupDB();
     const tasks = await dbParams.collection.find({}).sort({ dueDate: -1 }).toArray();
     const hostname = os.hostname();
-    res.render('showFbks', { tasks, title: 'ToDo List', hostname });
+    res.render('showFbks', { tasks, title: 'Feedback List', hostname });
     dbParams.client.close();
   }
   
