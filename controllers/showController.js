@@ -7,7 +7,7 @@ const debug = require('debug')('app:showController');
 exports.showFbks = async function (req, res) {
   try {
     const dbParams = await util.setupDB();
-    const tasks = await dbParams.collection.find({}).sort({ dueDate: 1 }).toArray();
+    const tasks = await dbParams.collection.find({}).sort({ dueDate: -1 }).toArray();
     const hostname = os.hostname();
     res.render('showFbks', { tasks, title: 'ToDo List', hostname });
     dbParams.client.close();
