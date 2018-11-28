@@ -1,0 +1,27 @@
+<div class="card border-primary" style="width: 100%"> 
+    <div class="card-header">
+        <div class="row">
+            <div class="col-sm">
+                On   
+                <%if (task.dueDate != '') { %>
+                    <%=task.dueDate%> 
+                <% } else  { %>
+                    Not specified
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p><%=task.fbkee%> <%=task.direction%> <%=task.type%></p>
+         
+            <%if (task.details != '') { %>
+                <p><%=task.detail%></p>
+            <% } else  { %>
+                <p>No comment</p>
+            <% } %>
+        
+        
+    </div>
+    
+</div>
+<p> <!-- card -->
