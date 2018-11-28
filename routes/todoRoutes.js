@@ -15,7 +15,7 @@ router.get('/task/edit/:id', editController.editFbk);
 router.post('/task/edit/:id', editController.commitEdit);
 router.get('/task/add/', addController.addTask);
 router.post('/task/add/', addController.saveTask);
-router.post('/export'), addController.exportFbks);
+router.post('/export', addController.exportFbks);
 router.get('/', showController.showFbks);
 
 module.exports = router;
