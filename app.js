@@ -27,6 +27,7 @@ app.use('/css', express.static(__dirname + '/public/stylesheets'));
 app.use('/webfonts', express.static(__dirname + '/public/fonts/webfonts/')); 
 
 app.get('/', todoRouter);
+app.get('/export', todoRouter);
 app.post('/task/complete/:id', todoRouter);
 app.get('/task/edit/:id', todoRouter);
 app.post('/task/edit/:id', todoRouter);
