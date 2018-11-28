@@ -35,6 +35,7 @@ app.get('/task/delete/:id', todoRouter);
 app.post('/task/delete/:id', todoRouter);
 app.get('/task/complete/:id', todoRouter);
 app.get('/task/add/', todoRouter);
+app.get('/task/add2/', todoRouter);
 app.post('/task/add/', todoRouter);
 
 // catch favicon requests and respond

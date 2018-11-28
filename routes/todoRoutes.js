@@ -14,6 +14,7 @@ router.post('/task/delete/:id', deleteController.confirmDelete);
 router.get('/task/edit/:id', editController.editFbk);
 router.post('/task/edit/:id', editController.commitEdit);
 router.get('/task/add/', addController.addTask);
+router.get('/task/add2/', addController.addFbk);
 router.post('/task/add/', addController.saveTask);
 router.get('/export', exportController.exportFbks);
 router.get('/', showController.showFbks);

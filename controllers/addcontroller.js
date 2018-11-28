@@ -14,6 +14,10 @@ exports.saveTask = async (req, res) => {
     dbParams.client.close();
     res.redirect('/');
   }
+    
+exports.addFbk = (req, res) => {
+  res.render('addFbk', { title: 'Adding some feedback' });
+};
 
   catch(err) {
     debug(err);

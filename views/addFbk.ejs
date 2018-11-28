@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/fontawesome-all.css">
+  </head>
+  <body>
+    <div class="container"> 
+        <% include ./partials/navfbk %>
+        <div class="card" style="width: 100%">
+        <form method="post" action="/task/add/" style="padding: 20px">
+            <div class="form-group">
+                
+                <label for="duedate" class="text-primary">Feedback dates (probably today)</label>
+                <input type="date" class="form-control" id="duedate" name="dueDate">
+                
+                <label for="fbkee" class="text-primary">Who do you want to give feedback to?</label>
+                <select class="form-control" id="fbkee" name="fbkee">
+                    <option>Adriana</option>
+                    <option>Akshay</option>
+                    <option>Ashish</option>
+                    <option>Brendan</option>
+                    <option>Brian</option>
+                    <option>Chin-Hooi</option>
+                    <option>Csaba</option>
+                    <option>Dayanna</option>
+                    <option>Elizabeth</option>
+                    <option>Fernando</option>
+                    <option>Hans</option>
+                    <option>John</option>
+                    <option>Mark</option>
+                    <option>Matt M</option>
+                    <option>Melissa</option>
+                    <option>Mike</option>
+                    <option>Monique</option>
+                    <option>Pedro</option>
+                    <option>Steve</option>
+                    <option>TJ</option>
+                    <option>Tom</option>
+                    <option>Walter</option>
+                    <option>Coach team</option>
+                </select>
+            
+                <label for="direction" class="text-primary">Direction</label>
+                <!--data-toggle="tooltip" data-html="true" title="<em>Tooltip</em> <u>with</u> <b>HTML</b>"-->
+                <!--span><b>&#9432;</b></span-->
+
+                <select class="form-control" id="direction" name="direction">
+                    <option>increased</option>
+                    <option>decreased</option>
+                </select>
+                
+                <label for="type" class="text-primary">Type of feedback</label>
+                <select class="form-control" id="type" name="type">
+                    <option>safety</option>
+                    <option>awesomeness</option>
+                    <option>delivery</option>
+                    <option>knowledge</option>
+                </select>
+                
+                <label for="detail" class="text-primary">Details</label>
+                <textarea class="form-control" id="detail" rows="3" name="detail"></textarea>
+                
+                <input id="isComplete" name="isComplete" type="hidden" value="false">
+            </div>
+                <input type="submit" class="btn btn-primary" value="Add Task">
+        </form>
+        </div>
+    </div> <!-- container -->
+  </body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</html>
