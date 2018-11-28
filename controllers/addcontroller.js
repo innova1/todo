@@ -6,6 +6,10 @@ exports.addTask = (req, res) => {
   res.render('addTask', { title: 'Adding some feedback' });
 };
 
+exports.addFbk = (req, res) => {
+  res.render('addFbk', { title: 'Adding some feedback' });
+};
+
 exports.saveTask = async (req, res) => {
   try {
     const task = req.body;
@@ -14,10 +18,6 @@ exports.saveTask = async (req, res) => {
     dbParams.client.close();
     res.redirect('/');
   }
-    
-exports.addFbk = (req, res) => {
-  res.render('addFbk', { title: 'Adding some feedback' });
-};
 
   catch(err) {
     debug(err);
