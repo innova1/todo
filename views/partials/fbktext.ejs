@@ -1,19 +1,18 @@
+<p>
+    <%if (task.dueDate != '') { %>
+        <%=task.dueDate%> 
+    <% } else  { %>
+        Not specified
+    <% } %>
 
-    <p>
-        <%if (task.dueDate != '') { %>
-            <%=task.dueDate%> 
-        <% } else  { %>
-            Not specified
-        <% } %>
-    </p>
-    <p><%=task.fbkee%> <%=task.direction%> <%=task.type%></p>
+    <%=task.fbkee%> <%=task.direction%> <%=task.type%>
 
-        <%if (task.details != '') { %>
-            <p><%=task.detail%></p>
-        <% } else  { %>
-            <p>No comment</p>
-        <% } %>
-
+    <%if (task.details != '') { %>
+        <%=task.detail%>
+    <% } else  { %>
+        No comment
+    <% } %>
+</p>
         
     
 
