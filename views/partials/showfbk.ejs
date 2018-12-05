@@ -1,29 +1,17 @@
 <div class="card border-primary" style="width: 100%"> 
     <div class="card-header">
-    <div class="row">
-        <div class="col-sm">
-            On   
-            <%if (task.dueDate != '') { %>
-                <%=task.dueDate%> 
-            <% } else  { %>
-                Not specified
-            <% } %>
-        </div>
-        <div class="col-sm">
-            <% switch(task.priority) { 
-                case 'Normal': %>
-                <span class="badge float-right badge-warning">Priority: Normal</span>
-                <% break; %>
-                <% case 'High': %>
-                <span class="badge float-right badge-danger">Priority: High</span>
-                <% break; %>
-                <% case 'Low': %>
-                <span class="badge float-right badge-success">Priority: Low</span>
-                <% break; %>
-            <% } %>
-        </div>
+        <div class="row">
+            <div class="col-sm">
+                On   
+                <%if (task.dueDate != '') { %>
+                    <%=task.dueDate%> 
+                <% } else  { %>
+                    Not specified
+                <% } %>
+            </div>
         </div>
     </div>
+    
     <div class="card-body">
         <h5 class ="card-title"><%=task.fbkee%> <%=task.direction%> <%=task.type%></h5>
          
