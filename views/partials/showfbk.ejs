@@ -17,7 +17,9 @@
             
             <%if (task.behavior != '') { %> 
                 <span> using </span>
-            <%=task.behavior%> <% } %></h5>
+            <%=task.behavior%> <% } else { %>
+                <% } %>
+            </h5>
          
             <%if (task.details != '') { %>
                 <p class="card-text"><%=task.detail%></p>
