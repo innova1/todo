@@ -13,7 +13,7 @@
     </div>
     
     <div class="card-body">
-        <h5 class ="card-title"><%=task.fbkee.split(",")%> <%=task.direction%> <%=task.outcome%> using <%=task.behavior%></h5>
+        <h5 class ="card-title"><%=task.fbkee.split(",").length%> <%=task.direction%> <%=task.outcome%> using <%=task.behavior%></h5>
          
             <%if (task.details != '') { %>
                 <p class="card-text"><%=task.detail%></p>
