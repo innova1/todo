@@ -21,7 +21,7 @@
                 <input type="date" class="form-control" id="duedate" name="dueDate" onchange="buildFeedback()"/>
                 
                 <label for="fbkee" class="text-primary">Who do you want to give feedback to?</label>
-                <select class="form-control" id="fbkee" name="fbkee">
+                <select class="form-control" id="fbkee" name="fbkee" onchange="buildFeedback()">
                     <option value="Adriana,adriana.f.rosset">Adriana</option>
                     <option value="Akshay,akshay.sadana">Akshay</option>
                     <option value="Ashish,ashish.pathak">Ashish</option>
@@ -104,9 +104,14 @@
         
         function buildFeedbackString() {
             var buildIt = "";
-            alert("got duedate |" + $('#duedate').val() + "|");
-            buildIt += $('#duedate').val();
-            
+            var duedate = $('#duedate').val();
+            if(duedate != "") {
+                buildIt += "On " + duedate;
+            }
+            var fbkee = $('#fbkee').val();
+            if(fbkee != "") {
+                buildIt += fbkee;
+            }
             return buildIt;
         }
     </script>  
