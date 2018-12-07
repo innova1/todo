@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/fontawesome-all.css">
    
   </head>
-  <body>
+  <body onload="setDefaults();">
     <div class="container"> 
         <% include ./partials/navfbk %>
         <div class="card" style="width: 100%">
@@ -16,7 +16,7 @@
             <div class="form-group">
                 
                 <label for="duedate" class="text-primary">Feedback dates (probably today)</label>
-                <input type="date" class="form-control" id="duedate" name="dueDate" value="{{ Date.now() | date('Y-m-d') }}">
+                <input type="date" class="form-control" id="duedate" name="dueDate" />
                 
                 <label for="fbkee" class="text-primary">Who do you want to give feedback to?</label>
                 <select class="form-control" id="fbkee" name="fbkee">
@@ -75,16 +75,16 @@
                 <label for="detail" class="text-primary">Details</label>
                 <textarea class="form-control" id="detail" rows="3" name="detail"></textarea>
                 
-                <input id="isComplete" name="isComplete" type="hidden" value="false">
+                <input id="isComplete" name="isComplete" type="hidden" value="false" />
             </div>
-                <input type="submit" class="btn btn-primary" value="Add Task">
+                <input type="submit" class="btn btn-primary" value="Add Task" />
         </form>
         </div>
     </div> <!-- container -->
   </body> 
     <script>
         function setDefaults() {
-            document.getElementById('duedate').valueAsDate = new Date();
+            document.getElementById('duedate').value = new Date().toDateInputValue();
         };
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
