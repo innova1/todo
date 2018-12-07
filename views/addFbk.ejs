@@ -16,7 +16,7 @@
             <div class="form-group">
                 
                 <label for="duedate" class="text-primary">Feedback dates (probably today)</label>
-                <input type="date" class="form-control" id="duedate" name="dueDate" value="" />
+                <input type="date" class="form-control" id="duedate" name="dueDate" />
                 
                 <label for="fbkee" class="text-primary">Who do you want to give feedback to?</label>
                 <select class="form-control" id="fbkee" name="fbkee">
@@ -96,12 +96,6 @@
             //alert("here with date value" + new Date().toDateInputValue() );
             $('#duedate').val(new Date().toDateInputValue());
         })
-
-        function setDefaults() {
-            var temp = new Date().toDateInputValue();
-            alert("called will put date " + temp);
-            document.getElementById('duedate').value = new Date().toDateInputValue();
-        };
     </script>  
       
   </body> 
