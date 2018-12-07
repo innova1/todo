@@ -104,7 +104,7 @@
         
         function buildFeedbackString() {
             var buildIt = "";
-            var not = "";
+            var ifnot = "";
             
             var duedate = $('#duedate').val();
             if(duedate != "") {
@@ -116,9 +116,9 @@
             }
             var direction = $('#direction').val();
             if(direction == "decreased") {
-                not = "not";
+                ifnot = "not";
             } else {
-                not = "";
+                ifnot = "";
             }
             if(direction != "") {
                 buildIt += " " + direction;
@@ -129,7 +129,7 @@
             }
             var behavior = $('#behavior').val();
             if(behavior != "") {
-                buildIt += " " + not + " using " + behavior;
+                buildIt += " by " + ifnot + " using " + behavior;
             }
             return buildIt;
         }
