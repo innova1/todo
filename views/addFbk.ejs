@@ -84,7 +84,8 @@
   </body> 
     <script>
         function setDefaults() {
-            alert("called will put date " + new Date().toDateInputValue());
+            var temp = new Date().toDateInputValue();
+            alert("called will put date " + temp);
             document.getElementById('duedate').value = new Date().toDateInputValue();
         };
     </script>
