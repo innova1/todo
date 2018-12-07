@@ -8,13 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/fontawesome-all.css">
       
-    <script>
-        $(document).ready(function () {
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
-        });
-    </script>
+    
       
   </head>
   <body>
@@ -35,8 +29,18 @@
         <% } %>
       <p class="font-weight-light font-italic">Served by host: Tom's Macbook Pro sitting on his desk at <%= hostname %></p>
     </div> <!-- container -->
+      
   <script src="/js/jquery.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
+      
+      <script>
+        $(document).ready(function () {
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+        });
+    </script>
+      
   </body>
     
     
