@@ -65,7 +65,7 @@
                     <option>knowledge</option>
                 </select>
                 
-                <label for="type" class="text-primary">Related to behavior</label>
+                <label for="behavior" class="text-primary">Related to behavior</label>
                 <select class="form-control" id="behavior" name="behavior">
                     <option>team work</option>
                     <option>empowerment</option>
@@ -108,9 +108,21 @@
             if(duedate != "") {
                 buildIt += "On " + duedate;
             }
-            var fbkee = $('#fbkee').val();
+            var fbkee = $('#fbkee').text();
             if(fbkee != "") {
-                buildIt += fbkee;
+                buildIt += " " + fbkee;
+            }
+            var direction = $('#direction').text();
+            if(direction != "") {
+                buildIt += " " + direction;
+            }
+            var outcome = $('#outcome').text();
+            if(outcome != "") {
+                buildIt += " " + outcome;
+            }
+            var behavior = $('#behavior').text();
+            if(behavior != "") {
+                buildIt += " " + behavior;
             }
             return buildIt;
         }
