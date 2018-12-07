@@ -99,14 +99,13 @@
         })
         
         function buildFeedback() {
-            alert("got here 1");
             $('#buildfbk').text(buildFeedbackString());
         }
         
         function buildFeedbackString() {
-            alert("got here 2");
             var buildIt = "";
             buildIt += $('#duedate').text();
+            alert("buildIt is now " + buildIt);
             return buildIt;
         }
     </script>  
