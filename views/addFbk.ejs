@@ -13,9 +13,10 @@
     <div class="container"> 
         <% include ./partials/navfbk %>
         <div class="card" style="width: 100%">
-        <p><span id="buildfbk" /></p>
         <form method="post" action="/task/add/" style="padding: 20px">
             <div class="form-group">
+                
+                <p><span id="buildfbk" /></p>
                 
                 <label for="duedate" class="text-primary">Feedback dates (probably today)</label>
                 <input type="date" class="form-control" id="duedate" name="dueDate" onchange="buildFeedback()"/>
@@ -99,7 +100,13 @@
         })
         
         function buildFeedback() {
-            $('#buildfbk').text("hello");
+            $('#buildfbk').text(buildFeedbackString());
+        }
+        
+        function buildFeedbackString() {
+            var buildIt = "";
+            buildIt += $('#duedate').text();
+            return buildIt;
         }
     </script>  
       
