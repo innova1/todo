@@ -1,6 +1,7 @@
-<html>
+<html ng-app>
   <head>
     <title><%= title %></title>
+    <script src="angular.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -16,7 +17,7 @@
             <div class="form-group">
                 
                 <label for="duedate" class="text-primary">Feedback dates (probably today)</label>
-                <input type="date" class="form-control" id="duedate" name="dueDate" />
+                <input type="date" class="form-control" id="duedate" name="dueDate" onchange="alert('hello');"/>
                 
                 <label for="fbkee" class="text-primary">Who do you want to give feedback to?</label>
                 <select class="form-control" id="fbkee" name="fbkee">
