@@ -110,7 +110,7 @@
             }
             var fbkee = $('#fbkee').val();
             if(fbkee != "") {
-                buildIt += " " + fbkee;
+                buildIt += " " + fbkee.split(",")[0];
             }
             var direction = $('#direction').val();
             if(direction != "") {
@@ -122,7 +122,7 @@
             }
             var behavior = $('#behavior').val();
             if(behavior != "") {
-                buildIt += " " + behavior;
+                buildIt += " using " + behavior;
             }
             return buildIt;
         }
