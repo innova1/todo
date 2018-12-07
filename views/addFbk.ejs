@@ -104,6 +104,8 @@
         
         function buildFeedbackString() {
             var buildIt = "";
+            var not = "";
+            
             var duedate = $('#duedate').val();
             if(duedate != "") {
                 buildIt += "On " + duedate;
@@ -113,6 +115,11 @@
                 buildIt += " " + fbkee.split(",")[0];
             }
             var direction = $('#direction').val();
+            if(direction == "decreased") {
+                not = "not";
+            } else {
+                not = "";
+            }
             if(direction != "") {
                 buildIt += " " + direction;
             }
@@ -122,7 +129,7 @@
             }
             var behavior = $('#behavior').val();
             if(behavior != "") {
-                buildIt += " using " + behavior;
+                buildIt += " " + not + " using " + behavior;
             }
             return buildIt;
         }
