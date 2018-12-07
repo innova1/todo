@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/fontawesome-all.css">
    
   </head>
-  <body onload="setDefaults();">
+  <body>
     <div class="container"> 
         <% include ./partials/navfbk %>
         <div class="card" style="width: 100%">
@@ -16,7 +16,7 @@
             <div class="form-group">
                 
                 <label for="duedate" class="text-primary">Feedback dates (probably today)</label>
-                <input type="date" class="form-control" id="duedate" name="dueDate">
+                <input type="date" class="form-control" id="duedate" name="dueDate" value="{( Date.now() | date("Y-m-d") )}">
                 
                 <label for="fbkee" class="text-primary">Who do you want to give feedback to?</label>
                 <select class="form-control" id="fbkee" name="fbkee">
