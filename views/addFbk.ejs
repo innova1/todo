@@ -52,13 +52,13 @@
                 <!--data-toggle="tooltip" data-html="true" title="<em>Tooltip</em> <u>with</u> <b>HTML</b>"-->
                 <!--span><b>&#9432;</b></span-->
 
-                <select class="form-control" id="direction" name="direction">
+                <select class="form-control" id="direction" name="direction" onchange="buildFeedback()">
                     <option>increased</option>
                     <option>decreased</option>
                 </select>
                 
                 <label for="type" class="text-primary">Outcome</label>
-                <select class="form-control" id="outcome" name="outcome">
+                <select class="form-control" id="outcome" name="outcome" onchange="buildFeedback()">
                     <option>safety</option>
                     <option>awesomeness</option>
                     <option>delivery</option>
@@ -66,7 +66,7 @@
                 </select>
                 
                 <label for="behavior" class="text-primary">Related to behavior</label>
-                <select class="form-control" id="behavior" name="behavior">
+                <select class="form-control" id="behavior" name="behavior" onchange="buildFeedback()">
                     <option>team work</option>
                     <option>empowerment</option>
                     <option>process maturity</option>
