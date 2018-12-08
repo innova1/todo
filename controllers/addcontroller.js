@@ -25,17 +25,7 @@ exports.saveTask = async (req, res) => {
 };
 
 exports.addUser = async (req, res) => {
-  try {
-    const user = req.body;
-    const dbParams = await util.setupUserDB();
-    await dbParams.collection.insertOne(user);
-    dbParams.client.close();
-    res.redirect('/');
-  }
-
-  catch(err) {
-    debug(err);
-  }
+  res.render('addUser', { title: 'Adding a user' });
 };
 
 exports.saveUser = async (req, res) => {
