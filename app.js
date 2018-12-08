@@ -26,6 +26,11 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/css', express.static(__dirname + '/public/stylesheets'));
 app.use('/webfonts', express.static(__dirname + '/public/fonts/webfonts/')); 
 
+app.get('/', function(req, res, next) {
+    console.log('Signed Cookies: ', req.signedCookies);
+    next();
+})
+
 app.get('/', todoRouter);
 app.get('/export', todoRouter);
 app.post('/task/complete/:id', todoRouter);
