@@ -3,12 +3,12 @@ const util = require('./utilController');
 const debug = require('debug')('app:addController');
 
 exports.addTask = (req, res) => {
-    res.cookie('username', 'put user name here', {});
-  res.render('addTask', { title: 'Adding some feedback' });
+    res.render('addTask', { title: 'Adding some feedback' });
 };
 
 exports.addFbk = (req, res) => {
-  res.render('addFbk', { title: 'Adding some feedback' });
+    res.cookie('username', 'put user name here', {});
+  res.render('addFbk', { title: 'Adding some feedback', username: "bill" });
 };
 
 exports.saveTask = async (req, res) => {
