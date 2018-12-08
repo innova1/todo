@@ -8,8 +8,8 @@ const editController = require('../controllers/editController');
 const deleteController = require('../controllers/deletecontroller');
 const completeController = require('../controllers/completeController');
 
-//router.get('/user/add', addController.addUser);
-//router.post('/user/add', addController.saveUser);
+router.get('/user/add', addController.addUser);
+router.post('/user/add', addController.saveUser);
 
 router.post('/task/complete/:id', completeController.commitComplete);
 router.get('/task/delete/:id', deleteController.deleteTask);
