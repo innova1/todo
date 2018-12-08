@@ -7,8 +7,8 @@ exports.addTask = (req, res) => {
 };
 
 exports.addFbk = (req, res) => {
-    res.cookie('username', 'bill', {});
-    const un = 'joe';  //req.cookies.username;
+    res.cookie('username', 'josephine', {});
+    const un = req.cookies.username;
     res.render('addFbk', { title: 'Adding some feedback', username: un });
 };
 
