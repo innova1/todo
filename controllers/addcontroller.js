@@ -23,3 +23,17 @@ exports.saveTask = async (req, res) => {
     debug(err);
   }
 };
+
+exports.saveUser = async (req, res) => {
+  try {
+    const task = req.body;
+    const dbParams = await util.setupUserDB();
+    await dbParams.collection.insertOne(user);
+    dbParams.client.close();
+    res.redirect('/');
+  }
+
+  catch(err) {
+    debug(err);
+  }
+};

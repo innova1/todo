@@ -16,3 +16,19 @@ exports.setupDB = async function () {
     debug(err);
   }
 };
+
+exports.setupUserDB = async function () {
+  const url = process.env.DB_URL;
+  debug(`attempting to connect to database at ${url}`);
+  const dbName = 'tasks';
+  try {
+    const client = await MongoClient.connect(url, { useNewUrlParser: true });
+    const db = client.db(dbName);
+    const collection = await db.collection('users');
+    return ({ client: client, collection: collection })
+  }
+
+  catch (err) {
+    debug(err);
+  }
+};

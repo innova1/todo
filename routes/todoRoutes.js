@@ -19,4 +19,7 @@ router.post('/task/add/', addController.saveTask);
 router.get('/export', exportController.exportFbks);
 router.get('/', showController.showFbks);
 
+router.get/'/user/add', addController.addUser);
+router.post('/user/add', addController.saveUser);
+
 module.exports = router;
