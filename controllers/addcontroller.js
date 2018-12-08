@@ -3,7 +3,7 @@ const util = require('./utilController');
 const debug = require('debug')('app:addController');
 
 exports.addTask = (req, res) => {
-    res.cookie('cookiename', 'http://url', {domain: 'teaminnovationllc.com'});
+    res.cookie('username', 'put user name here', {});
   res.render('addTask', { title: 'Adding some feedback' });
 };
 
