@@ -27,7 +27,7 @@ app.use('/css', express.static(__dirname + '/public/stylesheets'));
 app.use('/webfonts', express.static(__dirname + '/public/fonts/webfonts/')); 
 
 app.get('/', function(req, res, next) {
-    console.log('Signed Cookies: ', req.signedCookies);
+    console.log('Cookies: ', req.cookies);
     next();
 })
 
