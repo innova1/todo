@@ -96,7 +96,6 @@
         
         $(document).ready( function() {
             $('#duedate').val(new Date().toDateInputValue());
-            alert("user name is " + <%= username %>);
         })
         
         
@@ -105,6 +104,7 @@
         }
         
         function buildFeedbackString() {
+            alert("user name is " + <%= username %>);
             var buildIt = "";
             var ifnot = "";
             
