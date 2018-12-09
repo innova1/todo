@@ -11,7 +11,7 @@
     <div class="container"> 
         <% include ./partials/navfbk %>
         <div class="card" style="width: 100%">
-        <form method="post" action="/task/add/" style="padding: 20px">
+        <form method="post" action="/login" style="padding: 20px">
             <div class="form-group">
                 
                 <label for="fbker" class="text-primary">Select your email address</label>
@@ -42,8 +42,8 @@
                     <option value="Coach team,coachteam">Coach team</option>
                 </select>
             
-                <label for="fbkerPwd" class="text-primary">Direction</label>
-                <input type="texdt" class="form-control" id="fbkerPwd" name="fbkerPwd"/>
+                <label for="fbkerPwd" class="text-primary">Enter your password</label>
+                <input type="text" class="form-control" id="fbkerPwd" name="fbkerPwd"/>
                 
             </div>
                 <input type="submit" class="btn btn-primary" value="Login">
