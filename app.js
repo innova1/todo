@@ -43,6 +43,9 @@ app.post('/task/add/', todoRouter);
 app.get('/user/add/', todoRouter);
 app.post('/user/add/', todoRouter);
 
+app.get('/login/'), todoRouter);
+app.post('/login/'), todoRouter);
+
 // catch favicon requests and respond
 app.use('/favicon.ico', (req, res) => res.status(204));
 
