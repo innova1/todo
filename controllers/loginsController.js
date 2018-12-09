@@ -1,6 +1,6 @@
 const { MongoClient, ObjectId } = require('mongodb');
 const util = require('./utilController');
-const debug = require('debug')('app:logincontroller');
+const debug = require('debug')('app:loginsController');
 
 exports.loginPage = (req, res) => {
     res.render('loginPage', { title: 'Find your name and enter your password' });
@@ -15,7 +15,6 @@ exports.login = async (req, res) => {
     res.redirect('/');
   }
 
-    
   catch(err) {
     debug(err);
   }
