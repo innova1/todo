@@ -20,8 +20,8 @@ router.get('/task/add/', addController.addTask);
 router.get('/task/add2/', addController.addFbk);
 router.post('/task/add/', addController.saveTask);
 router.get('/export', exportController.exportFbks);
-router.get('/login', logincontroller.loginPage);
-router.post('/login', logincontroller.login);
+router.get('/login', loginsController.loginPage);
+router.post('/login', loginsController.login);
 router.get('/', showController.showFbks);
 
 module.exports = router;
