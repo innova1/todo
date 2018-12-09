@@ -7,6 +7,7 @@ const addController = require('../controllers/addcontroller');
 const editController = require('../controllers/editController');
 const deleteController = require('../controllers/deletecontroller');
 const completeController = require('../controllers/completeController');
+const loginsController = require('../controllers/loginsController');
 
 router.get('/user/add', addController.addUser);
 router.post('/user/add', addController.saveUser);
