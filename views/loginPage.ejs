@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/fontawesome-all.css">
+  </head>
+ <body>
+    <div class="container"> 
+        <% include ./partials/navfbk %>
+        <div class="card" style="width: 100%">
+        <form method="post" action="/task/add/" style="padding: 20px">
+            <div class="form-group">
+                
+                <label for="fbker" class="text-primary">Select your email address</label>
+                <select class="form-control" id="fbker" name="fbker">
+                    <option value="Adriana,adriana.f.rosset">Adriana</option>
+                    <option value="Akshay,akshay.sadana">Akshay</option>
+                    <option value="Ashish,ashish.pathak">Ashish</option>
+                    <option value="Brendan,brendan.townsend">Brendan</option>
+                    <option value="Brian,brian.tait">Brian</option>
+                    <option value="Chin-Hooi,chin-hooi.tang">Chin-Hooi</option>
+                    <option value="Csaba,csaba.schonstein">Csaba</option>
+                    <option value="Dayanna,dayanna.k.wilberger">Dayanna</option>
+                    <option value="Elizabeth,elizabth.a.farrell">Elizabeth</option>
+                    <option value="Fernando,fernando.b.quinteros">Fernando</option>
+                    <option value="Hans,hans.p.samios">Hans</option>
+                    <option value="Ija,shahirza.abdullah">Ija</option>
+                    <option value="John,john.hudson">John</option>
+                    <option value="Mark,mark.a.hinojosa">Mark</option>
+                    <option value="Matt M,matt.mitchell">Matt M</option>
+                    <option value="Melissa,melissa.mm.seow">Melissa</option>
+                    <option value="Mike,ademayowa.adeuga">Mike</option>
+                    <option value="Monique,monique.pt.thoo">Monique</option>
+                    <option value="Pedro,pedro.i.geretto">Pedro</option>
+                    <option value="Steven,steven.e.sanchez">Steve</option>
+                    <option value="TJ,thomas.butryn">TJ</option>
+                    <option value="Tom,tom.boulet">Tom</option>
+                    <option value="Walter,walter.g.beren">Walter</option>
+                    <option value="Coach team,coachteam">Coach team</option>
+                </select>
+            
+                <label for="fbkerPwd" class="text-primary">Direction</label>
+                <input type="texdt" class="form-control" id="fbkerPwd" name="fbkerPwd"/>
+                
+            </div>
+                <input type="submit" class="btn btn-primary" value="Login">
+        </form>
+        </div>
+    </div> <!-- container -->
+     
+     <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> 
+     
+  </body>
+</html>
