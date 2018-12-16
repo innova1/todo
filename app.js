@@ -39,10 +39,11 @@ app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redi
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 app.use('/css', express.static(__dirname + '/public/stylesheets'));
 app.use('/webfonts', express.static(__dirname + '/public/fonts/webfonts/')); 
-app.use('/a/*', checkLogin, function(req, res, next) {
+app.use('/export', checkLogin, function(req, res, next) {
     next();
 });
 
+app.get('/a/hello', todoRouter);
 app.get('/', todoRouter);
 app.get('/export', todoRouter);
 app.post('/task/complete/:id', todoRouter);
