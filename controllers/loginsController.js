@@ -7,8 +7,9 @@ exports.loginPage = (req, res) => {
 };
 
 exports.login = async (req, res) => {
-    /*
+
   try {
+    /*
     const user = req.body;
     const dbParams = await util.setupUserDB();
     await dbParams.collection.updateOne( 
@@ -16,11 +17,12 @@ exports.login = async (req, res) => {
         { $set}
                                        );
     dbParams.client.close();
+    */
     res.redirect('/');
   }
 
   catch(err) {
     debug(err);
   }
-  */
+
 };
