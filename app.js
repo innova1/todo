@@ -61,7 +61,7 @@ function checkLogin(req, res, next) {
 }
 
 function isLoggedIn(req, res, next) {
-    alert("logged in");
+    return true;
 }
 
 // catch 404 and forward to error handler
