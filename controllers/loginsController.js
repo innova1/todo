@@ -10,7 +10,10 @@ exports.login = async (req, res) => {
   try {
     const user = req.body;
     const dbParams = await util.setupUserDB();
-    await dbParams.collection.insertOne(user);
+    await dbParams.collection.updateOne( 
+        { emailname:  },
+        { $set}
+                                       );
     dbParams.client.close();
     res.redirect('/');
   }

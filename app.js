@@ -27,6 +27,9 @@ app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redi
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 app.use('/css', express.static(__dirname + '/public/stylesheets'));
 app.use('/webfonts', express.static(__dirname + '/public/fonts/webfonts/')); 
+app.use('/a/*', checkLogin, function(req, res, next) {
+    next();
+});
 
 app.get('/', todoRouter);
 app.get('/export', todoRouter);
@@ -48,6 +51,18 @@ app.post('/login', todoRouter);
 
 // catch favicon requests and respond
 app.use('/favicon.ico', (req, res) => res.status(204));
+
+function checkLogin(req, res, next) {
+    if( isLoggedIn() ) {
+        next();
+    } else {
+        res.redirect("/login");
+    }
+}
+
+function isLoggedIn(req, res, next) {
+    alert("logged in");
+}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
