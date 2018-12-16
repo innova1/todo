@@ -19,7 +19,7 @@ function checkLogin(req, res, next) {
 }
 
 function isLoggedIn(req, res, next) {
-    return true;
+    return false;
 }
 
 // view engine setup
@@ -43,7 +43,6 @@ app.use('/export', checkLogin, function(req, res, next) {
     next();
 });
 
-app.get('/a/hello', todoRouter);
 app.get('/', todoRouter);
 app.get('/export', todoRouter);
 app.post('/task/complete/:id', todoRouter);
