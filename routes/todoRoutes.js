@@ -9,7 +9,6 @@ const deleteController = require('../controllers/deletecontroller');
 const completeController = require('../controllers/completeController');
 const loginsController = require('../controllers/loginsController');
 
-router.get('/a/hello', showController.showFbks);
 router.get('/user/add', addController.addUser);
 router.post('/user/add', addController.saveUser);
 
@@ -18,8 +17,8 @@ router.get('/task/delete/:id', deleteController.deleteTask);
 router.post('/task/delete/:id', deleteController.confirmDelete);
 router.get('/task/edit/:id', editController.editFbk);
 router.post('/task/edit/:id', editController.commitEdit);
-router.get('/task/add/', addController.addTask);
-router.get('/task/add2/', addController.addFbk);
+router.get('/task/addx/', addController.addTask);
+router.get('/task/add/', addController.addFbk);
 router.post('/task/add/', addController.saveTask);
 router.get('/export', exportController.exportFbks);
 router.get('/login', loginsController.loginPage);
