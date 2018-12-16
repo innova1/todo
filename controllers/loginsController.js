@@ -6,8 +6,8 @@ exports.loginPage = (req, res) => {
     res.render('loginPage', { title: 'Find your name and enter your password' });
 };
 
-/*
 exports.login = async (req, res) => {
+    /*
   try {
     const user = req.body;
     const dbParams = await util.setupUserDB();
@@ -22,5 +22,5 @@ exports.login = async (req, res) => {
   catch(err) {
     debug(err);
   }
+  */
 };
-*/
