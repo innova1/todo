@@ -10,6 +10,18 @@ const todoRouter = require('./routes/todoRoutes');
 
 var app = express();
 
+function checkLogin(req, res, next) {
+    if( isLoggedIn() ) {
+        next();
+    } else {
+        res.redirect("/login");
+    }
+}
+
+function isLoggedIn(req, res, next) {
+    return true;
+}
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -51,18 +63,6 @@ app.post('/login', todoRouter);
 
 // catch favicon requests and respond
 app.use('/favicon.ico', (req, res) => res.status(204));
-
-function checkLogin(req, res, next) {
-    if( isLoggedIn() ) {
-        next();
-    } else {
-        res.redirect("/login");
-    }
-}
-
-function isLoggedIn(req, res, next) {
-    return true;
-}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
