@@ -11,6 +11,7 @@ const todoRouter = require('./routes/todoRoutes');
 var app = express();
 
 function checkLogin(req, res, next) {
+    console.log("in checkLogin");
     if( isLoggedIn() ) {
         next();
     } else {
