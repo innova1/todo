@@ -8,18 +8,20 @@ exports.loginPage = (req, res) => {
 
 exports.login = async (req, res) => {
 
-  try {
-    /*
-    const user = req.body;
-    const dbParams = await util.setupUserDB();
-    await dbParams.collection.updateOne( 
-        { emailname:  },
-        { $set}
-                                       );
-    dbParams.client.close();
-    */
-    res.redirect('/');
-  }
+    res.cookie('username', 'bob', {});
+    
+    try {
+        /*
+        const user = req.body;
+        const dbParams = await util.setupUserDB();
+        await dbParams.collection.updateOne( 
+            { emailname:  },
+            { $set}
+                                           );
+        dbParams.client.close();
+        */
+        res.redirect('/');
+    }
 
   catch(err) {
     debug(err);

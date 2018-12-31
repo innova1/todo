@@ -11,7 +11,7 @@ const todoRouter = require('./routes/todoRoutes');
 var app = express();
 
 function checkLogin(req, res, next) {
-    console.log("in checkLogin");
+    console.log("in checkLogin in app.js");
     if( isLoggedIn(req, res, next) ) {
         next();
     } else {
@@ -24,7 +24,7 @@ function isLoggedIn(req, res, next) {
     if(un == "") {
         return false;
     } else {
-        console.log("username is " + un);
+        console.log("username is " + un + " in app.js");
         return true;
     }
 }
