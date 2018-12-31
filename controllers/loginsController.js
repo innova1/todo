@@ -9,7 +9,7 @@ exports.loginPage = (req, res) => {
 exports.login = async (req, res) => {
 
     //set this cookie only if a password check works
-    res.cookie('username', req.fbker, {});
+    res.cookie('username', req.body.fbker, {});
     
     try {
         /*
