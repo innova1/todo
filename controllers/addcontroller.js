@@ -13,6 +13,12 @@ exports.addFbk = (req, res) => {
     res.render('addFbk', { title: 'Adding some feedback' });
 };
 
+exports.addFbk2 = (req, res) => {
+    res.cookie('username', 'josephine', {});
+    const un = req.cookies.username;
+    res.render('addFbk', { title: 'Adding some feedback', username: un });
+};
+
 exports.saveTask = async (req, res) => {
   try {
     const task = req.body;
