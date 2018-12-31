@@ -21,7 +21,7 @@ function checkLogin(req, res, next) {
 
 function isLoggedIn(req, res, next) {
     const un = req.cookies.username;
-    if(un == "") {
+    if(typeof un === undefined) {
         return false;
     } else {
         console.log("username is " + un + " in app.js");
