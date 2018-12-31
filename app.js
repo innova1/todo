@@ -12,7 +12,7 @@ var app = express();
 
 function checkLogin(req, res, next) {
     console.log("in checkLogin");
-    if( isLoggedIn() ) {
+    if( isLoggedIn(req, res, next) ) {
         next();
     } else {
         res.redirect("/login");
