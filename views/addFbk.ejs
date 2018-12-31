@@ -96,11 +96,8 @@
         
         $(document).ready( function() {
             $('#duedate').val(new Date().toDateInputValue());
-        });
-        
-        $(document).ready( function() {
             alert("username is " + <%= username %>);
-        });
+        })
         
         function buildFeedback() {
             $('#buildfbk').text(buildFeedbackString());
