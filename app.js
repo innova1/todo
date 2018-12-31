@@ -19,7 +19,13 @@ function checkLogin(req, res, next) {
 }
 
 function isLoggedIn(req, res, next) {
-    return false;
+    const un = req.cookies.username;
+    if(un == "") {
+        return false;
+    } else {
+        console.log("username is " + un);
+        return true;
+    }
 }
 
 // view engine setup
