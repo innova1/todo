@@ -19,7 +19,7 @@ router.get('/task/edit/:id', editController.editFbk);
 router.post('/task/edit/:id', editController.commitEdit);
 router.get('/task/addx/', addController.addTask);
 router.get('/task/add/', addController.addFbk);
-router.get('/task/add2/'), addController.addFbk2);
+router.get('/task/add2/', addController.addFbk2);
 router.post('/task/add/', addController.saveTask);
 router.get('/export', exportController.exportFbks);
 router.get('/login', loginsController.loginPage);
