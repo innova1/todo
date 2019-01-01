@@ -3,7 +3,8 @@ const util = require('./utilController');
 const debug = require('debug')('app:loginsController');
 
 exports.loginPage = (req, res) => {
-    res.render('loginPage', { title: 'Find your name and enter your password' });
+    console.log("landing on login page with redirectUrl of " + req.origUrl);
+    res.render('loginPage', { title: 'Find your name and enter your password', redirectUrl: req.origUrl });
 };
 
 exports.login = async (req, res) => {
@@ -21,7 +22,7 @@ exports.login = async (req, res) => {
                                            );
         dbParams.client.close();
         */
-        console.log("about to redirect to req.body.origUrl which is " + req.body.origUrl);
+        
         res.redirect(req.body.origUrl);
     }
 
