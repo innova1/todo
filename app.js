@@ -15,6 +15,7 @@ function checkLogin(req, res, next) {
     if( isLoggedIn(req, res, next) ) {
         next();
     } else {
+        req.origUrl = req.originalUrl;
         res.redirect("/login");
     }
 }
