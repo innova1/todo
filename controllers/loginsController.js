@@ -12,6 +12,7 @@ exports.login = async (req, res) => {
 
     //set this cookie only if a password check works
     res.cookie('username', req.body.fbker, {});
+    
     try {
         /*
         const user = req.body;
@@ -23,7 +24,8 @@ exports.login = async (req, res) => {
         dbParams.client.close();
         */
         
-        res.redirect(redirectUrl);
+        console.log("about to redirect to " + req.body.redirectUrl);
+        res.redirect(req.body.redirectUrl);
     }
 
   catch(err) {
