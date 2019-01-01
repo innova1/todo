@@ -3,7 +3,7 @@ const util = require('./utilController');
 const debug = require('debug')('app:loginsController');
 
 exports.loginPage = (req, res) => {
-    console.log("landing on login page with redirectUrl of " + req.origUrl);
+    console.log("req.origUrl is " + req.origUrl + ", res.origUrl is " + res.origUrl);
     res.render('loginPage', { title: 'Find your name and enter your password', redirectUrl: req.origUrl });
 };
 
