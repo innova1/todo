@@ -3,7 +3,8 @@ const util = require('./utilController');
 const debug = require('debug')('app:loginsController');
 
 exports.loginPage = (req, res) => {
-    console.log("req.origUrl is " + req.origUrl + ", res.origUrl is " + res.origUrl);
+    redirectUrl = req.cookies.redirectUrl;
+    console.log("redirectUrl from cookie is " + redirectUrl);
     res.render('loginPage', { title: 'Find your name and enter your password', redirectUrl: req.origUrl });
 };
 
@@ -11,7 +12,6 @@ exports.login = async (req, res) => {
 
     //set this cookie only if a password check works
     res.cookie('username', req.body.fbker, {});
-    
     try {
         /*
         const user = req.body;
@@ -23,7 +23,7 @@ exports.login = async (req, res) => {
         dbParams.client.close();
         */
         
-        res.redirect(req.body.origUrl);
+        res.redirect(redirectUrl);
     }
 
   catch(err) {
