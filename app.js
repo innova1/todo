@@ -49,6 +49,9 @@ app.use('/webfonts', express.static(__dirname + '/public/fonts/webfonts/'));
 app.use('/export', checkLogin, function(req, res, next) {
     next();
 });
+app.use('/task/add2', checkLogin, function(req, res, next) {
+    next();
+});
 
 app.get('/', todoRouter);
 app.get('/export', todoRouter);
