@@ -21,8 +21,8 @@ exports.login = async (req, res) => {
                                            );
         dbParams.client.close();
         */
-        console.log("about to redirect to req.url which is " + req.originalUrl);
-        res.redirect(req.originalUrl);
+        console.log("about to redirect to reqOrig.url which is " + req.origUrl);
+        res.redirect(req.origUrl);
     }
 
   catch(err) {
