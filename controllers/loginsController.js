@@ -12,10 +12,11 @@ exports.login = async (req, res) => {
 
     //set this cookie only if a password check works
     res.cookie('username', req.body.fbker, {});
+    const user = req.body;
+    console.log("fbker: " + user.fbker + ", pwd: " + user.fbkerPwd);
     
     try {
         /*
-        const user = req.body;
         const dbParams = await util.setupUserDB();
         await dbParams.collection.updateOne( 
             { emailname:  },
