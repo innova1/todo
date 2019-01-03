@@ -15,22 +15,24 @@ exports.login = async (req, res) => {
     const user = req.body;
     console.log("fbker: " + user.fbker + ", pwd: " + user.fbkerPwd);
     
-    try {
-        /*
-        const dbParams = await util.setupUserDB();
-        await dbParams.collection.updateOne( 
-            { emailname:  },
-            { $set}
-                                           );
-        dbParams.client.close();
-        */
-        
-        console.log("about to redirect to " + req.body.redirectUrl);
-        res.redirect(req.body.redirectUrl);
-    }
+    /*
+        take password and do hash and use this result to compare with db
+    */
+    const dbParams = await util.setupUserDB();
+    /*
+        look email address
+        get password dbhash back
+        compare with localhash above
+        if match then true and go to redirectUrl else false and return to login page with "not match" message
+    */
+    const user = await dbParams.collection.find({ email: "tom.boulet@gmail.com" } );
+    dbParams.client.close();
 
-  catch(err) {
-    debug(err);
-  }
+    //get dbhash and salt out of user. do localhash and compare and redirect as needed
 
+    console.log("found " + user.shortname + ", about to redirect to " + req.body.redirectUrl);
+    res.redirect(req.body.redirectUrl);
+}
+    catch(err) {
+        debug(err);
 };
