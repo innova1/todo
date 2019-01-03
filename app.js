@@ -11,12 +11,12 @@ const todoRouter = require('./routes/todoRoutes');
 var app = express();
 
 function checkLogin(req, res, next) {
-    console.log("in checkLogin in app.js");
+    debug("in checkLogin in app.js");
     if( isLoggedIn(req, res, next) ) {
         next();
     } else {
         res.cookie('redirectUrl', req.originalUrl, {});
-        console.log("redirectUrl is " + req.originalUrl);
+        debug("redirectUrl is " + req.originalUrl);
         res.redirect("/login");
     }
 }
@@ -26,7 +26,7 @@ function isLoggedIn(req, res, next) {
     if(typeof un === "undefined") {
         return false;
     } else {
-        console.log("username is " + un + " in app.js");
+        debug("username is " + un + " in app.js");
         return true;
     }
 }
