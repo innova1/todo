@@ -36,13 +36,13 @@ exports.login = async (req, res) => {
         const dbPwd = foundUser.password;
         
         if( dbPwd == fbkerPwd ) {
-            debug("entered pwd " + fbkerPwd + " is the same as db password " + dbPwd + ", about to redirect to " + redirectUrl + "for try # " + loginAttempt);
+            debug("entered pwd " + fbkerPwd + " is the same as db password " + dbPwd + ", about to redirect to " + redirectUrl);
             //set this cookie only if a password check works
             res.cookie('username', fbker, {});
             res.redirect(req.body.redirectUrl);
         } else {
-            debug("entered pwd " + fbkerPwd + " is NOT the same as db password " + dbPwd + ", about to redirect back to login page");
-            res.render('loginPage', { title: 'Login failed: Please re-enter your name and password', loginAttempt: 2, redirectUrl: redirectUrl });
+            debug("entered pwd " + fbkerPwd + " is NOT the same as db password " + dbPwd + ", about to redirect back to login page for try # " + loginAttempt);
+            res.render('loginPage', { title: 'Login failed: Please re-enter your name and password', loginAttempt: loginAttempt, redirectUrl: redirectUrl });
         }
         /*
         debug("found " + password + ", about to redirect to " + req.body.redirectUrl);
