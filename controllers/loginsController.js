@@ -4,7 +4,7 @@ const debug = require('debug')('app:loginsController');
 
 exports.loginPage = (req, res) => {
     redirectUrl = req.cookies.redirectUrl;
-    console.log("redirectUrl from cookie is " + redirectUrl);
+    debug("redirectUrl from cookie is " + redirectUrl);
     res.render('loginPage', { title: 'Find your name and enter your password', redirectUrl: redirectUrl });
 };
 
@@ -13,7 +13,7 @@ exports.login = async (req, res) => {
     //set this cookie only if a password check works
     res.cookie('username', req.body.fbker, {});
     const user = req.body;
-    console.log("fbker: " + user.fbker + ", pwd: " + user.fbkerPwd);
+    debug("fbker: " + user.fbker + ", pwd: " + user.fbkerPwd);
     
     try {
         /*
@@ -31,9 +31,8 @@ exports.login = async (req, res) => {
         //get dbhash and salt out of user. do localhash and compare and redirect as needed
         const shortname = foundUser.shortname;
 
-        console.log("found " + foundUser.shortname + ", about to redirect to " + req.body.redirectUrl);
-        res.render('loginPage', { tess: 'something' } );
-        //res.redirect(req.body.redirectUrl, { usershortname: foundUser.shortname, tester: 'something' } );
+        debug("found " + foundUser.shortname + ", about to redirect to " + req.body.redirectUrl);
+        res.redirect(req.body.redirectUrl);
         dbParams.client.close();
     }
         
