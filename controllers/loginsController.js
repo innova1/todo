@@ -5,7 +5,7 @@ const debug = require('debug')('app:loginsController');
 exports.loginPage = (req, res) => {
     redirectUrl = req.cookies.redirectUrl;
     debug("redirectUrl from cookie is " + redirectUrl);
-    res.render('loginPage', { title: 'Find your name and enter your password', loginAttempts: 1, redirectUrl: redirectUrl });
+    res.render('loginPage', { title: 'Find your name and enter your password', loginAttempt: 1, redirectUrl: redirectUrl });
 };
 
 exports.login = async (req, res) => {
@@ -38,7 +38,7 @@ exports.login = async (req, res) => {
             res.redirect(req.body.redirectUrl);
         } else {
             debug("entered pwd " + fbkerPwd + " is NOT the same as db password " + dbPwd + ", about to redirect back to login page");
-            res.render('loginPage', { title: 'Login failed: Please re-enter your name and password', loginAttempts: 2, redirectUrl: req.body.redirectUrl });
+            res.render('loginPage', { title: 'Login failed: Please re-enter your name and password', loginAttempt: 2, redirectUrl: req.body.redirectUrl });
         }
         /*
         debug("found " + password + ", about to redirect to " + req.body.redirectUrl);
