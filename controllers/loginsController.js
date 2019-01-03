@@ -29,10 +29,19 @@ exports.login = async (req, res) => {
         const foundUser = await dbParams.collection.findOne( { emailname: "tomboulet@gmail.com" } );
 
         //get dbhash and salt out of user. do localhash and compare and redirect as needed
-        const shortname = foundUser.shortname;
-
-        debug("found " + shortname + ", about to redirect to " + req.body.redirectUrl);
-        res.redirect(req.body.redirectUrl);
+        const dbPwd = foundUser.password;
+        
+        if( dbPwd == fbkerPwd ) {
+            debug("entered pwd " + fbkerPwd + " is the same as db password " + dbPwd + ", about to redirect to " + req.body.redirectUrl);
+            res.redirect(req.body.redirectUrl);
+        } else {
+            debug("entered pwd " + fbkerPwd + " is NOT the same as db password " + dbPwd + ", about to redirect back to login page");
+            res.redirect(req.body.redirectUrl);
+        }
+        /*
+        debug("found " + password + ", about to redirect to " + req.body.redirectUrl);
+        res.redirect(req.body.redirectUrl)
+        */
         dbParams.client.close();
     }
         
