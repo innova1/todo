@@ -26,12 +26,12 @@ exports.login = async (req, res) => {
             compare with localhash above
             if match then true and go to redirectUrl else false and return to login page with "not match" message
         */
-        const foundUser = await dbParams.collection.find({ emailname: 'tomboulet@gmail.com' } );
+        const foundUser = await dbParams.collection.findOne( { emailname: "tomboulet@gmail.com" } );
 
         //get dbhash and salt out of user. do localhash and compare and redirect as needed
         const shortname = foundUser.shortname;
 
-        debug("found " + foundUser.shortname + ", about to redirect to " + req.body.redirectUrl);
+        debug("found " + shortname + ", about to redirect to " + req.body.redirectUrl);
         res.redirect(req.body.redirectUrl);
         dbParams.client.close();
     }

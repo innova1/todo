@@ -16,7 +16,7 @@ function checkLogin(req, res, next) {
         next();
     } else {
         res.cookie('redirectUrl', req.originalUrl, {});
-        debug("redirectUrl is " + req.originalUrl);
+        debug("not logged in -- redirecting to " + req.originalUrl);
         res.redirect("/login");
     }
 }
