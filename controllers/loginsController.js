@@ -32,7 +32,8 @@ exports.login = async (req, res) => {
         const shortname = foundUser.shortname;
 
         console.log("found " + foundUser.shortname + ", about to redirect to " + req.body.redirectUrl);
-        res.redirect(req.body.redirectUrl, { usershortname: foundUser.shortname, tester: 'something' } );
+        res.render('loginPage', { usershortname: foundUser.shortname, tester: 'something' } );
+        //res.redirect(req.body.redirectUrl, { usershortname: foundUser.shortname, tester: 'something' } );
         dbParams.client.close();
     }
         
