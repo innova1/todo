@@ -42,7 +42,7 @@ exports.login = async (req, res) => {
             res.redirect(req.body.redirectUrl);
         } else {
             debug("entered pwd " + fbkerPwd + " is NOT the same as db password " + dbPwd + ", about to redirect back to login page for try # " + loginAttempt);
-            res.render('loginPage', { title: 'Login failed: Please re-enter your name and password', loginAttempt: loginAttempt, redirectUrl: redirectUrl });
+            res.render('loginPage', { title: 'Login failed: Please re-enter your name and password', changeUser: false, loginAttempt: loginAttempt, redirectUrl: redirectUrl });
         }
         /*
         debug("found " + password + ", about to redirect to " + req.body.redirectUrl);
