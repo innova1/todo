@@ -14,7 +14,7 @@ exports.login = async (req, res) => {
     const fbker = user.fbker;
     const fbkerPwd = user.fbkerPwd;
     const redirectUrl = user.redirectUrl;
-    const temploginAttempt = user.loginAttempt;
+    temploginAttempt = parseInt(user.loginAttempt);
     const loginAttempt = temploginAttempt+1;
     
     debug("fbker: " + fbker + ", pwd: " + fbkerPwd);
