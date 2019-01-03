@@ -15,7 +15,9 @@ exports.addFbk = (req, res) => {
 exports.addFbk2 = (req, res) => {
     //res.cookie('username', 'josephine', {});
     const un = req.cookies.username;
-    res.render('addFbk', { title: 'Adding some feedback', username: un });
+    const shortname = un.split(",")[0]
+    const email = un.split(",")[1]
+    res.render('addFbk', { title: 'Adding some feedback', username: un, shortname: shortname, email: email });
 };
 
 exports.saveTask = async (req, res) => {

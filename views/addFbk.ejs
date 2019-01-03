@@ -17,7 +17,7 @@
                 
                 <p><span style="color:Tomato;" id="buildfbk" /></p>
                 
-                <label for="duedate" class="text-primary">Feedback dates (probably today)</label>
+                <label for="duedate" class="text-primary">Feedback dates (probably today) Hi, <%=shortname%></label>
                 <input type="date" class="form-control" id="duedate" name="dueDate" onchange="buildFeedback()"/>
                 
                 <label for="fbkee" class="text-primary">Who do you want to give feedback to?</label>
@@ -78,6 +78,7 @@
                 <textarea class="form-control" id="detail" rows="3" name="detail"></textarea>
                 
                 <input id="isComplete" name="isComplete" type="hidden" value="false" />
+                <input type="hidden" id="email" name="email" value="<%= email %>" />
             </div>
                 <input type="submit" class="btn btn-primary" value="Add Feedback" />
         </form>

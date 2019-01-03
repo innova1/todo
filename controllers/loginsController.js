@@ -48,7 +48,7 @@ exports.login = async (req, res) => {
         debug("found " + password + ", about to redirect to " + req.body.redirectUrl);
         res.redirect(req.body.redirectUrl)
         */
-        dbParams.client.close();
+        //dbParams.client.close();
     }
         
     catch(err) {
