@@ -13,7 +13,9 @@ exports.login = async (req, res) => {
     //set this cookie only if a password check works
     res.cookie('username', req.body.fbker, {});
     const user = req.body;
-    debug("fbker: " + user.fbker + ", pwd: " + user.fbkerPwd);
+    const fbker = user.fbker;
+    const fbkerPwd = user.fbkerPwd;
+    debug("fbker: " + fbker + ", pwd: " + fbkerPwd);
     
     try {
         /*
