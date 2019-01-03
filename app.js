@@ -70,6 +70,9 @@ app.post('/task/add/', todoRouter);
 app.get('/user/add/', todoRouter);
 app.post('/user/add/', todoRouter);
 
+app.get('/user/change/', todoRouter);
+app.post('/user/change/', todoRouter);
+
 app.get('/login', todoRouter);
 app.post('/login', todoRouter);
 

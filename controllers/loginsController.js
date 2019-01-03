@@ -5,7 +5,7 @@ const debug = require('debug')('app:loginsController');
 exports.loginPage = (req, res) => {
     redirectUrl = req.cookies.redirectUrl;
     debug("redirectUrl from cookie is " + redirectUrl);
-    res.render('loginPage', { title: 'Find your name and enter your password', loginAttempt: 1, redirectUrl: redirectUrl });
+    res.render('loginPage', { title: 'Find your name and enter your password', changeUser: false, loginAttempt: 1, redirectUrl: redirectUrl });
 };
 
 exports.login = async (req, res) => {
@@ -54,4 +54,18 @@ exports.login = async (req, res) => {
     catch(err) {
         debug(err);
     }
+};
+
+exports.changeUserPage = (req, res) => {
+    redirectUrl = req.cookies.redirectUrl;
+    debug("redirectUrl from cookie is " + redirectUrl);
+    res.render('loginPage', { title: 'Find your name and enter your password', changeUser: true, loginAttempt: 1, redirectUrl: redirectUrl });
+};
+
+exports.changeUser = (req, res) => {
+    //delete cookie and replace cookie with new
+    //TODO
+    redirectUrl = req.cookies.redirectUrl;
+    debug("redirectUrl from cookie is " + redirectUrl);
+    res.render('loginPage', { title: 'Find your name and enter your password', changeUser: true, loginAttempt: 1, redirectUrl: redirectUrl });
 };
