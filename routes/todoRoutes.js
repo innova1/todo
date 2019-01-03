@@ -24,6 +24,7 @@ router.post('/task/add/', addController.saveTask);
 router.get('/export', exportController.exportFbks);
 router.get('/login', loginsController.loginPage);
 router.post('/login', loginsController.login);
+router.get('/logout', loginsController.logout);
 router.get('/user/change/', loginsController.changeUserPage);
 router.post('/user/change/', loginsController.changeUser);
 router.get('/', showController.showFbks);

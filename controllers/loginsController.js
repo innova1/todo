@@ -76,3 +76,8 @@ exports.changeUser = (req, res) => {
     res.redirect(req.body.redirectUrl);
     //res.render('loginPage', { title: 'Login failed: Please re-enter your name and password', changeUser: true, loginAttempt: loginAttempt, redirectUrl: redirectUrl });
 };
+
+exports.logout = (req, res) => {
+    res.clearCookie('username');
+    res.redirect('/');
+};
