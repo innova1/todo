@@ -29,9 +29,10 @@ exports.login = async (req, res) => {
         const foundUser = await dbParams.collection.find({ emailname: 'tom.boulet@gmail.com' } );
 
         //get dbhash and salt out of user. do localhash and compare and redirect as needed
+        const shortname = foundUser.shortname;
 
         console.log("found " + foundUser.shortname + ", about to redirect to " + req.body.redirectUrl);
-        res.redirect(req.body.redirectUrl, { foundUser.shortname, tester: 'something' } );
+        res.redirect(req.body.redirectUrl, { usershortname: foundUser.shortname, tester: 'something' } );
         dbParams.client.close();
     }
         
