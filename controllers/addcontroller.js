@@ -9,7 +9,7 @@ exports.addTask = (req, res) => {
 exports.addFbk = (req, res) => {
     //res.cookie('username', 'josephine', {});
     const un = "undefined";
-    res.render('addFbk', { title: 'Adding some feedback', username: un });
+    res.render('addFbk', { title: 'Adding some feedback', username: un, shortname: "", email: "" });
 };
 
 exports.addFbk2 = (req, res) => {
