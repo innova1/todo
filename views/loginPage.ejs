@@ -12,7 +12,7 @@
         <% include ./partials/navlogin %>
         <div class="card" style="width: 100%">
             
-        <form method="post" action="/login" style="padding: 20px">
+        <form method="post" action="<% if (changeUser) { %>/user/change<%} else {%>/login<%}%>" style="padding: 20px">
             <div class="form-group">
                 
                 <label for="fbker" class="text-primary">Select your email address</label>
@@ -54,7 +54,7 @@
                 <% } else { %>
                     First time login
                 <% } %>
-                <input type="submit" class="btn btn-primary" value="Login">
+                <input type="submit" class="btn btn-primary" value="<% if (changeUser) { %>Change user<%} else {%>Login<%}%>" />
         </form>
         </div>
     </div> <!-- container -->
