@@ -49,11 +49,6 @@
                 <input type="hidden" id="loginAttempt" name="loginAttempt" value="<%= loginAttempt %>" />
                 
             </div>
-                <% if (changeUser) { %>
-                    User changed 
-                <% } else { %>
-                    First time login
-                <% } %>
                 <input type="submit" class="btn btn-primary" value="<% if (changeUser) { %>Change user<%} else {%>Login<%}%>" />
         </form>
         </div>
