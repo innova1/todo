@@ -108,13 +108,14 @@
         function buildFeedbackString() {
             var buildIt = "";
             var ifnot = "";
+            var shortname = "<%=shortname%>";
             
             var duedate = $('#duedate').val();
             if(duedate != "") {
                 buildIt += "On " + duedate;
             }
             
-            buildIt += "," + shortname + " said, "
+            buildIt += ", " + shortname + " said, ";
             
             var fbkee = $('#fbkee').val();
             if(fbkee != "") {
