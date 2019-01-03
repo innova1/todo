@@ -15,9 +15,9 @@
         <form method="post" action="/task/add/" style="padding: 20px">
             <div class="form-group">
                 
-                <p><span style="color:Tomato;" id="buildfbk" /></p>
+                <p><span style="color:Tomato;" id="buildfbk">Hi, <%=shortname%></span></p>
                 
-                <label for="duedate" class="text-primary">Feedback dates (probably today) Hi, <%=shortname%></label>
+                <label for="duedate" class="text-primary">Feedback dates (probably today)</label>
                 <input type="date" class="form-control" id="duedate" name="dueDate" onchange="buildFeedback()"/>
                 
                 <label for="fbkee" class="text-primary">Who do you want to give feedback to?</label>
@@ -113,6 +113,9 @@
             if(duedate != "") {
                 buildIt += "On " + duedate;
             }
+            
+            buildIt += "," + shortname + " said, "
+            
             var fbkee = $('#fbkee').val();
             if(fbkee != "") {
                 buildIt += " " + fbkee.split(",")[0];
