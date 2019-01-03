@@ -10,8 +10,6 @@ exports.loginPage = (req, res) => {
 
 exports.login = async (req, res) => {
 
-    //set this cookie only if a password check works
-    res.cookie('username', req.body.fbker, {});
     const user = req.body;
     const fbker = user.fbker;
     const fbkerPwd = user.fbkerPwd;
@@ -35,6 +33,8 @@ exports.login = async (req, res) => {
         
         if( dbPwd == fbkerPwd ) {
             debug("entered pwd " + fbkerPwd + " is the same as db password " + dbPwd + ", about to redirect to " + req.body.redirectUrl);
+            //set this cookie only if a password check works
+            res.cookie('username', fbker, {});
             res.redirect(req.body.redirectUrl);
         } else {
             debug("entered pwd " + fbkerPwd + " is NOT the same as db password " + dbPwd + ", about to redirect back to login page");
