@@ -20,7 +20,12 @@ exports.showMyFbks = async function (req, res) {
   // need: user fullname and email from cookie
   try {
     username = req.cookies.username;
-    email = username.split(",")[1]
+    if(typeof username === 'undefined') {
+        email = "";
+    } else {
+        email = username.split(",")[1]
+    }
+    
     debug("query with email: " + email + ", username: " + username);
     const dbParams = await util.setupDB();
     const fbks = await dbParams.collection.find({ $or: [ { "fbkee.email": email }, { "fbkor.email": email } ] } ).sort({ dueDate: -1 }).toArray();
