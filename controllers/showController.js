@@ -31,7 +31,7 @@ exports.showMyFbks = async function (req, res) {
     const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ dueDate: -1 }).toArray();
     const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ dueDate: -1 }).toArray();
     const hostname = os.hostname();
-    res.render('showFbks', { myFbksIn, myFbksOut, title: 'My Feedback List', hostname });
+    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, title: 'My Feedback List', hostname });
     dbParams.client.close();
   }
   catch (err) {

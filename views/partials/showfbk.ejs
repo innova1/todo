@@ -34,9 +34,11 @@
                     <!--li class="nav-item">
                         <a class="nav-link" href="/task/edit/<%=fbk._id%>"> <i class="fas fa-edit"></i></a>
                     </li-->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/task/delete/<%=fbk._id%>"> <i class="fas fa-trash-alt"></i></a>
-                    </li>
+                    <% if (loggedInEmail == fbk.fbkor.email) { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/task/delete/<%=fbk._id%>"> <i class="fas fa-trash-alt"></i></a>
+                        </li>
+                    <%}%>
                 </ul>
             </div>  
         </div>
