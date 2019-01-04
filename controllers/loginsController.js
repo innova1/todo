@@ -31,7 +31,7 @@ exports.login = async (req, res) => {
         /*
         take password and do hash and use this result to compare with db
         */
-        const dbParams = await util.setupUserDB();
+        //const dbParams = await util.setupUserDB(); <-- HEEEERE
         /*
         look email address
         get password dbhash back
