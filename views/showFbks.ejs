@@ -14,7 +14,7 @@
   <body>
     <div class="container">
       <% include ./partials/navfbk %>
-    //rcv'd feedback
+    <h3>Feedback you've received</h3>
       <%  let fbk = {}; %>
 
          <% if (myFbksIn.length == 0) { %>
@@ -29,7 +29,8 @@
           <% } %> 
         <% } %>
         
-    //given feedback
+    
+    <h3>Feedback you've given</h3>
       <%  fbk = {}; %>
 
          <% if (myFbksOut.length == 0) { %>
