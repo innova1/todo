@@ -28,16 +28,8 @@ exports.login = async (req, res) => {
     debug("email: " + email + ", pwd: " + userPwd);
 
     try {
-        /*
-        take password and do hash and use this result to compare with db
-        */
+
         const dbParams = await util.setupUserDB();
-        /*
-        look email address
-        get password dbhash back
-        compare with localhash above
-        if match then true and go to redirectUrl else false and return to login page with "not match" message
-        */
         
         const foundUser = await dbParams.collection.findOne( { emailname: email } );
         

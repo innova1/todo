@@ -22,7 +22,16 @@
                 
                 <label for="fbkee" class="text-primary">Who do you want to give feedback to?</label>
                 <select class="form-control" id="fbkee" name="fbkee" onchange="buildFeedback()">
-                    <option value="Adriana,adriana.f.rosset">Adriana</option>
+                    <%  let user = {}; %>
+                    <% if (users.length == 0) { %>
+                        <option value="?">No users found</option>
+                    <%} else {%>
+                        <% for(let i = 0; i < myFbksIn.length; i++) { 
+                            user = users[i] %>
+                        <option value="<%=user.shortname%>,<%=user.email%>"><%=user.shortname%></option>
+                        <% } %> 
+                    <% } %>
+                    <!--option value="Adriana,adriana.f.rosset">Adriana</option>
                     <option value="Akshay,akshay.sadana">Akshay</option>
                     <option value="Ashish,ashish.pathak">Ashish</option>
                     <option value="Brendan,brendan.townsend">Brendan</option>
@@ -45,7 +54,7 @@
                     <option value="TJ,thomas.butryn">TJ</option>
                     <option value="Tom,tom.boulet">Tom</option>
                     <option value="Walter,walter.g.beren">Walter</option>
-                    <option value="Coach team,coachteam">Coach team</option>
+                    <option value="Coach team,coachteam">Coach team</option-->
                 </select>
             
                 <label for="direction" class="text-primary">Direction (will add 'decreased' option in future version)</label>

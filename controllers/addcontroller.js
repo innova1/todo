@@ -30,7 +30,11 @@ exports.addFbk = (req, res) => {
     const un = req.cookies.username;
     const shortname = un.split(",")[0]
     const email = un.split(",")[1]
-    res.render('addFbk', { title: 'Adding some feedback', username: un, shortname: shortname, email: email });
+    
+    const dbParams = await util.setupUserDB();
+    const users = await dbParams.collection.find().sort({ shortname: 1 }).toArray();
+    
+    res.render('addFbk', { users, title: 'Adding some feedback', username: un, shortname: shortname, email: email });
 };
 
 exports.saveTask = async (req, res) => {
