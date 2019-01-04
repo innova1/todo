@@ -50,7 +50,7 @@ exports.login = async (req, res) => {
             //hash it
             const userPwdHash = hash(userPwd, salt);
 
-            if( true ) } //dbPwdHash == userPwdHash ) { <-- HERE
+            if( true ) { //dbPwdHash == userPwdHash ) { <-- HERE
                 debug("entered pwd " + userPwdHash + " is the same as db password " + dbPwdHash + ", about to redirect to " + redirectUrl);
                 shortname = foundUser.shortname;
                 //set this cookie only if a password check works
