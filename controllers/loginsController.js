@@ -16,41 +16,38 @@ exports.login = async (req, res) => {
     const redirectUrl = user.redirectUrl;
     temploginAttempt = parseInt(user.loginAttempt);
     const loginAttempt = temploginAttempt+1;
-    
+
     debug("fbkor: " + fbkor + ", pwd: " + fbkorPwd);
-    
+
     try {
         /*
-            take password and do hash and use this result to compare with db
+        take password and do hash and use this result to compare with db
         */
-        //const dbParams = await util.setupUserDB();
+        const dbParams = await util.setupUserDB();
         /*
-            look email address
-            get password dbhash back
-            compare with localhash above
-            if match then true and go to redirectUrl else false and return to login page with "not match" message
+        look email address
+        get password dbhash back
+        compare with localhash above
+        if match then true and go to redirectUrl else false and return to login page with "not match" message
         */
-        //const foundUser = await dbParams.collection.findOne( { emailname: "tomboulet@gmail.com" } );
+        const foundUser = await dbParams.collection.findOne( { emailname: "tomboulet@gmail.com" } );
 
         //get dbhash and salt out of user. do localhash and compare and redirect as needed
-        //const dbPwd = foundUser.password;
-        
-        //if( dbPwd == fbkorPwd ) {
-            //debug("entered pwd " + fbkorPwd + " is the same as db password " + dbPwd + ", about to redirect to " + redirectUrl);
+        const dbPwd = foundUser.password;
+
+        if( dbPwd == fbkorPwd ) {
+            debug("entered pwd " + fbkorPwd + " is the same as db password " + dbPwd + ", about to redirect to " + redirectUrl);
             //set this cookie only if a password check works
             res.cookie('username', fbkor, { expires: new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)) });
             res.redirect(req.body.redirectUrl);
-        //} else {
-           // debug("entered pwd " + fbkorPwd + " is NOT the same as db password " + dbPwd + ", about to redirect back to login page for try # " + loginAttempt);
-            //res.render('loginPage', { title: 'Login failed: Please re-enter your name and password', changeUser: false, loginAttempt: loginAttempt, redirectUrl: redirectUrl });
-        //}
-        /*
-        debug("found " + password + ", about to redirect to " + req.body.redirectUrl);
-        res.redirect(req.body.redirectUrl)
-        */
-        //dbParams.client.close();
-    }
+        } else {
+            debug("entered pwd " + fbkorPwd + " is NOT the same as db password " + dbPwd + ", about to redirect back to login page for try # " + loginAttempt);
+            res.render('loginPage', { title: 'Login failed: Please re-enter your name and password', changeUser: false, loginAttempt: loginAttempt, redirectUrl: redirectUrl });
+        }
         
+        dbParams.client.close();
+    }
+
     catch(err) {
         debug(err);
     }

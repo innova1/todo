@@ -1,4 +1,5 @@
 const { MongoClient, ObjectId } = require('mongodb');
+const crypto = require('crypto');
 const debug = require('debug')('app:utilController');
 
 exports.setupDB = async function () {
@@ -18,6 +19,7 @@ exports.setupDB = async function () {
 };
 
 exports.setupUserDB = async function () {
+    //crypto.DEFAULT_ENCODING = 'hex';
     const url = process.env.DB_URL;
     debug(`attempting to connect to database at ${url}`);
     const dbName = 'tasks';
