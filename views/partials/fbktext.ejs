@@ -1,16 +1,18 @@
 
-    <%if (task.dueDate != '') { %>
-        &#34;<%=task.dueDate%>&#34;
+    <%if (fbk.dueDate != '') { %>
+        &#34;<%=fbk.dueDate%>&#34;
     <% } else  { %>
         &#34;Not specified&#34;
     <% } %>
 ,
-    &#34;<%=task.fbkee%>&#34;,
-    &#34;<%=task.direction%>&#34;,
-    &#34;<%=task.type%>&#34;,
+    &#34;<%=fbk.fbkor.email%>&#34;,
+    &#34;<%=fbk.fbkee.email%>&#34;,
+    &#34;<%=fbk.direction%>&#34;,
+    &#34;<%=fbk.outcome%>&#34;,
+    &#34;<%=fbk.behavior%>&#34;,
 
-    <%if (task.details != '') { %>
-        &#34;<%=task.detail%>&#34;
+    <%if (fbk.details != '') { %>
+        &#34;<%=fbk.detail%>&#34;
     <% } else  { %>
         &#34;No comment&#34;
     <% } %>

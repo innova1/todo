@@ -11,20 +11,20 @@
   </head>
   <body>
     <div class="container">
-      <%  let task = {}; %>
+      <%  let fbk = {}; %>
 
-         <% if (tasks.length == 0) { %>
+         <% if (fbks.length == 0) { %>
          
-         <h4> No feedback gifts to display. Add one above.</h4>
+         <h4>No feedback to display.</h4>
 
          <%} else {%>
 
-          <% for(let i = 0; i < tasks.length; i++) { 
-              task = tasks[i] %>
+          <% for(let i = 0; i < fbks.length; i++) { 
+              fbk = fbks[i] %>
               <% include ./partials/fbktext %>
           <% } %> 
         <% } %>
-      <p class="font-weight-light font-italic">Served by host: Tom's Macbook Pro sitting on his desk at <%= hostname %></p>
+      <p class="font-weight-light font-italic">Served by <%= hostname %></p>
     </div> <!-- container -->
   </body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
