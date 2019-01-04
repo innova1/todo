@@ -64,9 +64,10 @@ exports.login = async (req, res) => {
             }
 
             dbParams.client.close();
+        }
             */ //<--- here
             res.cookie('username', 'Tom' + "," + email, { expires: new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)) }); // <-- temp HEEERE
-        }
+
     }
 
     catch(err) {
