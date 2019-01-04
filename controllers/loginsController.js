@@ -38,9 +38,11 @@ exports.login = async (req, res) => {
         compare with localhash above
         if match then true and go to redirectUrl else false and return to login page with "not match" message
         */
+        
+        /* <--- HEEEERE
         const foundUser = await dbParams.collection.findOne( { emailname: email } );
         
-        if( false ) { //!foundUser ) { <--HERE
+        if( !foundUser ) {
             res.render('loginPage', { title: 'Email not found: Please re-enter your name and password', changeUser: false, loginAttempt: loginAttempt, redirectUrl: redirectUrl });
         } else {
             //get dbhash and salt out of user. do localhash and compare and redirect as needed
@@ -50,7 +52,7 @@ exports.login = async (req, res) => {
             //hash it
             const userPwdHash = hash(userPwd, salt);
 
-            if( true ) { //dbPwdHash == userPwdHash ) { <-- HERE
+            if( dbPwdHash == userPwdHash ) {
                 debug("entered pwd " + userPwdHash + " is the same as db password " + dbPwdHash + ", about to redirect to " + redirectUrl);
                 shortname = foundUser.shortname;
                 //set this cookie only if a password check works
@@ -62,7 +64,8 @@ exports.login = async (req, res) => {
             }
 
             dbParams.client.close();
-            
+            */ //<--- here
+            res.cookie('username', 'Tom' + "," + email, { expires: new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)) }); // <-- temp HEEERE
         }
     }
 
