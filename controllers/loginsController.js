@@ -48,7 +48,7 @@ exports.login = async (req, res) => {
             const salt = foundUser.salt;
 
             //hash it
-            const UserPwdHash = hash(userPwd, salt);
+            const userPwdHash = hash(userPwd, salt);
 
             if( dbPwdHash == userPwdHash ) {
                 debug("entered pwd " + userPwd + " is the same as db password " + dbPwd + ", about to redirect to " + redirectUrl);
