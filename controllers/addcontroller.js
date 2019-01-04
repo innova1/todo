@@ -37,20 +37,25 @@ exports.saveTask = async (req, res) => {
   }
 };
 
-exports.addUser = async (req, res) => {
+exports.addUserPage = async (req, res) => {
   res.render('addUser', { title: 'Adding a user' });
 };
 
-exports.saveUser = async (req, res) => {
-  try {
-    const user = req.body;
-    const dbParams = await util.setupUserDB();
-    await dbParams.collection.insertOne(user);
-    dbParams.client.close();
-    res.redirect('/');
-  }
+exports.addUser = async (req, res) => {
+    try {
+        tempUser = req.body;
+        var password = tempUser.password;
+        //add salt and hash password
+        tempUser.salt = "some calc'd value";
+        tempUser.password = "hashed password here";
+        const user = tempUser; //doing this because it seems these variables need to be const for some reason
+        const dbParams = await util.setupUserDB();
+        await dbParams.collection.insertOne(user);
+        dbParams.client.close();
+        res.redirect('/');
+    }
 
-  catch(err) {
-    debug(err);
-  }
+    catch(err) {
+        debug(err);
+    }
 };
