@@ -11,13 +11,13 @@ exports.loginPage = (req, res) => {
 exports.login = async (req, res) => {
 
     const user = req.body;
-    const fbker = user.fbker;
-    const fbkerPwd = user.fbkerPwd;
+    const fbkor = user.fbkor;
+    const fbkorPwd = user.fbkorPwd;
     const redirectUrl = user.redirectUrl;
     temploginAttempt = parseInt(user.loginAttempt);
     const loginAttempt = temploginAttempt+1;
     
-    debug("fbker: " + fbker + ", pwd: " + fbkerPwd);
+    debug("fbkor: " + fbkor + ", pwd: " + fbkorPwd);
     
     try {
         /*
@@ -35,13 +35,13 @@ exports.login = async (req, res) => {
         //get dbhash and salt out of user. do localhash and compare and redirect as needed
         //const dbPwd = foundUser.password;
         
-        //if( dbPwd == fbkerPwd ) {
-            //debug("entered pwd " + fbkerPwd + " is the same as db password " + dbPwd + ", about to redirect to " + redirectUrl);
+        //if( dbPwd == fbkorPwd ) {
+            //debug("entered pwd " + fbkorPwd + " is the same as db password " + dbPwd + ", about to redirect to " + redirectUrl);
             //set this cookie only if a password check works
-            res.cookie('username', fbker, {});
+            res.cookie('username', fbkor, {});
             res.redirect(req.body.redirectUrl);
         //} else {
-           // debug("entered pwd " + fbkerPwd + " is NOT the same as db password " + dbPwd + ", about to redirect back to login page for try # " + loginAttempt);
+           // debug("entered pwd " + fbkorPwd + " is NOT the same as db password " + dbPwd + ", about to redirect back to login page for try # " + loginAttempt);
             //res.render('loginPage', { title: 'Login failed: Please re-enter your name and password', changeUser: false, loginAttempt: loginAttempt, redirectUrl: redirectUrl });
         //}
         /*
@@ -64,14 +64,14 @@ exports.changeUserPage = (req, res) => {
 
 exports.changeUser = (req, res) => {
     const user = req.body;
-    const fbker = user.fbker;
-    const fbkerPwd = user.fbkerPwd;
+    const fbkor = user.fbkor;
+    const fbkorPwd = user.fbkorPwd;
     const redirectUrl = user.redirectUrl;
     temploginAttempt = parseInt(user.loginAttempt);
     const loginAttempt = temploginAttempt+1;
     debug("redirectUrl from cookie is " + redirectUrl);
     res.clearCookie('username');
-    res.cookie('username', fbker, {});
+    res.cookie('username', fbkor, {});
     //success -- only one implemented right now -- not yet checking password
     res.redirect(req.body.redirectUrl);
     //res.render('loginPage', { title: 'Login failed: Please re-enter your name and password', changeUser: true, loginAttempt: loginAttempt, redirectUrl: redirectUrl });
