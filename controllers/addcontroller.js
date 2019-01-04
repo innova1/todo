@@ -6,13 +6,13 @@ exports.addTask = (req, res) => {
     res.render('addTask', { title: 'Adding some feedback' });
 };
 
-exports.addFbk = (req, res) => {
+exports.addFbkx = (req, res) => {
     //res.cookie('username', 'josephine', {});
     const un = "undefined";
     res.render('addFbk', { title: 'Adding some feedback', username: un, shortname: "", email: "" });
 };
 
-exports.addFbk2 = (req, res) => {
+exports.addFbk = (req, res) => {
     //res.cookie('username', 'josephine', {});
     const un = req.cookies.username;
     const shortname = un.split(",")[0]
