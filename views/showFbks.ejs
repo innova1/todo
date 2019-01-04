@@ -14,16 +14,16 @@
   <body>
     <div class="container">
       <% include ./partials/navfbk %>
-      <%  let task = {}; %>
+      <%  let fbk = {}; %>
 
-         <% if (tasks.length == 0) { %>
+         <% if (fbks.length == 0) { %>
          
          <h4> No feedback gifts to display. Add one above.</h4>
 
          <%} else {%>
 
-          <% for(let i = 0; i < tasks.length; i++) { 
-              task = tasks[i] %>
+          <% for(let i = 0; i < fbks.length; i++) { 
+              fbk = fbks[i] %>
               <% include ./partials/showfbk %>
           <% } %> 
         <% } %>

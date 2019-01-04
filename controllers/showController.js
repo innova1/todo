@@ -6,7 +6,7 @@ const debug = require('debug')('app:showController');
 exports.showFbks = async function (req, res) {
   try {
     const dbParams = await util.setupDB();
-    const tasks = await dbParams.collection.find({}).sort({ dueDate: -1 }).toArray();
+    const fbks = await dbParams.collection.find({}).sort({ dueDate: -1 }).toArray();
     const hostname = os.hostname();
     res.render('showFbks', { tasks, title: 'Feedback List', hostname });
     dbParams.client.close();
@@ -22,8 +22,8 @@ exports.showMyFbks = async function (req, res) {
     username = req.cookies.username;
     email = username.split(",")[1]
     debug("query with email: " + email + ", username: " + username);
-    const dbParams = await util.setupDB();       //( { $or: [ { quantity: { $lt: 20 } }, { price: 10 } ] } )
-    const tasks = await dbParams.collection.find({ $or: [ { fbkee: username }, { email: email } ] } ).sort({ dueDate: -1 }).toArray();
+    const dbParams = await util.setupDB();
+    const fbks = await dbParams.collection.find({ $or: [ { fbkee: username }, { email: email } ] } ).sort({ dueDate: -1 }).toArray();
     const hostname = os.hostname();
     res.render('showFbks', { tasks, title: 'Feedback List', hostname });
     dbParams.client.close();
