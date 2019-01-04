@@ -18,7 +18,7 @@
             <% if (myFbksIn.length == 0) { %>
                 <h4> No feedback gifts to display. Maybe you should ask for some?</h4>
             <%} else {%>
-                <h3>Hey, <%=myFbksIn[0].shortname%>, here's the feedback you've received</h3>
+                <h3>Hey, <%=myFbksIn[0].fbkee.shortname%>, here's the feedback you've received</h3>
                 <% for(let i = 0; i < myFbksIn.length; i++) { 
                     fbk = myFbksIn[i] %>
                     <% include ./partials/showfbk %>
