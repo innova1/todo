@@ -56,6 +56,7 @@ app.use('/task/add2', checkLogin, function(req, res, next) {
 });
 
 app.get('/', todoRouter);
+app.get('/a', todoRouter); //<-- temp -- remove and reset to /
 app.get('/export', todoRouter);
 app.post('/task/complete/:id', todoRouter);
 app.get('/task/edit/:id', todoRouter);
