@@ -26,7 +26,7 @@ exports.addFbkx = (req, res) => {
     res.render('addFbk', { title: 'Adding some feedback', username: un, shortname: "", email: "" });
 };
 
-exports.addFbk = (req, res) => {
+exports.addFbk = async (req, res) => {
     const un = req.cookies.username;
     const shortname = un.split(",")[0]
     const email = un.split(",")[1]
