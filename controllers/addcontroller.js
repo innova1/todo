@@ -57,7 +57,8 @@ exports.addUser = async (req, res) => {
         tempUser = req.body;
         var password = tempUser.password;
         //add salt and hash password
-        tempUser.salt = grindSalt();
+        salt = grindSalt();
+        tempUser.salt = salt;
         hashed = hash(password, salt);
         debug("took " + password + " and hashed to " + hashed);
         tempUser.password = hashed;
