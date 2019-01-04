@@ -28,9 +28,10 @@ exports.showMyFbks = async function (req, res) {
     
     debug("query with email: " + email + ", username: " + username);
     const dbParams = await util.setupDB();
-    const fbks = await dbParams.collection.find({ $or: [ { "fbkee.email": email }, { "fbkor.email": email } ] } ).sort({ dueDate: -1 }).toArray();
+    const myFbksIn = await dbParams.collection.find({ $or: [ { "fbkee.email": email }, { "fbkor.email": email } ] } ).sort({ dueDate: -1 }).toArray();
+    const myFbksOut = await dbParams.collection.find({ $or: [ { "fbkee.email": email }, { "fbkor.email": email } ] } ).sort({ dueDate: -1 }).toArray();
     const hostname = os.hostname();
-    res.render('showFbks', { fbks, title: 'Feedback List', hostname });
+    res.render('showFbks', { myFbksIn, myFbksOut, title: 'My Feedback List', hostname });
     dbParams.client.close();
   }
   catch (err) {

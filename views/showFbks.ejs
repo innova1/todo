@@ -14,20 +14,36 @@
   <body>
     <div class="container">
       <% include ./partials/navfbk %>
+    //rcv'd feedback
       <%  let fbk = {}; %>
 
-         <% if (fbks.length == 0) { %>
+         <% if (myFbksIn.length == 0) { %>
          
-         <h4> No feedback gifts to display. Add one above.</h4>
+         <h4> No feedback gifts to display. Maybe you should ask for some?</h4>
 
          <%} else {%>
 
-          <% for(let i = 0; i < fbks.length; i++) { 
-              fbk = fbks[i] %>
+          <% for(let i = 0; i < myFbksIn.length; i++) { 
+              fbk = myFbksIn[i] %>
               <% include ./partials/showfbk %>
           <% } %> 
         <% } %>
-      <p class="font-weight-light font-italic">Served by host: Tom's Macbook Pro sitting on his desk at <%= hostname %></p>
+        
+    //given feedback
+      <%  let fbk = {}; %>
+
+         <% if (myFbksOut.length == 0) { %>
+         
+         <h4> No feedback gifts to display. Anyone you want to acknowledge?</h4>
+
+         <%} else {%>
+
+          <% for(let i = 0; i < myFbksOut.length; i++) { 
+              fbk = myFbksOut[i] %>
+              <% include ./partials/showfbk %>
+          <% } %> 
+        <% } %>
+      <p class="font-weight-light font-italic">Served by <%= hostname %></p>
     </div> <!-- container -->
       
   <script src="/js/jquery.min.js"></script>
