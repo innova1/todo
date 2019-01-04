@@ -2,12 +2,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-sm">
-                On 
-                <%if (fbk.dueDate != '') { %>
-                    <%=fbk.dueDate%>
-                <% } else  { %>
-                    Not specified
-                <% } %>, 
+                On <%if (fbk.dueDate != '') { %><%=fbk.dueDate%><% } else { %>Not specified<% } %>, 
                 <%=fbk.fbkor.shortname%> said...
             </div>
         </div>
