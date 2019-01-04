@@ -21,8 +21,9 @@ exports.showMyFbks = async function (req, res) {
   try {
     username = req.cookies.username;
     email = username.split(",")[1]
+    debug("query with email: " + email + ", username: " + username);
     const dbParams = await util.setupDB();
-    const tasks = await dbParams.collection.find({ fbkee: username, email: email }).sort({ dueDate: -1 }).toArray();
+    const tasks = await dbParams.collection.find({ fbkee: { username }, email: { email } }).sort({ dueDate: -1 }).toArray();
     const hostname = os.hostname();
     res.render('showFbks', { tasks, title: 'Feedback List', hostname });
     dbParams.client.close();
