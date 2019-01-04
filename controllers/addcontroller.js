@@ -31,10 +31,17 @@ exports.addFbk = (req, res) => {
     const shortname = un.split(",")[0]
     const email = un.split(",")[1]
     
-    const dbParams = await util.setupUserDB();
-    const users = await dbParams.collection.find().sort({ shortname: 1 }).toArray();
+    try {
+        const dbParams = await util.setupUserDB();
+        const users = await dbParams.collection.find().sort({ shortname: 1 }).toArray();
+
+        res.render('addFbk', { users, title: 'Adding some feedback', username: un, shortname: shortname, email: email });
+        
+    }
     
-    res.render('addFbk', { users, title: 'Adding some feedback', username: un, shortname: shortname, email: email });
+    catch(err) {
+        debug(err);
+    }
 };
 
 exports.saveTask = async (req, res) => {
