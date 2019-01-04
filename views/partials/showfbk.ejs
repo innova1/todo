@@ -3,8 +3,8 @@
         <div class="row">
             <div class="col-sm">
                 On   
-                <%if (task.dueDate != '') { %>
-                    <%=task.dueDate%> 
+                <%if (fbk.dueDate != '') { %>
+                    <%=fbk.dueDate%> 
                 <% } else  { %>
                     Not specified
                 <% } %>
@@ -13,16 +13,16 @@
     </div>
     
     <div class="card-body">
-        <h5 class ="card-title"><%=task.fbkee.split(",")[0]%> <%=task.direction%> <%=task.outcome%> 
+        <h5 class ="card-title"><%=fbk.fbkee.split(",")[0]%> <%=fbk.direction%> <%=fbk.outcome%> 
             
-            <%if (task.behavior != '') { %> 
+            <%if (fbk.behavior != '') { %> 
                 <span> using </span>
-            <%=task.behavior%> <% } else { %>
+            <%=fbk.behavior%> <% } else { %>
                 <% } %>
             </h5>
          
-            <%if (task.details != '') { %>
-                <p class="card-text"><%=task.detail%></p>
+            <%if (fbk.details != '') { %>
+                <p class="card-text"><%=fbk.detail%></p>
             <% } else  { %>
                 <p class="card-text">No comment</p>
             <% } %>
@@ -34,10 +34,10 @@
             <div class = "col-sm">
                 <ul class="nav justify-content-end nav-pills card-header-pills">
                     <!--li class="nav-item">
-                        <a class="nav-link" href="/task/edit/<%=task._id%>"> <i class="fas fa-edit"></i></a>
+                        <a class="nav-link" href="/fbk/edit/<%=fbk._id%>"> <i class="fas fa-edit"></i></a>
                     </li-->
                     <li class="nav-item">
-                        <a class="nav-link" href="/task/delete/<%=task._id%>"> <i class="fas fa-trash-alt"></i></a>
+                        <a class="nav-link" href="/fbk/delete/<%=fbk._id%>"> <i class="fas fa-trash-alt"></i></a>
                     </li>
                 </ul>
             </div>  
