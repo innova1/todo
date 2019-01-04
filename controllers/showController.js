@@ -8,7 +8,7 @@ exports.showFbks = async function (req, res) {
     const dbParams = await util.setupDB();
     const fbks = await dbParams.collection.find({}).sort({ dueDate: -1 }).toArray();
     const hostname = os.hostname();
-    res.render('showFbks', { tasks, title: 'Feedback List', hostname });
+    res.render('showFbks', { fbks, title: 'Feedback List', hostname });
     dbParams.client.close();
   }
   catch (err) {
@@ -25,7 +25,7 @@ exports.showMyFbks = async function (req, res) {
     const dbParams = await util.setupDB();
     const fbks = await dbParams.collection.find({ $or: [ { fbkee: username }, { email: email } ] } ).sort({ dueDate: -1 }).toArray();
     const hostname = os.hostname();
-    res.render('showFbks', { tasks, title: 'Feedback List', hostname });
+    res.render('showFbks', { fbks, title: 'Feedback List', hostname });
     dbParams.client.close();
   }
   catch (err) {
