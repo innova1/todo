@@ -4,10 +4,8 @@ const crypto = require('crypto');
 const debug = require('debug')('app:addController');
 
 function grindSalt() {
-    crypto.randomBytes(64, (err, buf) => {
-        if (err) throw err;
-        debug(`${buf.length} bytes of random data: ${buf.toString('hex')}`);
-    });
+    const buf = crypto.randomBytes(256);
+    debug(`${buf.length} bytes of random data: ${buf.toString('hex')}`);
     return buf;
 }
 
