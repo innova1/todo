@@ -2,28 +2,30 @@
     <div class="card-header">
         <div class="row">
             <div class="col-sm">
-                On <%if (fbk.dueDate != '') { %><%=fbk.dueDate%><% } else { %>Not specified<% } %>, 
-                <%=fbk.fbkor.shortname%> said...
+                On 
+                <%if (fbk.dueDate != '') { %>
+                    <%=fbk.dueDate%><% 
+                } else { 
+                    %>Not specified<% 
+                } %>, <%=fbk.fbkor.shortname%> said...
             </div>
         </div>
     </div>
-    
+
     <div class="card-body">
         <h5 class ="card-title"><%=fbk.fbkee.shortname%> <%=fbk.direction%> <%=fbk.outcome%> 
-            
             <%if (fbk.behavior != '') { %> 
-                <span> using </span>
+            <span> using </span>
             <%=fbk.behavior%> <% } else { %>
-                <% } %>
-            </h5>
-         
-            <%if (fbk.details != '') { %>
-                <p class="card-text"><%=fbk.detail%></p>
-            <% } else  { %>
-                <p class="card-text">No comment</p>
             <% } %>
-        
-        
+        </h5>
+
+        <%if (fbk.details != '') { %>
+        <p class="card-text"><%=fbk.detail%></p>
+        <% } else  { %>
+        <p class="card-text">No comment</p>
+        <% } %>
+
     </div>
     <div class="card-footer">
         <div class = "row">
