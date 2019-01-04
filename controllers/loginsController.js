@@ -1,5 +1,6 @@
 const { MongoClient, ObjectId } = require('mongodb');
 const util = require('./utilController');
+const crypto = require('crypto');
 const debug = require('debug')('app:loginsController');
 
 function hash(pwd, salt) {
@@ -18,13 +19,13 @@ exports.loginPage = (req, res) => {
 exports.login = async (req, res) => {
 
     const user = req.body;
-    const fbkor = user.fbkor;
-    const fbkorPwd = user.fbkorPwd;
+    const email = user.email;
+    const userPwd = user.userPwd;
     const redirectUrl = user.redirectUrl;
     temploginAttempt = parseInt(user.loginAttempt);
     const loginAttempt = temploginAttempt+1;
 
-    debug("fbkor: " + fbkor + ", pwd: " + fbkorPwd);
+    debug("email: " + email + ", pwd: " + userPwd);
 
     try {
         /*
@@ -37,7 +38,7 @@ exports.login = async (req, res) => {
         compare with localhash above
         if match then true and go to redirectUrl else false and return to login page with "not match" message
         */
-        const foundUser = await dbParams.collection.findOne( { emailname: fbkor } );
+        const foundUser = await dbParams.collection.findOne( { emailname: email } );
         
         if( !foundUser ) {
             res.render('loginPage', { title: 'Email not found: Please re-enter your name and password', changeUser: false, loginAttempt: loginAttempt, redirectUrl: redirectUrl });
@@ -47,15 +48,16 @@ exports.login = async (req, res) => {
             const salt = foundUser.salt;
 
             //hash it
-            const fbkorPwdHash = hash(fbkorPwd, salt);
+            const UserPwdHash = hash(userPwd, salt);
 
-            if( dbPwdHash == fbkorPwdHash ) {
-                debug("entered pwd " + fbkorPwd + " is the same as db password " + dbPwd + ", about to redirect to " + redirectUrl);
+            if( dbPwdHash == userPwdHash ) {
+                debug("entered pwd " + userPwd + " is the same as db password " + dbPwd + ", about to redirect to " + redirectUrl);
+                shortname = foundUser.shortname;
                 //set this cookie only if a password check works
-                res.cookie('username', fbkor, { expires: new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)) });
+                res.cookie('username', shortname + "," + email, { expires: new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)) });
                 res.redirect(req.body.redirectUrl);
             } else {
-                debug("entered pwd " + fbkorPwd + " is NOT the same as db password " + dbPwd + ", about to redirect back to login page for try # " + loginAttempt);
+                debug("entered pwd " + userPwd + " is NOT the same as db password " + dbPwd + ", about to redirect back to login page for try # " + loginAttempt);
                 res.render('loginPage', { title: 'Login failed: Please re-enter your name and password', changeUser: false, loginAttempt: loginAttempt, redirectUrl: redirectUrl });
             }
 
