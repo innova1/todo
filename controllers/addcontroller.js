@@ -23,7 +23,7 @@ exports.addFbk = (req, res) => {
 exports.saveTask = async (req, res) => {
   try {
     var tempfbk = req.body;
-    tempfbk.fbkee = "{ 'shortname': '" + tempfbk.fbkee.split(",")[0] + "', 'email': '" + tempfbk.fbkee.split(",")[1] + "' }";
+    tempfbk.fbkee = eval("{ 'shortname': '" + tempfbk.fbkee.split(",")[0] + "', 'email': '" + tempfbk.fbkee.split(",")[1] + "' }");
     const task = req.body;
     const dbParams = await util.setupDB();
     await dbParams.collection.insertOne(task);
