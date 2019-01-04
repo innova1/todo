@@ -4,7 +4,7 @@ const crypto = require('crypto');
 const debug = require('debug')('app:addController');
 
 function grindSalt() {
-    const buf = crypto.randomBytes(256);
+    const buf = crypto.randomBytes(16);
     debug(`${buf.length} bytes of random data: ${buf.toString('hex')}`);
     return buf;
 }
@@ -12,7 +12,8 @@ function grindSalt() {
 function hash(pwd, salt) {
     crypto.DEFAULT_ENCODING = 'hex';
     const key = crypto.pbkdf2Sync(pwd, salt, 100000, 64, 'sha512');
-    debug(key.toString('hex'));  // '3745e48...08d59ae'
+    debug("hashed string is " + key.toString('hex'));  // '3745e48...08d59ae'
+    return key;
 }
 
 exports.addTask = (req, res) => {
