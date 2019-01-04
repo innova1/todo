@@ -23,7 +23,7 @@ exports.showMyFbks = async function (req, res) {
     email = username.split(",")[1]
     debug("query with email: " + email + ", username: " + username);
     const dbParams = await util.setupDB();
-    const fbks = await dbParams.collection.find({ $or: [ { fbkee.email: email }, { fbkor.email: email } ] } ).sort({ dueDate: -1 }).toArray();
+    const fbks = await dbParams.collection.find({ $or: [ { "fbkee.email": email }, { "fbkor.email": email } ] } ).sort({ dueDate: -1 }).toArray();
     const hostname = os.hostname();
     res.render('showFbks', { fbks, title: 'Feedback List', hostname });
     dbParams.client.close();
