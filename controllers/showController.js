@@ -14,8 +14,9 @@ exports.showFbks = async function (req, res) {
   catch (err) {
     debug(err);
   }
+};
     
-  exports.showMyFbks = async function (req, res) {
+exports.showMyFbks = async function (req, res) {
   // need: user fullname and email from cookie
   try {
     username = req.cookies.username;
@@ -29,4 +30,4 @@ exports.showFbks = async function (req, res) {
   catch (err) {
     debug(err);
   }
-}
+};
