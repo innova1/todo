@@ -16,7 +16,7 @@
             
             <%  let fbk = {}; %>
             <% if (myFbksIn.length == 0) { %>
-                <h4> No feedback gifts to display. Maybe you should ask for some?</h4>
+                <h4>No feedback gifts to display. Maybe you should ask for some?</h4>
             <%} else {%>
                 <h3>Hey, <%=myFbksIn[0].fbkee.shortname%>, here's the feedback you've received</h3>
                 <% for(let i = 0; i < myFbksIn.length; i++) { 
@@ -25,11 +25,11 @@
                 <% } %> 
             <% } %>
 
-            <h3>Here's feedback you've given</h3>
             <%  fbk = {}; %>
             <% if (myFbksOut.length == 0) { %>
-                <h4> No feedback gifts to display. Anyone you want to acknowledge?</h4>
+                <h4>You haven't given any feedback gifts. Anyone you want to acknowledge?</h4>
             <%} else {%>
+                <h3>Here's feedback you've given</h3>
                 <% for(let i = 0; i < myFbksOut.length; i++) { 
                     fbk = myFbksOut[i] %>
                     <% include ./partials/showfbk %>
