@@ -26,7 +26,7 @@
                     <% if (users.length == 0) { %>
                         <option value="?">No users found</option>
                     <%} else {%>
-                        <% for(let i = 0; i < myFbksIn.length; i++) { 
+                        <% for(let i = 0; i < users.length; i++) { 
                             user = users[i] %>
                         <option value="<%=user.shortname%>,<%=user.email%>"><%=user.shortname%></option>
                         <% } %> 
