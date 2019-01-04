@@ -19,7 +19,6 @@ exports.login = async (req, res) => {
 
     const user = req.body;
     const fbkor = user.fbkor;
-    const email = user.email;
     const fbkorPwd = user.fbkorPwd;
     const redirectUrl = user.redirectUrl;
     temploginAttempt = parseInt(user.loginAttempt);
@@ -38,26 +37,31 @@ exports.login = async (req, res) => {
         compare with localhash above
         if match then true and go to redirectUrl else false and return to login page with "not match" message
         */
-        const foundUser = await dbParams.collection.findOne( { emailname: email } );
-
-        //get dbhash and salt out of user. do localhash and compare and redirect as needed
-        const dbPwdHash = foundUser.password;
-        const salt = foundUser.salt;
+        const foundUser = await dbParams.collection.findOne( { emailname: fbkor } );
         
-        //hash it
-        const fbkorPwdHash = hash(fbkorPwd, salt);
-
-        if( dbPwdHash == fbkorPwdHash ) {
-            debug("entered pwd " + fbkorPwd + " is the same as db password " + dbPwd + ", about to redirect to " + redirectUrl);
-            //set this cookie only if a password check works
-            res.cookie('username', fbkor, { expires: new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)) });
-            res.redirect(req.body.redirectUrl);
+        if( !foundUser ) {
+            res.render('loginPage', { title: 'Email not found: Please re-enter your name and password', changeUser: false, loginAttempt: loginAttempt, redirectUrl: redirectUrl });
         } else {
-            debug("entered pwd " + fbkorPwd + " is NOT the same as db password " + dbPwd + ", about to redirect back to login page for try # " + loginAttempt);
-            res.render('loginPage', { title: 'Login failed: Please re-enter your name and password', changeUser: false, loginAttempt: loginAttempt, redirectUrl: redirectUrl });
+            //get dbhash and salt out of user. do localhash and compare and redirect as needed
+            const dbPwdHash = foundUser.password;
+            const salt = foundUser.salt;
+
+            //hash it
+            const fbkorPwdHash = hash(fbkorPwd, salt);
+
+            if( dbPwdHash == fbkorPwdHash ) {
+                debug("entered pwd " + fbkorPwd + " is the same as db password " + dbPwd + ", about to redirect to " + redirectUrl);
+                //set this cookie only if a password check works
+                res.cookie('username', fbkor, { expires: new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)) });
+                res.redirect(req.body.redirectUrl);
+            } else {
+                debug("entered pwd " + fbkorPwd + " is NOT the same as db password " + dbPwd + ", about to redirect back to login page for try # " + loginAttempt);
+                res.render('loginPage', { title: 'Login failed: Please re-enter your name and password', changeUser: false, loginAttempt: loginAttempt, redirectUrl: redirectUrl });
+            }
+
+            dbParams.client.close();
+            
         }
-        
-        dbParams.client.close();
     }
 
     catch(err) {
