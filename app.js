@@ -49,10 +49,6 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/css', express.static(__dirname + '/public/stylesheets'));
 app.use('/webfonts', express.static(__dirname + '/public/fonts/webfonts/')); 
 
-app.use('/', checkLogin, function(req, res, next) {
-    next();
-});
-
 app.use('/all', checkLogin, function(req, res, next) {
     next();
 });
