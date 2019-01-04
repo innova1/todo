@@ -31,7 +31,7 @@ exports.login = async (req, res) => {
         /*
         take password and do hash and use this result to compare with db
         */
-        //const dbParams = await util.setupUserDB(); <-- HEEEERE
+        const dbParams = await util.setupUserDB();
         /*
         look email address
         get password dbhash back
@@ -39,7 +39,6 @@ exports.login = async (req, res) => {
         if match then true and go to redirectUrl else false and return to login page with "not match" message
         */
         
-        /* <--- HEEEERE
         const foundUser = await dbParams.collection.findOne( { emailname: email } );
         
         if( !foundUser ) {
@@ -65,10 +64,10 @@ exports.login = async (req, res) => {
 
             dbParams.client.close();
         }
-        */ //<--- here
-        debug("hot here");
+        /*
         res.cookie('username', 'Tom' + "," + email, { expires: new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)) }); // <-- temp HEEERE
         res.redirect(req.body.redirectUrl);
+        */
     }
 
     catch(err) {
