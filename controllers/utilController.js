@@ -24,13 +24,9 @@ exports.setupUserDB = async function () {
     debug(`attempting to connect to database at ${url}`);
     const dbName = 'tasks';
     try {
-        debug('before client');
         const client = await MongoClient.connect(url, { useNewUrlParser: true });
-        debug('before db');
         const db = client.db(dbName);
-        debug('before collection');
         const collection = await db.collection('users');
-        debug('before return');
         return ({ client: client, collection: collection });
     }
 
