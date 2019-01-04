@@ -51,13 +51,13 @@ exports.login = async (req, res) => {
             const userPwdHash = hash(userPwd, salt);
 
             if( dbPwdHash == userPwdHash ) {
-                debug("entered pwd " + userPwd + " is the same as db password " + dbPwd + ", about to redirect to " + redirectUrl);
+                debug("entered pwd " + userPwdHash + " is the same as db password " + dbPwdHash + ", about to redirect to " + redirectUrl);
                 shortname = foundUser.shortname;
                 //set this cookie only if a password check works
                 res.cookie('username', shortname + "," + email, { expires: new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)) });
                 res.redirect(req.body.redirectUrl);
             } else {
-                debug("entered pwd " + userPwd + " is NOT the same as db password " + dbPwd + ", about to redirect back to login page for try # " + loginAttempt);
+                debug("entered pwd " + userPwdHash + " is NOT the same as db password " + dbPwdHash + ", about to redirect back to login page for try # " + loginAttempt);
                 res.render('loginPage', { title: 'Login failed: Please re-enter your name and password', changeUser: false, loginAttempt: loginAttempt, redirectUrl: redirectUrl });
             }
 
