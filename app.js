@@ -65,7 +65,7 @@ app.use('/export', checkLogin, function(req, res, next) {
     next();
 });
 
-app.get('/', todoRouter);
+app.get('/', checkLogin, todoRouter);
 app.get('/all', todoRouter); //<-- temp -- remove and reset to /
 app.get('/export', todoRouter);
 app.post('/task/complete/:id', todoRouter);
