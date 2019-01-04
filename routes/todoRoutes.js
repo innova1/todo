@@ -27,7 +27,7 @@ router.post('/login', loginsController.login);
 router.get('/logout', loginsController.logout);
 router.get('/user/change/', loginsController.changeUserPage);
 router.post('/user/change/', loginsController.changeUser);
-router.get('/a', showController.showMyFbks); //<-- temp, reset to '/' and remove other
-router.get('/', showController.showFbks);
+router.get('/all', showController.showFbks); //<-- temp, remove after testing
+router.get('/', showController.showMyFbks);
 
 module.exports = router;

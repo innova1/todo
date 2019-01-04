@@ -49,18 +49,28 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/css', express.static(__dirname + '/public/stylesheets'));
 app.use('/webfonts', express.static(__dirname + '/public/fonts/webfonts/')); 
 
-app.use('*', checkLogin, function(req, res, next) {
+app.use('/', checkLogin, function(req, res, next) {
     next();
 });
+
+app.use('/all', checkLogin, function(req, res, next) {
+    next();
+});
+
+app.use('/task/*', checkLogin, function(req, res, next) {
+    next();
+});
+
+app.use('/user/*', checkLogin, function(req, res, next) {
+    next();
+});
+
 app.use('/export', checkLogin, function(req, res, next) {
-    next();
-});
-app.use('/task/add2', checkLogin, function(req, res, next) {
     next();
 });
 
 app.get('/', todoRouter);
-app.get('/a', todoRouter); //<-- temp -- remove and reset to /
+app.get('/all', todoRouter); //<-- temp -- remove and reset to /
 app.get('/export', todoRouter);
 app.post('/task/complete/:id', todoRouter);
 app.get('/task/edit/:id', todoRouter);
