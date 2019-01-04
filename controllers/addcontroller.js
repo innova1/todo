@@ -8,9 +8,11 @@ function grindSalt() {
         if (err) throw err;
         debug(`${buf.length} bytes of random data: ${buf.toString('hex')}`);
     });
+    return buf;
 }
 
 function hash(pwd, salt) {
+    crypto.DEFAULT_ENCODING = 'hex';
     const key = crypto.pbkdf2Sync(pwd, salt, 100000, 64, 'sha512');
     debug(key.toString('hex'));  // '3745e48...08d59ae'
 }
