@@ -38,7 +38,7 @@ exports.login = async (req, res) => {
         //if( dbPwd == fbkorPwd ) {
             //debug("entered pwd " + fbkorPwd + " is the same as db password " + dbPwd + ", about to redirect to " + redirectUrl);
             //set this cookie only if a password check works
-            res.cookie('username', fbkor, {});
+            res.cookie('username', fbkor, { expires: new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)) });
             res.redirect(req.body.redirectUrl);
         //} else {
            // debug("entered pwd " + fbkorPwd + " is NOT the same as db password " + dbPwd + ", about to redirect back to login page for try # " + loginAttempt);
@@ -71,7 +71,7 @@ exports.changeUser = (req, res) => {
     const loginAttempt = temploginAttempt+1;
     debug("redirectUrl from cookie is " + redirectUrl);
     res.clearCookie('username');
-    res.cookie('username', fbkor, {});
+    res.cookie('username', fbkor, { expires: new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)) });
     //success -- only one implemented right now -- not yet checking password
     res.redirect(req.body.redirectUrl);
     //res.render('loginPage', { title: 'Login failed: Please re-enter your name and password', changeUser: true, loginAttempt: loginAttempt, redirectUrl: redirectUrl });
