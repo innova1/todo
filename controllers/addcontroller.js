@@ -21,6 +21,7 @@ async function getRole(req, res) {
         const un = req.cookies.username;
         const email = un.split(",")[1]
         const dbParams = await util.setupUserDB();
+        debug("about to call find in db");
         const foundUser = await dbParams.collection.findOne( { emailname: email } );
         return foundUser.role;
     } catch(err) {
@@ -76,6 +77,7 @@ exports.saveTask = async (req, res) => {
 exports.addUserPage = async (req, res) => {
     try {
         role = getRole(req, res);
+        debug("in addUser page, role is " + role);
         if(role=="admin") {
            res.render('addUser', { title: 'Adding a user' });
         } else {
