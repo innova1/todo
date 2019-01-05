@@ -51,8 +51,9 @@
                 $('span.fbksIn').hide();
                 $('span.fbksOut').hide();
                 $('.section').click(function() {
-                    console.log("clicked");
-                    $("." + this.attr("class")).toggle();
+                    c = $(this).attr("class");
+                    console.log("clicked with class " + c);
+                    $("." + c).toggle();
                 });
             });
         </script>
