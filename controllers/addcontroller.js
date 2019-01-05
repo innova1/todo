@@ -81,6 +81,7 @@ exports.addUserPage = async (req, res) => {
         if(role=="admin") {
            res.render('addUser', { title: 'Adding a user' });
         } else {
+            debug("rule is not admin redirecting to /");
            res.redirect('/');
         }
     }
