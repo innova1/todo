@@ -46,6 +46,7 @@
             $(document).ready( function () {
                 $('.section').click(function() {
                     console.log("clicked");
+                    console.log("this is " + typeof $(this));
                     var d = $(this).style.display;
                     console.log("d is " + d);
                     if( d === "none" ) {
