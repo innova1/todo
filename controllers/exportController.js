@@ -44,7 +44,8 @@ exports.exportJSONFbks = async function (req, res) {
             const dbParams = await util.setupDB();
             const fbks = await dbParams.collection.find({}).sort({ dueDate: -1 }).toArray();
             const hostname = os.hostname();
-            res.render('exportJSONFbks', { fbks, title: 'Export of Feedback List', hostname });
+            const fbksJSON = JSON.stringify(fbks);
+            res.render('exportJSONFbks', { fbksJSON, title: 'Export of Feedback List', hostname });
             dbParams.client.close();
         } else {
             debug("role is not admin, redirecting to /")
