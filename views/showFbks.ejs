@@ -11,22 +11,22 @@
     
     <body>
         <div class="container">
-            <a href="javascript:hideDivId('#fbksIn')">Hide received feedback</a>
             <% include ./partials/navfbk %>
             <br />
 
-            <div id="fbksIn">
+            
                 <%  let fbk = {}; %>
                 <% if (myFbksIn.length == 0) { %>
                     <h5 style="color: #007bff;">No feedback gifts to display. Maybe you should ask for some?</h5>
                 <%} else {%>
                     <h5 style="color: #007bff;">Hey, <%=myFbksIn[0].fbkee.shortname%>, here's the feedback you've received</h5>
+            <div class="section">
                     <% for(let i = 0; i < myFbksIn.length; i++) { 
                         fbk = myFbksIn[i] %>
                         <% include ./partials/showfbk %>
                     <% } %> 
-                <% } %>
             </div>
+                <% } %>
 
             <div id="fbksOut">
                 <%  fbk = {}; %>
@@ -48,25 +48,15 @@
 
         <script>
             $(document).ready( function () {
-                $(function () {
-                    $('[data-toggle="tooltip"]').tooltip()
-                })
+                $('.section').click(function() {
+                    var d = $(this).style.display;
+                    if( d === "none" {
+                        d = "block";
+                    } else {
+                        d = "none";
+                    });
+                });
             });
-            
-            function hideDivId( divId ) {
-                console.log("divId is " + divId);
-                var theDiv = $(divId);
-                console.log("theDiv is " + theDiv);
-                console.log("theDiv style is " + theDiv.style.display);
-                if (theDiv.style.display === "none") {
-                    console.log("in none clause");
-                    theDiv.style.display = "block";
-                } else {
-                    console.log("in else clause");
-                    theDiv.style.display = "none";
-                }
-                console.log("theDiv style is " + theDiv.style.display);
-            }
         </script>
 
     </body>
