@@ -16,6 +16,18 @@ function hash(pwd, salt) {
     return key.toString('hex');
 }
 
+function getRole() {
+    try {
+        const un = req.cookies.username;
+        const email = un.split(",")[1]
+        const dbParams = await util.setupUserDB();
+        const foundUser = await dbParams.collection.findOne( { emailname: email } );
+        return foundUser.role;
+    } catch(err) {
+        debug(err);
+    }
+}
+
 exports.addTask = (req, res) => {
     res.render('addTask', { title: 'Adding some feedback' });
 };
@@ -63,17 +75,13 @@ exports.saveTask = async (req, res) => {
 
 exports.addUserPage = async (req, res) => {
     try {
-        const un = req.cookies.username;
-        const email = un.split(",")[1]
-        const dbParams = await util.setupUserDB();
-        const foundUser = await dbParams.collection.findOne( { emailname: email } );
-        if(foundUser.role=="admin") {
+        role = getRole();
+        if(role=="admin") {
            res.render('addUser', { title: 'Adding a user' });
         } else {
            res.redirect('/');
         }
     }
-
     catch(err) {
         debug(err);
     }
