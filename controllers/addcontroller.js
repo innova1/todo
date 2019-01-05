@@ -23,6 +23,7 @@ async function getRole(req, res) {
         const dbParams = await util.setupUserDB();
         debug("about to call find in db");
         const foundUser = await dbParams.collection.findOne( { emailname: email } );
+        dbParams.client.close();
         return foundUser.role;
     } catch(err) {
         debug(err);
@@ -67,9 +68,7 @@ exports.saveTask = async (req, res) => {
         await dbParams.collection.insertOne(task);
         dbParams.client.close();
         res.redirect('/');
-    }
-
-    catch(err) {
+    } catch(err) {
         debug(err);
     }
 };
@@ -81,7 +80,7 @@ exports.addUserPage = async (req, res) => {
         if(role=="admin") {
            res.render('addUser', { title: 'Adding a user' });
         } else {
-            debug("rule is not admin redirecting to /");
+            debug("role is not admin redirecting to /");
            res.redirect('/');
         }
     }
