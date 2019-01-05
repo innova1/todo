@@ -11,6 +11,7 @@
     
     <body>
         <div class="container">
+            <a href="javascript:hideDivID('FbksIn')">Hide received feedback</a>
             <div id="FbksIn">
                 <% include ./partials/navfbk %>
                 <br />
@@ -51,6 +52,15 @@
                     $('[data-toggle="tooltip"]').tooltip()
                 })
             });
+            
+            function hideDivId( divId ) {
+                var theDiv = $(divId);
+                if (theDiv.style.display = "none") {
+                    theDiv.style.display = "block";
+                } else {
+                    theDiv.style.display = "none";
+                }
+            }
         </script>
 
     </body>
