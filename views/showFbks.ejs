@@ -12,8 +12,8 @@
     <body>
         <div class="container">
             <a href="javascript:hideDivId('fbksIn')">Hide received feedback</a>
-                <% include ./partials/navfbk %>
-                <br />
+            <% include ./partials/navfbk %>
+            <br />
 
             <div id="fbksIn">
                 <%  let fbk = {}; %>
@@ -60,8 +60,9 @@
                 if (theDiv.style.display = "none") {
                     theDiv.style.display = "block";
                 } else {
-                    theDiv.style.display = "block";
+                    theDiv.style.display = "none";
                 }
+                console.log("theDiv style is " + theDiv.style.display);
             }
         </script>
 
