@@ -18,10 +18,12 @@
                     <h5 style="color: #007bff;">No feedback gifts to display. Maybe you should ask for some?</h5>
                 <%} else {%>
                     <h5 class="section" style="color: #007bff;">Hey, <%=myFbksIn[0].fbkee.shortname%>, here's the feedback you've received</h5>
+                    <div id="fbksIn">
                     <% for(let i = 0; i < myFbksIn.length; i++) { 
                         fbk = myFbksIn[i] %>
                         <% include ./partials/showfbk %>
                     <% } %> 
+                    </div>
                 <% } %>
 
             <div id="fbksOut">
@@ -46,14 +48,7 @@
             $(document).ready( function () {
                 $('.section').click(function() {
                     console.log("clicked");
-                    console.log("this is " + typeof $(this));
-                    var d = $(this).style.display;
-                    console.log("d is " + d);
-                    if( d === "none" ) {
-                        d = "block";
-                    } else {
-                        d = "none";
-                    }
+                    $('#fbksIn').toggle();
                 });
             });
         </script>
