@@ -51,6 +51,7 @@
                 $('.section').children("span").hide();
                 $('.section').click(function() {
                     jQuery(this).next("div").toggle();
+                    jQuery(this).children("span").toggle();
                 });
             });
         </script>
