@@ -31,11 +31,13 @@
                 <% if (myFbksOut.length == 0) { %>
                     <h5 style="color: #007bff;">You haven't given any feedback gifts. Anyone you want to acknowledge?</h5>
                 <%} else {%>
-                    <h5 style="color: #007bff;">Here's the feedback you've given</h5>
+                <h5 class="section" style="color: #007bff;">Here's the feedback you've given <span class="fbksOut">(hidden)</span></h5>
+                <div class="fbksOut">
                     <% for(let i = 0; i < myFbksOut.length; i++) { 
                         fbk = myFbksOut[i] %>
                         <% include ./partials/showfbk %>
                     <% } %> 
+                </div>
                 <% } %>
                 <p class="font-weight-light font-italic">Served by <%= hostname %></p>
             </div>
@@ -47,6 +49,7 @@
         <script>
             $(document).ready( function () {
                 $('span.fbksIn').hide();
+                $('span.fbksOut').hide();
                 $('.section').click(function() {
                     console.log("clicked");
                     $('.fbksIn').toggle();
