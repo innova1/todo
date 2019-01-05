@@ -16,7 +16,7 @@ function hash(pwd, salt) {
     return key.toString('hex');
 }
 
-function async getRole() {
+function async getRole(req, res) {
     try {
         const un = req.cookies.username;
         const email = un.split(",")[1]
@@ -75,7 +75,7 @@ exports.saveTask = async (req, res) => {
 
 exports.addUserPage = async (req, res) => {
     try {
-        role = getRole();
+        role = getRole(req, res);
         if(role=="admin") {
            res.render('addUser', { title: 'Adding a user' });
         } else {
