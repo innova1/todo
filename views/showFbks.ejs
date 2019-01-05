@@ -54,7 +54,7 @@
             });
             
             function hideDivId( divId ) {
-                var theDiv = document.getElementById("fbksIn"); //theDiv = $('#fbksIn');
+                var theDiv = theDiv = $('#' + divId);
                 console.log("theDiv is " + theDiv);
                 console.log("theDiv style is " + theDiv.style.display);
                 if (theDiv.style.display === "none") {
