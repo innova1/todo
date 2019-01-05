@@ -13,8 +13,6 @@
         <div class="container">
             <% include ./partials/navfbk %>
             <br />
-
-            
                 <%  let fbk = {}; %>
                 <% if (myFbksIn.length == 0) { %>
                     <h5 style="color: #007bff;">No feedback gifts to display. Maybe you should ask for some?</h5>
@@ -47,7 +45,9 @@
         <script>
             $(document).ready( function () {
                 $('.section').click(function() {
+                    console.log("clicked");
                     var d = $(this).style.display;
+                    console.log("d is " + d);
                     if( d === "none" ) {
                         d = "block";
                     } else {
