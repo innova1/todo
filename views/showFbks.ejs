@@ -19,13 +19,11 @@
                 <% if (myFbksIn.length == 0) { %>
                     <h5 style="color: #007bff;">No feedback gifts to display. Maybe you should ask for some?</h5>
                 <%} else {%>
-                    <h5 style="color: #007bff;">Hey, <%=myFbksIn[0].fbkee.shortname%>, here's the feedback you've received</h5>
-            <div class="section">
+                    <h5 class="section" style="color: #007bff;">Hey, <%=myFbksIn[0].fbkee.shortname%>, here's the feedback you've received</h5>
                     <% for(let i = 0; i < myFbksIn.length; i++) { 
                         fbk = myFbksIn[i] %>
                         <% include ./partials/showfbk %>
                     <% } %> 
-            </div>
                 <% } %>
 
             <div id="fbksOut">
@@ -54,7 +52,7 @@
                         d = "block";
                     } else {
                         d = "none";
-                    });
+                    }
                 });
             });
         </script>
