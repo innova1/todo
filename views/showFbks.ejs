@@ -52,7 +52,7 @@
                 $('span.fbksOut').hide();
                 $('.section').click(function() {
                     console.log("clicked");
-                    $(this).toggle();
+                    $("." + this.attr("class")).toggle();
                 });
             });
         </script>
