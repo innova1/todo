@@ -35,3 +35,22 @@ exports.exportFbks = async function (req, res) {
         debug(err);
     }
 };
+
+exports.exportJSONFbks = async function (req, res) {
+    try {
+        role = await getRole(req, res);
+        debug("in addUser page, role is " + role);
+        if(role=="admin") {
+            const dbParams = await util.setupDB();
+            const fbks = await dbParams.collection.find({}).sort({ dueDate: -1 }).toArray();
+            const hostname = os.hostname();
+            res.render('exportJSONFbks', { fbks, title: 'Export of Feedback List', hostname });
+            dbParams.client.close();
+        } else {
+            debug("role is not admin, redirecting to /")
+            res.redirect('/');
+        }
+    } catch (err) {
+        debug(err);
+    }
+};
