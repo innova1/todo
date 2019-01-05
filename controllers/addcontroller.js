@@ -16,7 +16,7 @@ function hash(pwd, salt) {
     return key.toString('hex');
 }
 
-function async getRole(req, res) {
+async function getRole(req, res) {
     try {
         const un = req.cookies.username;
         const email = un.split(",")[1]
