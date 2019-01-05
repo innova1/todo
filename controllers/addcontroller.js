@@ -76,7 +76,7 @@ exports.saveTask = async (req, res) => {
 
 exports.addUserPage = async (req, res) => {
     try {
-        role = getRole(req, res);
+        role = await getRole(req, res);
         debug("in addUser page, role is " + role);
         if(role=="admin") {
            res.render('addUser', { title: 'Adding a user' });
