@@ -12,10 +12,10 @@
     <body>
         <div class="container">
             <a href="javascript:hideDivId('fbksIn')">Hide received feedback</a>
-            <div id="fbksIn">
                 <% include ./partials/navfbk %>
                 <br />
 
+            <div id="fbksIn">
                 <%  let fbk = {}; %>
                 <% if (myFbksIn.length == 0) { %>
                     <h5 style="color: #007bff;">No feedback gifts to display. Maybe you should ask for some?</h5>
