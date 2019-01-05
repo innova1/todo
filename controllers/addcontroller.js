@@ -62,7 +62,18 @@ exports.saveTask = async (req, res) => {
 };
 
 exports.addUserPage = async (req, res) => {
-  res.render('addUser', { title: 'Adding a user' });
+    try {
+        const un = req.cookies.username;
+        const email = un.split(",")[1]
+        const dbParams = await util.setupUserDB();
+        const foundUser = await dbParams.collection.findOne( { emailname: email } );
+        if(foundUser.role=="admin") {
+           res.render('addUser', { title: 'Adding a user' });
+        } else {
+           res.redirect('/');
+        }
+    }
+  
 };
 
 exports.addUser = async (req, res) => {
