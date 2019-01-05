@@ -17,8 +17,8 @@
                 <% if (myFbksIn.length == 0) { %>
                     <h5 style="color: #007bff;">No feedback gifts to display. Maybe you should ask for some?</h5>
                 <%} else {%>
-                    <h5 class="section" style="color: #007bff;">Hey, <%=myFbksIn[0].fbkee.shortname%>, here's the feedback you've received</h5>
-                    <div id="fbksIn">
+                    <h5 class="section" style="color: #007bff;">Hey, <%=myFbksIn[0].fbkee.shortname%>, here's the feedback you've received <span class="fbksIn">(hidden)</span></h5>
+                    <div class="fbksIn">
                     <% for(let i = 0; i < myFbksIn.length; i++) { 
                         fbk = myFbksIn[i] %>
                         <% include ./partials/showfbk %>
@@ -48,7 +48,7 @@
             $(document).ready( function () {
                 $('.section').click(function() {
                     console.log("clicked");
-                    $('#fbksIn').toggle();
+                    $('.fbksIn').toggle();
                 });
             });
         </script>
