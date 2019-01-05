@@ -11,8 +11,8 @@
     
     <body>
         <div class="container">
-            <a href="javascript:hideDivId('FbksIn')">Hide received feedback</a>
-            <div id="FbksIn">
+            <a href="javascript:hideDivId('fbksIn')">Hide received feedback</a>
+            <div id="fbksIn">
                 <% include ./partials/navfbk %>
                 <br />
 
@@ -54,7 +54,7 @@
             });
             
             function hideDivId( divId ) {
-                var theDiv = $("#" + divId);
+                var theDiv = $('#fbksIn');
                 if (theDiv.style.display = "none") {
                     theDiv.style.display = "block";
                 } else {
