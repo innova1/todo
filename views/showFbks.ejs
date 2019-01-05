@@ -17,8 +17,8 @@
                 <% if (myFbksIn.length == 0) { %>
                     <h5 style="color: #007bff;">No feedback gifts to display. Maybe you should ask for some?</h5>
                 <%} else {%>
-                    <h5 class="section" style="color: #007bff;">Hey, <%=myFbksIn[0].fbkee.shortname%>, here's the feedback you've received <span class="fbksIn">(hidden)</span></h5>
-                    <div class="fbksIn">
+                    <h5 class="section" style="color: #007bff;">Hey, <%=myFbksIn[0].fbkee.shortname%>, here's the feedback you've received</h5>
+                    <div id="fbksIn">
                     <% for(let i = 0; i < myFbksIn.length; i++) { 
                         fbk = myFbksIn[i] %>
                         <% include ./partials/showfbk %>
@@ -31,8 +31,8 @@
                 <% if (myFbksOut.length == 0) { %>
                     <h5 style="color: #007bff;">You haven't given any feedback gifts. Anyone you want to acknowledge?</h5>
                 <%} else {%>
-                <h5 class="section" style="color: #007bff;">Here's the feedback you've given <span class="fbksOut">(hidden)</span></h5>
-                <div class="fbksOut">
+                <h5 class="section" style="color: #007bff;">Here's the feedback you've given</h5>
+                <div id="fbksOut">
                     <% for(let i = 0; i < myFbksOut.length; i++) { 
                         fbk = myFbksOut[i] %>
                         <% include ./partials/showfbk %>
@@ -51,9 +51,8 @@
                 $('span.fbksIn').hide();
                 $('span.fbksOut').hide();
                 $('.section').click(function() {
-                    c = $(this).attr("class");
-                    console.log("clicked with class " + c);
-                    $("." + c).toggle();
+                    c = $(this "div");
+                    c.toggle();
                 });
             });
         </script>
