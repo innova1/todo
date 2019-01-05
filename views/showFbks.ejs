@@ -51,8 +51,7 @@
                 $('span.fbksIn').hide();
                 $('span.fbksOut').hide();
                 $('.section').click(function() {
-                    c = $(this "div");
-                    c.toggle();
+                    jQuery(this).children("div").toggle();
                 });
             });
         </script>
