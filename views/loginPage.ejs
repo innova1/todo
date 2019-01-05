@@ -12,20 +12,21 @@
         <% include ./partials/navlogin %>
         <div class="card" style="width: 100%">
         <p>Happy New Year! As you can see, I've added authentication. Please contact me (Tom) via WhatsApp and I'll tell you how to get in.</p>
-        <form method="post" action="<% if (changeUser) { %>/user/change<%} else {%>/login<%}%>" style="padding: 20px">
-            <div class="form-group">
-                
-                <label for="email" class="text-primary">Select your email address</label>
-                <input type="text" class="form-control" id="email" name="email"/>
-                            
-                <label for="userPwd" class="text-primary">Enter your password</label>
-                <input type="text" class="form-control" id="userPwd" name="userPwd"/>
-                <input type="hidden" id="redirectUrl" name="redirectUrl" value="<%= redirectUrl %>" />
-                <input type="hidden" id="loginAttempt" name="loginAttempt" value="<%= loginAttempt %>" />
-                
-            </div>
-                <input type="submit" class="btn btn-primary" value="<% if (changeUser) { %>Change user<%} else {%>Login<%}%>" />
-        </form>
+            <form method="post" action="<% if (changeUser) { %>/user/change<%} else {%>/login<%}%>" style="padding: 20px">
+                <div class="form-group">
+
+                    <label for="email" class="text-primary">Select your email address</label>
+                    <input type="text" class="form-control" id="email" name="email"/>
+
+                    <label for="userPwd" class="text-primary">Enter your password</label>
+                    <input type="password" class="form-control" id="userPwd" name="userPwd"/>
+                    
+                    <input type="hidden" id="redirectUrl" name="redirectUrl" value="<%= redirectUrl %>" />
+                    <input type="hidden" id="loginAttempt" name="loginAttempt" value="<%= loginAttempt %>" />
+
+                </div>
+                    <input type="submit" class="btn btn-primary" value="<% if (changeUser) { %>Change user<%} else {%>Login<%}%>" />
+            </form>
         </div>
     </div> <!-- container -->
      
