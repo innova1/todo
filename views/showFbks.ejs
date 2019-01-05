@@ -17,7 +17,7 @@
                 <% if (myFbksIn.length == 0) { %>
                     <h5 style="color: #007bff;">No feedback gifts to display. Maybe you should ask for some?</h5>
                 <%} else {%>
-                    <h5 class="section" style="color: #007bff;">Hey, <%=myFbksIn[0].fbkee.shortname%>, here's the feedback you've received <span>Click to unhide</span></h5>
+                    <h5 class="section" style="color: #007bff;">Hey, <%=myFbksIn[0].fbkee.shortname%>, here's the feedback you've received <span style="display('none')">(Click to unhide)</span></h5>
                     <div>
                     <% for(let i = 0; i < myFbksIn.length; i++) { 
                         fbk = myFbksIn[i] %>
@@ -31,7 +31,7 @@
                 <% if (myFbksOut.length == 0) { %>
                     <h5 style="color: #007bff;">You haven't given any feedback gifts. Anyone you want to acknowledge?</h5>
                 <%} else {%>
-                <h5 class="section" style="color: #007bff;">Here's the feedback you've given <span>Click to unhide</span></h5>
+                <h5 class="section" style="color: #007bff;">Here's the feedback you've given <span style="display('none')">(Click to unhide)</span></h5>
                 <div>
                     <% for(let i = 0; i < myFbksOut.length; i++) { 
                         fbk = myFbksOut[i] %>
