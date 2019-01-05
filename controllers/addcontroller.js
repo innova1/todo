@@ -73,6 +73,10 @@ exports.addUserPage = async (req, res) => {
            res.redirect('/');
         }
     }
+
+    catch(err) {
+        debug(err);
+    }
   
 };
 
