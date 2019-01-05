@@ -61,13 +61,14 @@ app.use('/user/*', checkLogin, function(req, res, next) {
     next();
 });
 
-app.use('/export', checkLogin, function(req, res, next) {
+app.use('/export*', checkLogin, function(req, res, next) {
     next();
 });
 
 app.get('/', checkLogin, todoRouter);
 app.get('/all', todoRouter);
 app.get('/export', todoRouter);
+app.get('/exportJSON', todoRouter);
 app.post('/task/complete/:id', todoRouter);
 app.get('/task/edit/:id', todoRouter);
 app.post('/task/edit/:id', todoRouter);
