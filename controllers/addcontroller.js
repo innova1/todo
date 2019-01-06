@@ -1,7 +1,16 @@
 const { MongoClient, ObjectId } = require('mongodb');
 const util = require('./utilController');
 const crypto = require('crypto');
+const log4js = require('log4js');
 const debug = require('debug')('app:addController');
+
+log4js.configure({
+  appenders: { 'useractivity': { type: 'file', filename: 'user.log', layout: { type: 'pattern', pattern: '%d %X{ip} %m%n' } } },
+  categories: { default: { appenders: ['useractivity'], level: 'info' } }
+});
+
+var logger = log4js.getLogger(); 
+logger.level = 'info';
 
 function grindSalt() {
     const buf = crypto.randomBytes(16);
@@ -59,6 +68,7 @@ exports.addFbk = async (req, res) => {
 };
 
 exports.saveTask = async (req, res) => {
+    logger.addContext('ip', req.ip);
     try {
         var tempfbk = req.body;
         tempfbk.fbkee = { 'shortname': tempfbk.fbkee.split(",")[0], 'email': tempfbk.fbkee.split(",")[1] };
@@ -66,6 +76,7 @@ exports.saveTask = async (req, res) => {
         const task = req.body;
         const dbParams = await util.setupDB();
         await dbParams.collection.insertOne(task);
+        logger.info("feedback added: " + email);
         dbParams.client.close();
         res.redirect('/');
     } catch(err) {

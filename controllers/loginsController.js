@@ -4,13 +4,13 @@ const crypto = require('crypto');
 const log4js = require('log4js');
 const debug = require('debug')('app:loginsController');
 
-var logger = log4js.getLogger(); 
-logger.level = 'info';
-
 log4js.configure({
-  appenders: { 'useractivity': { type: 'file', filename: 'user', layout: { type: 'pattern', pattern: '%d %X{ip} %m%n' } } },
+  appenders: { 'useractivity': { type: 'file', filename: 'user.log', layout: { type: 'pattern', pattern: '%d %X{ip} %m%n' } } },
   categories: { default: { appenders: ['useractivity'], level: 'info' } }
 });
+
+var logger = log4js.getLogger(); 
+logger.level = 'info';
 
 function hash(pwd, salt) {
     //crypto.DEFAULT_ENCODING = 'hex'; <-- causes typeerror and db connection freeze up until app restart
@@ -101,6 +101,8 @@ exports.changeUser = (req, res) => {
 };
 
 exports.logout = (req, res) => {
+    logger.addContext('ip', req.ip);
+    logger.info("logging out: " + email);
     res.clearCookie('username');
     res.redirect('/');
 };
