@@ -3,8 +3,17 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser')
+const log4js = require('log4js');
 var morgan = require('morgan');
 var debug = require('debug')('app');
+
+log4js.configure({
+  appenders: { 'useractivity': { type: 'file', filename: 'user.log', layout: { type: 'pattern', pattern: '%d %X{ip} %m%n' } } },
+  categories: { default: { appenders: ['useractivity'], level: 'info' } }
+});
+
+var logger = log4js.getLogger(); 
+logger.level = 'info';
 
 const todoRouter = require('./routes/todoRoutes');
 
@@ -35,7 +44,14 @@ function isLoggedIn(req, res, next) {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-//app.use(morgan('short'));
+logger.stream = {
+    write: function(message, encoding) {
+        logger.debug(message);
+    }
+};
+
+app.use(morgan('short', { "stream": logger.stream}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
