@@ -44,7 +44,7 @@ function isLoggedIn(req, res, next) {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(morgan( { "short", "stream": { write: function(str) { logger.debug(str); } } } ));
+app.use(morgan( "short") );
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
