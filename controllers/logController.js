@@ -1,6 +1,11 @@
 const log4js = require('log4js');
 const debug = require('debug')('app:LogController');
 
+log4js.configure({
+  appenders: { 'out': { type: 'stdout', layout: { type: 'pattern', pattern: '%d %h %m%n' } } },
+  categories: { default: { appenders: ['out'], level: 'info' } }
+});
+
 var logger = log4js.getLogger(); 
 logger.level = 'info';
 

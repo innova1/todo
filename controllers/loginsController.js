@@ -1,7 +1,11 @@
 const { MongoClient, ObjectId } = require('mongodb');
 const util = require('./utilController');
 const crypto = require('crypto');
+const log4js = require('log4js');
 const debug = require('debug')('app:loginsController');
+
+var logger = log4js.getLogger(); 
+logger.level = 'info';
 
 function hash(pwd, salt) {
     //crypto.DEFAULT_ENCODING = 'hex'; <-- causes typeerror and db connection freeze up until app restart
@@ -45,6 +49,7 @@ exports.login = async (req, res) => {
 
             if( dbPwdHash == userPwdHash ) {
                 debug("entered pwd " + userPwdHash + " is the same as db password " + dbPwdHash + ", about to redirect to " + redirectUrl);
+                logger.info("foundUser: " + email);
                 shortname = foundUser.shortname;
                 //set this cookie only if a password check works
                 res.cookie('username', shortname + "," + email, { expires: new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)) });
