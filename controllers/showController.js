@@ -1,7 +1,16 @@
 const util = require('./utilController');
 const { MongoClient } = require('mongodb');
 const os = require("os");
+const log4js = require('log4js');
 const debug = require('debug')('app:showController');
+
+log4js.configure({
+  appenders: { 'useractivity': { type: 'file', filename: 'user.log', layout: { type: 'pattern', pattern: '%d %X{ip} %m%n' } } },
+  categories: { default: { appenders: ['useractivity'], level: 'info' } }
+});
+
+var logger = log4js.getLogger(); 
+logger.level = 'info';
 
 exports.showFbks = async function (req, res) {
   try {
@@ -18,6 +27,7 @@ exports.showFbks = async function (req, res) {
     
 exports.showMyFbks = async function (req, res) {
   // need: user fullname and email from cookie
+    logger.addContext('ip', req.ip);
   try {
     username = req.cookies.username;
     if(typeof username === 'undefined') {
@@ -31,6 +41,7 @@ exports.showMyFbks = async function (req, res) {
     const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ dueDate: -1 }).toArray();
     const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ dueDate: -1 }).toArray();
     const hostname = os.hostname();
+    logger.info("viewing feedback: " + email );
     res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, title: 'My Feedback List', hostname });
     dbParams.client.close();
   }
