@@ -3,4 +3,7 @@ const debug = require('debug')('app:deleteController');
 
 var logger = log4js.getLogger();
 
-
+exports.testLog = (req, res) => {
+    log.console('Hello');
+    res.render('logTest', { title: 'Testing logging' });
+};
