@@ -4,6 +4,6 @@ const debug = require('debug')('app:LogController');
 //var logger = log4js.getLogger(); //test
 
 exports.testLog = (req, res) => {
-    log.console('Hello');
+    console.log('Hello');
     res.render('logTest', { title: 'Testing logging' });
 };
