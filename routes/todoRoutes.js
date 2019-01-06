@@ -8,6 +8,9 @@ const editController = require('../controllers/editController');
 const deleteController = require('../controllers/deletecontroller');
 const completeController = require('../controllers/completeController');
 const loginsController = require('../controllers/loginsController');
+const logController = require('../controllers/logController');
+
+router.get('testlogging', logController.testlog);
 
 router.get('/user/add', addController.addUserPage);
 router.post('/user/add', addController.addUser);
@@ -29,5 +32,7 @@ router.get('/user/change/', loginsController.changeUserPage);
 router.post('/user/change/', loginsController.changeUser);
 router.get('/all', showController.showFbks); //<-- temp, remove after testing
 router.get('/', showController.showMyFbks);
+
+
 
 module.exports = router;

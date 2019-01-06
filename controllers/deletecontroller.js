@@ -14,7 +14,7 @@ exports.deleteTask = async (req, res) => {
     catch (err) {
         debug(err);
     }
-}
+};
 
 exports.confirmDelete = async (req, res) => {
     try {

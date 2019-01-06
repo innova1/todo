@@ -89,6 +89,8 @@ app.get('/login', todoRouter);
 app.post('/login', todoRouter);
 app.get('/logout', todoRouter);
 
+app.get('/testlogging', todoRouter);
+
 // catch favicon requests and respond
 app.use('/favicon.ico', (req, res) => res.status(204));
 
