@@ -8,8 +8,8 @@ var logger = log4js.getLogger();
 logger.level = 'info';
 
 log4js.configure({
-  appenders: { 'out': { type: 'stdout', layout: { type: 'pattern', pattern: '%d %X{ip} %m%n' } } },
-  categories: { default: { appenders: ['out'], level: 'info' } }
+  appenders: { 'useractivity': { type: 'file', filename: 'user', layout: { type: 'pattern', pattern: '%d %X{ip} %m%n' } } },
+  categories: { default: { appenders: ['useractivity'], level: 'info' } }
 });
 
 function hash(pwd, salt) {
