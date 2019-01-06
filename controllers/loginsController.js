@@ -33,6 +33,7 @@ exports.login = async (req, res) => {
     const redirectUrl = user.redirectUrl;
     temploginAttempt = parseInt(user.loginAttempt);
     const loginAttempt = temploginAttempt+1;
+    logger.addContext('ip', req.ip);
 
     debug("email: " + email + ", pwd: " + userPwd);
 
@@ -54,14 +55,14 @@ exports.login = async (req, res) => {
 
             if( dbPwdHash == userPwdHash ) {
                 debug("entered pwd " + userPwdHash + " is the same as db password " + dbPwdHash + ", about to redirect to " + redirectUrl);
-                logger.info("foundUser: " + email);
+                logger.info("successful login: " + email);
                 shortname = foundUser.shortname;
                 //set this cookie only if a password check works
                 res.cookie('username', shortname + "," + email, { expires: new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)) });
                 res.redirect(req.body.redirectUrl);
             } else {
                 debug("entered pwd " + userPwdHash + " is NOT the same as db password " + dbPwdHash + ", about to redirect back to login page for try # " + loginAttempt);
-                logger.info("login failed with " + email + ", " + userPwd);
+                logger.info("login failed: " + email + ", " + userPwd);
                 res.render('loginPage', { title: 'Login failed: Please re-enter your name and password', changeUser: false, loginAttempt: loginAttempt, redirectUrl: redirectUrl });
             }
 
