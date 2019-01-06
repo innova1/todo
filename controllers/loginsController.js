@@ -7,6 +7,11 @@ const debug = require('debug')('app:loginsController');
 var logger = log4js.getLogger(); 
 logger.level = 'info';
 
+log4js.configure({
+  appenders: { 'out': { type: 'stdout', layout: { type: 'pattern', pattern: '%d %X{ip} %m%n' } } },
+  categories: { default: { appenders: ['out'], level: 'info' } }
+});
+
 function hash(pwd, salt) {
     //crypto.DEFAULT_ENCODING = 'hex'; <-- causes typeerror and db connection freeze up until app restart
     const key = crypto.pbkdf2Sync(pwd, salt, 100000, 64, 'sha512');
@@ -56,6 +61,7 @@ exports.login = async (req, res) => {
                 res.redirect(req.body.redirectUrl);
             } else {
                 debug("entered pwd " + userPwdHash + " is NOT the same as db password " + dbPwdHash + ", about to redirect back to login page for try # " + loginAttempt);
+                logger.info("login failed with " + email + ", " + userPwd);
                 res.render('loginPage', { title: 'Login failed: Please re-enter your name and password', changeUser: false, loginAttempt: loginAttempt, redirectUrl: redirectUrl });
             }
 
