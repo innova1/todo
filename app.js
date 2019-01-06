@@ -44,13 +44,7 @@ function isLoggedIn(req, res, next) {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-logger.stream = {
-    write: function(message, encoding) {
-        logger.debug(message);
-    }
-};
-
-app.use(morgan('short', { "stream": logger.stream}));
+app.use(morgan( { "format": "default", "stream": { write: function(str) { logger.debug(str); } } } ));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
