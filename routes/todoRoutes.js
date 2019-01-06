@@ -10,7 +10,7 @@ const completeController = require('../controllers/completeController');
 const loginsController = require('../controllers/loginsController');
 const logController = require('../controllers/logController');
 
-router.get('testlogging', logController.testlog);
+router.get('/testlogging', logController.testlog);
 
 router.get('/user/add', addController.addUserPage);
 router.post('/user/add', addController.addUser);
