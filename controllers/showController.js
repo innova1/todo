@@ -5,7 +5,7 @@ const log4js = require('log4js');
 const debug = require('debug')('app:showController');
 
 log4js.configure({
-  appenders: { 'useractivity': { type: 'file', filename: 'user.log', layout: { type: 'pattern', pattern: '%d %X{ip} %m%n' } } },
+  appenders: { 'useractivity': { type: 'file', filename: 'user.log', layout: { type: 'pattern', pattern: '%d %X{ip} %m' } } },
   categories: { default: { appenders: ['useractivity'], level: 'info' } }
 });
 

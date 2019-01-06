@@ -8,7 +8,7 @@ var morgan = require('morgan');
 var debug = require('debug')('app');
 
 log4js.configure({
-  appenders: { 'useractivity': { type: 'file', filename: 'user.log', layout: { type: 'pattern', pattern: '%d %X{ip} %m%n' } } },
+  appenders: { 'useractivity': { type: 'file', filename: 'user.log', layout: { type: 'pattern', pattern: '%d %X{ip} %m' } } },
   categories: { default: { appenders: ['useractivity'], level: 'info' } }
 });
 
@@ -44,7 +44,7 @@ function isLoggedIn(req, res, next) {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(morgan( "short") );
+app.use( morgan( "short") );
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
