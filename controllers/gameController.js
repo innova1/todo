@@ -17,10 +17,11 @@ exports.inCount = async (req, res, email) => {
         email = 'tom.boulet@exxonmobil.com';
         debug("query with email: " + email);
         const dbParams = await util.setupDB();
-        const inCount = await dbParams.collection.find( { "fbkee.email": email } ).count();
-        const outCount = await dbParams.collection.find( { "fbkor.email": email } ).count();
+        const inCountp = await dbParams.collection.find( { "fbkee.email": email } ).count();
+        const outCountp = await dbParams.collection.find( { "fbkor.email": email } ).count();
+        let inCount = await inCountp;
+        return(inCount);
         dbParams.client.close();
-        await return(inCount);
         
     } catch (err) {
         debug(err);
