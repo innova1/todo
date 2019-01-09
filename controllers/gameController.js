@@ -20,7 +20,7 @@ exports.getCounts = async (req, res, email) => {
         const inCount = await dbParams.collection.find( { "fbkee.email": email } ).count();
         const outCount = await dbParams.collection.find( { "fbkor.email": email } ).count();
         
-        return( { inCount: inCount, outCount: outCount );
+        return( { inCount: inCount, outCount: outCount } );
         dbParams.client.close();
         
     } catch (err) {
