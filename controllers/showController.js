@@ -36,7 +36,7 @@ exports.showMyFbks = async function (req, res) {
     } else {
         email = username.split(",")[1]
     }
-    const inCount = await gameCalc.inCount(email);
+    const counts = await gameCalc.inCount(email);
     
     debug("query with email: " + email + ", username: " + username);
     const dbParams = await util.setupDB();
@@ -44,7 +44,7 @@ exports.showMyFbks = async function (req, res) {
     const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ dueDate: -1 }).toArray();
     const hostname = os.hostname();
     logger.info("viewing feedback: " + email );
-    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, title: 'My Feedback List', hostname });
+    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, counts.inCount, counts.outCount, title: 'My Feedback List', hostname });
     dbParams.client.close();
   }
   catch (err) {

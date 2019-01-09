@@ -11,7 +11,7 @@ log4js.configure({
 var logger = log4js.getLogger(); 
 logger.level = 'info';
 
-exports.inCount = async (req, res, email) => {
+exports.getCounts = async (req, res, email) => {
     console.log('user is ' + email);
     try {    
         email = 'tom.boulet@exxonmobil.com';
@@ -20,7 +20,7 @@ exports.inCount = async (req, res, email) => {
         const inCount = await dbParams.collection.find( { "fbkee.email": email } ).count();
         const outCount = await dbParams.collection.find( { "fbkor.email": email } ).count();
         
-        return(inCount);
+        return( { inCount: inCount, outCount: outCount );
         dbParams.client.close();
         
     } catch (err) {
