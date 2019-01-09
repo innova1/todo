@@ -25,3 +25,11 @@ exports.getCounts = async function(email) {
         debug(err);
     }
 };
+
+exports.getScore = async function(email) {
+    
+};
+
+exports.setRating = async function(id) {
+    
+};
