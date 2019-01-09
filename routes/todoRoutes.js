@@ -9,6 +9,7 @@ const deleteController = require('../controllers/deletecontroller');
 const completeController = require('../controllers/completeController');
 const loginsController = require('../controllers/loginsController');
 const logController = require('../controllers/logController');
+const gameController = require('../controllers/gameController');
 
 router.get('/testlogging', logController.testLog);
 
