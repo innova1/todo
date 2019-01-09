@@ -1,3 +1,5 @@
+const util = require('./utilController');
+const { MongoClient } = require('mongodb');
 const log4js = require('log4js');
 const debug = require('debug')('app:LogController');
 
@@ -11,5 +13,11 @@ logger.level = 'info';
 
 exports.inCount = (req, res) => {
     console.log('user is ' + "not know yet");
-    return(5);
+    try{    
+        debug("query with email: " + email);
+        const dbParams = await util.setupDB();
+        const inCount = await dbParams.collection.find( { "fbkee.email": email } ).sort({ dueDate: -1 }).count();
+        const outCount = await dbParams.collection.find( { "fbkor.email": email } ).sort({ dueDate: -1 }).count();
+    }
+    return(inCount);
 };
