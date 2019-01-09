@@ -13,13 +13,15 @@ logger.level = 'info';
 
 exports.inCount = async (req, res) => {
     console.log('user is ' + "not know yet");
-    try{    
+    try {    
         debug("query with email: " + email);
         const dbParams = await util.setupDB();
         const inCount = await dbParams.collection.find( { "fbkee.email": email } ).sort({ dueDate: -1 }).count();
         const outCount = await dbParams.collection.find( { "fbkor.email": email } ).sort({ dueDate: -1 }).count();
+        
+        return(inCount);
+        
     } catch (err) {
         debug(err);
     }
-    return(inCount);
 };
