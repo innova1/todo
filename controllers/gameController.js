@@ -12,8 +12,9 @@ var logger = log4js.getLogger();
 logger.level = 'info';
 
 exports.inCount = async (req, res) => {
-    console.log('user is ' + "not know yet");
+    console.log('user is ' + req.email);
     try {    
+        email = 'tom.boulet@exxonmobil.com';
         debug("query with email: " + email);
         const dbParams = await util.setupDB();
         const inCount = await dbParams.collection.find( { "fbkee.email": email } ).sort({ dueDate: -1 }).count();

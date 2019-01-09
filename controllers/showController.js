@@ -29,7 +29,6 @@ exports.showFbks = async function (req, res) {
 exports.showMyFbks = async function (req, res) {
   // need: user fullname and email from cookie
     logger.addContext('ip', req.ip);
-    const inCount = gameCalc.inCount();
   try {
     username = req.cookies.username;
     if(typeof username === 'undefined') {
@@ -37,6 +36,7 @@ exports.showMyFbks = async function (req, res) {
     } else {
         email = username.split(",")[1]
     }
+    const inCount = gameCalc.inCount(email);
     
     debug("query with email: " + email + ", username: " + username);
     const dbParams = await util.setupDB();
