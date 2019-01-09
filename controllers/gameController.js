@@ -11,7 +11,7 @@ log4js.configure({
 var logger = log4js.getLogger(); 
 logger.level = 'info';
 
-exports.inCount = (req, res) => {
+exports.inCount = async (req, res) => {
     console.log('user is ' + "not know yet");
     try{    
         debug("query with email: " + email);
