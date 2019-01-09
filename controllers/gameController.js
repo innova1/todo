@@ -18,6 +18,8 @@ exports.inCount = async (req, res) => {
         const dbParams = await util.setupDB();
         const inCount = await dbParams.collection.find( { "fbkee.email": email } ).sort({ dueDate: -1 }).count();
         const outCount = await dbParams.collection.find( { "fbkor.email": email } ).sort({ dueDate: -1 }).count();
+    } catch (err) {
+        debug(err);
     }
     return(inCount);
 };
