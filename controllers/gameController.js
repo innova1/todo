@@ -11,15 +11,9 @@ log4js.configure({
 var logger = log4js.getLogger(); 
 logger.level = 'info';
 
-exports.getCounts = async (req, res, email) => {
+exports.getCounts = async function(email) => {
     console.log('user is ' + email);
     try {     
-        username = req.cookies.username;
-        if(typeof username === 'undefined') {
-            email = "";
-        } else {
-            email = username.split(",")[1]
-        }
         debug("query with email: " + email);
         const dbParams = await util.setupDB();
         const inCount = await dbParams.collection.find( { "fbkee.email": email } ).count();
