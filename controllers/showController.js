@@ -36,7 +36,7 @@ exports.showMyFbks = async function (req, res) {
     } else {
         email = username.split(",")[1]
     }
-    const inCount = gameCalc.inCount(email);
+    const inCount = await gameCalc.inCount(email);
     
     debug("query with email: " + email + ", username: " + username);
     const dbParams = await util.setupDB();
