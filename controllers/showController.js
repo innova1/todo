@@ -1,7 +1,7 @@
 const util = require('./utilController');
 const { MongoClient } = require('mongodb');
 const os = require("os");
-const gameCalc = require('gameController');
+const gameCalc = require('./gameController');
 const log4js = require('log4js');
 const debug = require('debug')('app:showController');
 
