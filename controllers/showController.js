@@ -1,6 +1,7 @@
 const util = require('./utilController');
 const { MongoClient } = require('mongodb');
 const os = require("os");
+const gameCalc = require('gameController');
 const log4js = require('log4js');
 const debug = require('debug')('app:showController');
 
@@ -28,6 +29,7 @@ exports.showFbks = async function (req, res) {
 exports.showMyFbks = async function (req, res) {
   // need: user fullname and email from cookie
     logger.addContext('ip', req.ip);
+    const inCount = gameCalc.inCount();
   try {
     username = req.cookies.username;
     if(typeof username === 'undefined') {
@@ -42,7 +44,7 @@ exports.showMyFbks = async function (req, res) {
     const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ dueDate: -1 }).toArray();
     const hostname = os.hostname();
     logger.info("viewing feedback: " + email );
-    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, title: 'My Feedback List', hostname });
+    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, title: 'My Feedback List', hostname });
     dbParams.client.close();
   }
   catch (err) {
