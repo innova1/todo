@@ -12,7 +12,6 @@ var logger = log4js.getLogger();
 logger.level = 'info';
 
 exports.getCounts = async function(email) {
-    console.log('user is ' + email);
     try {     
         debug("query with email: " + email);
         const dbParams = await util.setupDB();
