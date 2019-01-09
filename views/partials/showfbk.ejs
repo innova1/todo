@@ -36,8 +36,13 @@
                     </li-->
                     <!-- Rating shows on all but only editable on fbk in ie items that have the logged in user email on the fbkee field -->
                     <li class="nav-item">
-                        Rating <a class="nav-link" href="#" onclick="javascript:alert('feature not yet implemented. Working on it!')"> <i class="fas fa-star"></i></a>
+                        <a class="nav-link" href="#" onclick="javascript:alert('feature not yet implemented. Working on it!')"> <i class="fas fa-star"></i></a>
                         <!--href="/task/rate/<%=fbk._id%>"-->
+                        <select>
+                            <option value="1"><i class="fas fa-star"></i></option>
+                            <option value="2"><i class="fas fa-star"><i class="fas fa-star"></i></i></option>
+                            <option value="3"><i class="fas fa-star"><i class="fas fa-star"></i><i class="fas fa-star"></i></i></option>
+                        </select>
                     </li>
                     <% if (loggedInEmail == fbk.fbkor.email) { %>
                         <li class="nav-item">
