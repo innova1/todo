@@ -37,6 +37,7 @@ exports.getScore = async function(email) {
         outCount = myFbksOut.length;
         //sum of ratings of fbk out
         var totalRating;
+        total = 0;
         myFbksOut.forEach(totalRatingf);
         debug("My total rating: " + totalRating);
         //count of fbk in
