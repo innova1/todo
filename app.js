@@ -67,6 +67,10 @@ app.use('/task/*', checkLogin, function(req, res, next) {
     next();
 });
 
+app.use('/fbk/rating/*', checkLogin, function(req, res, next) {
+    next();
+});
+
 app.use('/user/*', checkLogin, function(req, res, next) {
     next();
 });
