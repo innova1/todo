@@ -38,7 +38,7 @@ exports.setRating = async (req, res) => {
         debug("updating id: " + id + " with rating " + rating);
         const dbParams = await util.setupDB();
         const inCount = await dbParams.collection.findOneAndUpdate(
-            { _id: new ObjectId(id) }, 
+            { "_id": new ObjectId(id) }, 
             { $set: { "rating": rating } }
         );
         res.redirect("/");
