@@ -38,7 +38,7 @@ exports.setRating = async function(id, rating) {
         res.redirect("/");
         dbParams.client.close();
         
-    } catch=(err) {
+    } catch(err) {
         debug(err);
     }
 };
