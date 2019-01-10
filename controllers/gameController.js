@@ -38,9 +38,9 @@ exports.getScore = async function(email) {
         //sum of ratings of fbk out
         totalRating = 0;
         myFbksOut.forEach(totalRatingf);
-        debug("My total rating: " + totalRating);
         //count of fbk in
         const inCount = await dbParams.collection.find( { "fbkee.email": email } ).count();
+        debug("My total rating: " + totalRating + ", in count: " + inCount);
         //add rating sum to fbkin
         const score = totalRating + inCount;
         //subtract absolute value of chits (need to save this to user doc, later)
