@@ -40,9 +40,9 @@ exports.getScore = async function(email) {
         myFbksOut.forEach(totalRatingf);
         //count of fbk in
         const inCount = await dbParams.collection.find( { "fbkee.email": email } ).count();
-        debug("My total rating: " + totalRating + ", in count: " + inCount);
         //add rating sum to fbkin
         const score = totalRating + inCount;
+        debug("My total rating: " + totalRating + ", in count: " + inCount + ", score: " + score);
         //subtract absolute value of chits (need to save this to user doc, later)
     } catch (err) {
         debug(err);
@@ -50,8 +50,8 @@ exports.getScore = async function(email) {
 };
 
 function totalRatingf(rec, index) {
-    debug("fn--index: " + index + ", rating:" + rec.rating + ", totalRating:" + totalRating );
     totalRating = totalRating + parseInt(rec.rating); //outArray[index].rating;
+    debug("fn--index: " + index + ", rating:" + rec.rating + ", totalRating:" + totalRating );
 }
 
 /*
