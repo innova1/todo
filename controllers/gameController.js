@@ -17,8 +17,7 @@ exports.getCounts = async function(email) {
         const dbParams = await util.setupDB();
         const inCount = await dbParams.collection.find( { "fbkee.email": email } ).count();
         const outCount = await dbParams.collection.find( { "fbkor.email": email } ).count();
-        const score = getScore(email);
-        return( { inCount: inCount, outCount: outCount, score: score } );
+        return( { inCount: inCount, outCount: outCount } );
         dbParams.client.close();
         
     } catch (err) {
@@ -44,6 +43,7 @@ exports.getScore = async function(email) {
         const score = totalRating + inCount;
         debug("My total rating: " + totalRating + ", in count: " + inCount + ", score: " + score);
         //subtract absolute value of chits (need to save this to user doc, later)
+        return ( { score: score } );
     } catch (err) {
         debug(err);
     }
