@@ -45,7 +45,7 @@ exports.getScore = async function(email) {
 };
 
 function totalRatingf(total, index, outArray) {
-    debug("fn--index: " + index + ", rating:" + outArray[index].rating + ", total:" + total);
+    debug("fn--index: " + index + ", rating:" + outArray[index].rating + ", total:" + JSON.stringify(total) );
     total = total + 1; //outArray[index].rating;
 }
 
