@@ -27,8 +27,33 @@ exports.getCounts = async function(email) {
 };
 
 exports.getScore = async function(email) {
-    
+    try {
+        //sum of count of fbk out plus sum of ratings for fbk out
+        const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ dueDate: -1 }).toArray();
+        //count fbk out
+        outCount = myFbksOut.length;
+        //sum of ratings of fbk out
+        const totalRating = myFbksIn.forEach(totalRating);
+        debug("My total rating: " + totalRating);
+        //count of fbk in
+        const inCount = await dbParams.collection.find( { "fbkee.email": email } ).count();
+    }
 };
+
+function totalRating(total, index, myFbksIn) {
+    return total + myFbksIn[index].rating;
+}
+
+/*
+var txt = "";
+var numbers = [45, 4, 9, 16, 25];
+numbers.forEach(myFunction);
+
+function myFunction(value, index, array) {
+  txt = txt + value + "<br>"; 
+}
+*/
+
 
 exports.setRating = async (req, res) => {
     try {

@@ -39,7 +39,7 @@
                        Rating: <%=fbk.rating%>
                         <% if (loggedInEmail == fbk.fbkee.email) { %>
                         <select id="rating" name="rating" onchange="location.href='/fbk/rate/' + selectedIndex + '/id/<%=fbk._id%>'">
-                            <option value="">Please rate</option>
+                            <option value="">Set rating</option>
                             <option value="0">Not helpful</option>
                             <option value="1">Helpful</option>
                             <option value="2">More helpful</option>
