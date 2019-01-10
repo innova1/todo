@@ -26,7 +26,7 @@ exports.getCounts = async function(email) {
     }
 };
 
-var total = 0;
+var totalRating = 0;
 
 exports.getScore = async function(email) {
     try {
@@ -36,12 +36,14 @@ exports.getScore = async function(email) {
         //count fbk out
         outCount = myFbksOut.length;
         //sum of ratings of fbk out
-        var totalRating;
-        total = 0;
+        totalRating = 0;
         myFbksOut.forEach(totalRatingf);
         debug("My total rating: " + totalRating);
         //count of fbk in
         const inCount = await dbParams.collection.find( { "fbkee.email": email } ).count();
+        //add rating sum to fbkin
+        const score = totalRating + inCount;
+        //subtract absolute value of chits (need to save this to user doc, later)
     } catch (err) {
         debug(err);
     }
@@ -49,7 +51,7 @@ exports.getScore = async function(email) {
 
 function totalRatingf(rec, index) {
     debug("fn--index: " + index + ", rating:" + rec.rating + ", total:" + total );
-    total = total + parseInt(rec.rating); //outArray[index].rating;
+    totalRating = totalRating + parseInt(rec.rating); //outArray[index].rating;
 }
 
 /*
