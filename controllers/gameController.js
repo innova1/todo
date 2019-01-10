@@ -32,14 +32,14 @@ exports.getScore = async function(email) {
 
 exports.setRating = async (req, res) => {
     try {
-        debug("in set rating. rating:" + req.param("rating") + ", id:" + req.param("id"));
+        debug("in set rating. rating:" + req.params.rating + ", id:" + req.params.id);
         const rating = req.params.rating;
         const id = req.params.id;
         debug("updating id: " + id + " with rating " + rating);
         const dbParams = await util.setupDB();
         const inCount = await dbParams.collection.findOneAndUpdate( { 
             query: { _id: new ObjectId(id) }, 
-            update: { $set: { rating: rating } }
+            update: { $set: { rating: { rating } } }
         });
         res.redirect("/");
         dbParams.client.close();
