@@ -26,6 +26,8 @@ exports.getCounts = async function(email) {
     }
 };
 
+var total;
+
 exports.getScore = async function(email) {
     try {
         const dbParams = await util.setupDB();
@@ -44,8 +46,8 @@ exports.getScore = async function(email) {
     }
 };
 
-function totalRatingf(total, index, outArray) {
-    debug("fn--index: " + index + ", rating:" + outArray[index].rating + ", total:" + JSON.stringify(total) );
+function totalRatingf(rec, index) {
+    debug("fn--index: " + index + ", rating:" + rec.rating + ", total:" + total );
     total = total + 1; //outArray[index].rating;
 }
 
