@@ -30,7 +30,7 @@ exports.getScore = async function(email) {
     
 };
 
-exports.setRating = async (req, res) {
+exports.setRating = async (req, res) => {
     try {
         const rating = req.rating;
         const id = req.id;
