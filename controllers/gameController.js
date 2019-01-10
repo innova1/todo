@@ -50,7 +50,7 @@ exports.getScore = async function(email) {
 };
 
 function totalRatingf(rec, index) {
-    debug("fn--index: " + index + ", rating:" + rec.rating + ", total:" + total );
+    debug("fn--index: " + index + ", rating:" + rec.rating + ", totalRating:" + totalRating );
     totalRating = totalRating + parseInt(rec.rating); //outArray[index].rating;
 }
 
