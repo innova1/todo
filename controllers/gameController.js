@@ -17,8 +17,8 @@ exports.getCounts = async function(email) {
         const dbParams = await util.setupDB();
         const inCount = await dbParams.collection.find( { "fbkee.email": email } ).count();
         const outCount = await dbParams.collection.find( { "fbkor.email": email } ).count();
-        
-        return( { inCount: inCount, outCount: outCount } );
+        const score = getScore(email);
+        return( { inCount: inCount, outCount: outCount, score: score } );
         dbParams.client.close();
         
     } catch (err) {
