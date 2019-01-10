@@ -62,12 +62,11 @@
 </div>
 <p> <!-- card -->
     <script>
-        const http = require('http');
         function updateRating() {
             console.log("in updateRating");
             //location.href='/fbk/rate/' + selectedIndex + '/id/
             
-            const req = http.request(new URL("http://apple.com"), (res) => {
+            request(new URL("http://apple.com"), (res) => {
                 alert("got here");
             });
         }
