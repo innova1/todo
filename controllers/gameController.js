@@ -30,7 +30,7 @@ exports.getScore = async function(email) {
     
 };
 
-exports.setRating = async function(id, rating) {
+exports.setRating = async function(rating, id) {
     try {
         debug("updating id: " + id + " with rating " + rating);
         const dbParams = await util.setupDB();
