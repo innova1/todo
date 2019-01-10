@@ -28,6 +28,7 @@ exports.getCounts = async function(email) {
 
 exports.getScore = async function(email) {
     try {
+        const dbParams = await util.setupDB();
         //sum of count of fbk out plus sum of ratings for fbk out
         const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ dueDate: -1 }).toArray();
         //count fbk out
