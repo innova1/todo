@@ -37,7 +37,7 @@ exports.showMyFbks = async function (req, res) {
         email = username.split(",")[1]
     }
     const counts = await gameCalc.getCounts(email);
-    conts score = await gameCalc.getScore(email);
+    const score = await gameCalc.getScore(email);
     const inCount = counts.inCount;
     const outCount = counts.outCount;
     
