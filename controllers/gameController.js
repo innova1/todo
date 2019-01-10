@@ -44,9 +44,9 @@ exports.getScore = async function(email) {
     }
 };
 
-function totalRatingf(total, index, myFbksIn) {
-    debug("fn--index: " + index + ", rating:" + myFbksIn[index].rating + ", total:" + total);
-    total = total + myFbksIn[index].rating;
+function totalRatingf(total, index, outArray) {
+    debug("fn--index: " + index + ", rating:" + outArray[index].rating + ", total:" + total);
+    total = total + outArray[index].rating;
 }
 
 /*
