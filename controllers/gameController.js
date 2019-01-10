@@ -34,7 +34,7 @@ exports.getScore = async function(email) {
         //count fbk out
         outCount = myFbksOut.length;
         //sum of ratings of fbk out
-        const totalRating = myFbksIn.forEach(totalRating);
+        const totalRating = myFbksOut.forEach(totalRating);
         debug("My total rating: " + totalRating);
         //count of fbk in
         const inCount = await dbParams.collection.find( { "fbkee.email": email } ).count();
