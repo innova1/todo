@@ -43,7 +43,7 @@ exports.getScore = async function(email) {
         const score = totalRating + inCount;
         debug("My total rating: " + totalRating + ", in count: " + inCount + ", score: " + score);
         //subtract absolute value of chits (need to save this to user doc, later)
-        return ( { score: score } );
+        return ( score );
     } catch (err) {
         debug(err);
     }
