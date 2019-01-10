@@ -32,7 +32,7 @@ exports.getScore = async function(email) {
 
 exports.setRating = async (req, res) => {
     try {
-        debug("in set rating. params 0:" + req.params[0] + ", 1:" + req.params[1] + ", 2:" + req.params[2] + ", 3:" + req.params[3]);
+        debug("in set rating. rating:" + req.param("rating") + ", id:" + req.param("id"));
         const rating = req.query.rating;
         const id = req.query.id;
         debug("updating id: " + id + " with rating " + rating);
