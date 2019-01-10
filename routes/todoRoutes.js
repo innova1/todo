@@ -33,6 +33,7 @@ router.get('/user/change/', loginsController.changeUserPage);
 router.post('/user/change/', loginsController.changeUser);
 router.get('/all', showController.showFbks); //<-- temp, remove after testing
 router.get('/', showController.showMyFbks);
+router.post('/fbk/rate', gameController.setRating);
 
 
 

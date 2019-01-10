@@ -95,6 +95,8 @@ app.post('/user/add/', todoRouter);
 app.get('/user/change/', todoRouter);
 app.post('/user/change/', todoRouter);
 
+app.get('/fbk/rate/', todoRouter);
+
 app.get('/login', todoRouter);
 app.post('/login', todoRouter);
 app.get('/logout', todoRouter);
