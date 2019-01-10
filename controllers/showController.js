@@ -47,7 +47,7 @@ exports.showMyFbks = async function (req, res) {
     const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ dueDate: -1 }).toArray();
     const hostname = os.hostname();
     logger.info("viewing feedback: " + email );
-    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, outCount, title: 'My Feedback List', hostname });
+    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, outCount, score, title: 'My Feedback List', hostname });
     dbParams.client.close();
   }
   catch (err) {
