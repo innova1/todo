@@ -26,7 +26,7 @@ exports.getCounts = async function(email) {
     }
 };
 
-var total;
+var total = 0;
 
 exports.getScore = async function(email) {
     try {
