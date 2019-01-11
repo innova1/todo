@@ -13,6 +13,15 @@ log4js.configure({
 var logger = log4js.getLogger(); 
 logger.level = 'info';
 
+function getSelectTagText(selectedIndex) {
+    var selectArr = new Array();
+    selectArr[0] = { value:"Rate Feedback", selected:"" };
+    selectArr[1] = { value:"Not helpful", selected:"" };
+    selectArr[2] = { value:"Helpful", selected:"" };
+    selectArr[3] = { value:"More helpful", selected:"" };
+    selectArr[4] = { value:"Most helpful", selected:"" };
+}
+
 exports.showFbks = async function (req, res) {
   try {
     const dbParams = await util.setupDB();
@@ -40,14 +49,16 @@ exports.showMyFbks = async function (req, res) {
     const score = await gameCalc.getScore(email);
     const inCount = counts.inCount;
     const outCount = counts.outCount;
+    const selectData = getSelectTagText();
     
     debug("query with email: " + email + ", username: " + username);
     const dbParams = await util.setupDB();
     const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ dueDate: -1 }).toArray();
     const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ dueDate: -1 }).toArray();
     const hostname = os.hostname();
+      
     logger.info("viewing feedback: " + email );
-    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, outCount, score, title: 'My Feedback List', hostname });
+    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, outCount, score, selectData, title: 'My Feedback List', hostname });
     dbParams.client.close();
   }
   catch (err) {
