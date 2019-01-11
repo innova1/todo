@@ -50,6 +50,7 @@ exports.showMyFbks = async function (req, res) {
     const inCount = counts.inCount;
     const outCount = counts.outCount;
     const selectData = getSelectTagText();
+    debug(selectData.toString());
     
     debug("query with email: " + email + ", username: " + username);
     const dbParams = await util.setupDB();
