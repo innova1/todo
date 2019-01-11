@@ -41,7 +41,7 @@
                         <% if (loggedInEmail == fbk.fbkee.email) { %>
                         <select id="rating" name="rating" onchange="location.href='/fbk/rate/' + (selectedIndex - 1) + '/id/<%=fbk._id%>'">
                             <% for (i = 0, i < 5, i++ ) {%>
-                                <option value="<%if (i != 0) {%><%=i-1%><%}%>" <%=selectData[i].selected%> ><%=selectData[i].value</option>
+                                <option value="<%if (i != 0) {%><%=i-1%><%}%>" <%=selectData[i].selected%> ><%=selectData[i].value%></option>
                             <%}%>
                         </select>
                         <%}%>
