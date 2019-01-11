@@ -17,10 +17,10 @@ function getSelectTagText() {
     debug("ran getSelectTagText");
     var selectArr = new Array();
     selectArr[0] = { value:"Rate Feedback", selected:"" };
-    selectArr[1] = { value:"Not helpful", selected:"" };
-    selectArr[2] = { value:"Helpful", selected:"" };
-    selectArr[3] = { value:"More helpful", selected:"" };
-    selectArr[4] = { value:"Most helpful", selected:"" };
+    selectArr[1] = { value:"0-Not helpful", selected:"" };
+    selectArr[2] = { value:"1-Helpful", selected:"" };
+    selectArr[3] = { value:"2-More helpful", selected:"" };
+    selectArr[4] = { value:"3-Most helpful", selected:"" };
     return selectArr;
 }
 
