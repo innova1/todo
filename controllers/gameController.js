@@ -42,7 +42,7 @@ exports.getScore = async function(email) {
         //add rating sum to fbkin
         const score = totalRating + inCount;
         debug("My total rating: " + totalRating + ", in count: " + inCount + ", score: " + score);
-        //subtract absolute value of chits (need to save this to user doc, later)
+        //TODO -- subtract absolute value of chits (need to save this to user doc, later)
         return ( score );
     } catch (err) {
         debug(err);
