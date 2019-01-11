@@ -14,7 +14,6 @@ var logger = log4js.getLogger();
 logger.level = 'info';
 
 function getSelectTagText() {
-    debug("ran getSelectTagText");
     var selectArr = new Array();
     selectArr[0] = { value:"Rate Feedback", selected:"" };
     selectArr[1] = { value:"0-Not helpful", selected:"" };
@@ -52,7 +51,6 @@ exports.showMyFbks = async function (req, res) {
     const inCount = counts.inCount;
     const outCount = counts.outCount;
     const selectData = getSelectTagText();
-    debug(selectData.toString());
     
     debug("query with email: " + email + ", username: " + username);
     const dbParams = await util.setupDB();
