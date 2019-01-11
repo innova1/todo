@@ -21,6 +21,7 @@ function getSelectTagText() {
     selectArr[2] = { value:"Helpful", selected:"" };
     selectArr[3] = { value:"More helpful", selected:"" };
     selectArr[4] = { value:"Most helpful", selected:"" };
+    return selectArr;
 }
 
 exports.showFbks = async function (req, res) {
