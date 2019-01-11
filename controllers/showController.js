@@ -13,7 +13,7 @@ log4js.configure({
 var logger = log4js.getLogger(); 
 logger.level = 'info';
 
-function getSelectTagText(selectedIndex) {
+function getSelectTagText() {
     var selectArr = new Array();
     selectArr[0] = { value:"Rate Feedback", selected:"" };
     selectArr[1] = { value:"Not helpful", selected:"" };
