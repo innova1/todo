@@ -126,8 +126,8 @@ exports.getAvgInScore = async function(email) {
                 count: { $sum: 1 }
             } }
         ] );
-        agg.each( (err, docs) => {
-            debug("objects");
+        agg.forEach( (doc) => {
+            debug("object: " + doc._id);
         });
     } catch(err) {
         debug(err);
