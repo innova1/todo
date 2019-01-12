@@ -120,7 +120,7 @@ exports.getAvgInScore = async function(email) {
     try {
         const dbParams = await util.setupDB();
         //first try getting output values for myIn and myOut
-        const agg = await dbParams.collection.aggregate( [
+        const aggIn = await dbParams.collection.aggregate( [
             { 
                 $match: { 'fbkee.email': email }
             },
@@ -130,7 +130,21 @@ exports.getAvgInScore = async function(email) {
                 } 
             }
         ] );
-        agg.forEach( (doc) => {
+        aggIn.forEach( (doc) => {
+            debug("object: " + JSON.stringify(doc) );
+        });
+        
+        const aggOut = await dbParams.collection.aggregate( [
+            { 
+                $match: { 'fbkor.email': email }
+            },
+            {    $group: { 
+                    _id: '$fbkor.email',
+                    count: { $sum: 1 }
+                } 
+            }
+        ] );
+        aggOr.forEach( (doc) => {
             debug("object: " + JSON.stringify(doc) );
         });
     } catch(err) {
