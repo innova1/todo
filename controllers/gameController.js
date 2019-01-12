@@ -120,8 +120,7 @@ exports.getAvgInScore = async function(email) {
     try {
         const dbParams = await util.setupDB();
         //first try getting output values for myIn and myOut
-        const agg = await dbParams.collection.aggregate( [ 
-            { $match: { fbkee: email } },
+        const agg = await dbParams.collection.aggregate( [
             { $group: { 
                 _id: "fbkee",
                 count: { $sum: 1 }
