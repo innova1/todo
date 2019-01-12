@@ -125,7 +125,7 @@ exports.getAvgInScore = async function(email) {
                 $match: { 'fbkee.email': email }
             },
             {    $group: { 
-                    _id: { day: { $dayOfMonth: new Date('dueDate')} },
+                    _id: { month: { $month: new Date("$dueDate") }, day: { $dayOfMonth: new Date("$dueDate") }, year: { $year: new Date("$dueDate") } },
                     count: { $sum: 1 }
                 } 
             }
