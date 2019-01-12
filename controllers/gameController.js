@@ -66,7 +66,7 @@ function myFunction(value, index, array) {
 
 exports.setRating = async (req, res) => {
     try {
-        debug("original url: " + req.orginalUrl);
+        debug("base url: " + req.baseUrl);
         debug("in set rating. rating:" + req.params.rating + ", id:" + req.params.id);
         const rating = parseInt(req.params.rating) - 1;
         const id = req.params.id;
