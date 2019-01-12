@@ -67,7 +67,7 @@ function myFunction(value, index, array) {
 exports.setRating = async (req, res) => {
     try {
         debug("in set rating. rating:" + req.params.rating + ", id:" + req.params.id);
-        const rating = req.params.rating;
+        const rating = parseInt(req.params.rating) - 1;
         const id = req.params.id;
         debug("updating id: " + id + " with rating " + rating);
         const dbParams = await util.setupDB();
