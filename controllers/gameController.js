@@ -104,3 +104,25 @@ exports.getBalance = async function(email) {
     const balance = trg - trr;
     return balance;
 }
+
+/*
+    db.orders.aggregate( [
+        { $match: { status: "A" } },
+        { $group: { _id: "$cust_id", total: { $sum: "$amount" } } }
+    ] )
+*/
+
+exports.getAvgInScore = async function(email) {
+    //first try getting output values for myIn and myOut
+    const agg = await dbParams.collection.aggregate( [ 
+        { $group: { 
+            _id: { fbkee: "fbkee", fbkor: "fbkor" },
+            count: { $sum: 1 }
+        }
+    ] );
+    return agg;
+}
+
+exports.getAvgOutScore = async function(email) {
+    
+}
