@@ -127,7 +127,7 @@ exports.getAvgInScore = async function(email) {
             } }
         ] );
         agg.forEach( (doc) => {
-            debug("object: " + JSON.stringify(doc);
+            debug("object: " + JSON.stringify(doc) );
         });
     } catch(err) {
         debug(err);
