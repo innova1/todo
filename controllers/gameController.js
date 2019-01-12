@@ -96,7 +96,7 @@ exports.getBalance = async function(email) {
     
     //get total rating received (add up all ratings on feedback with email = fbkee)
     const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ dueDate: -1 }).toArray();
-    totalRaiting = 0;
+    totalRating = 0;
     myFbksIn.forEach(totalRatingf);
     debug("after In rating sum, totalRating: " + totalRating);
     
