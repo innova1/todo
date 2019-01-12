@@ -126,7 +126,7 @@ exports.getAvgInScore = async function(email) {
                 count: { $sum: 1 }
             } }
         ] );
-        return agg;
+        return agg.toArray();
     } catch(err) {
         debug(err);
     }
