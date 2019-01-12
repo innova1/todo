@@ -122,7 +122,7 @@ exports.getAvgInScore = async function(email) {
         //first try getting output values for myIn and myOut
         const agg = await dbParams.collection.aggregate( [
             { $group: { 
-                _id: "fbkee",
+                _id: "fbkee.email",
                 count: { $sum: 1 }
             } }
         ] );
