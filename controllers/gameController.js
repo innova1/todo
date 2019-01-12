@@ -25,10 +25,15 @@ exports.getCounts = async function(email) {
     }
 };
 
-var totalRating = 0;
+
 
 exports.getScore = async function(email) {
     try {
+        var totalRating = 0;
+        function totalRatingf(rec, index) {
+            totalRating = totalRating + parseInt(rec.rating); //outArray[index].rating;
+            //debug("fn--index: " + index + ", rating:" + rec.rating + ", totalRating:" + totalRating );
+        }
         const dbParams = await util.setupDB();
         //sum of count of fbk out plus sum of ratings for fbk out
         const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ dueDate: -1 }).toArray();
@@ -48,11 +53,6 @@ exports.getScore = async function(email) {
         debug(err);
     }
 };
-
-function totalRatingf(rec, index) {
-    totalRating = totalRating + parseInt(rec.rating); //outArray[index].rating;
-    //debug("fn--index: " + index + ", rating:" + rec.rating + ", totalRating:" + totalRating );
-}
 
 /*
 var txt = "";
@@ -83,3 +83,25 @@ exports.setRating = async (req, res) => {
         debug(err);
     }
 };
+
+function getTotalRatings(FbkArr) {
+    
+}
+
+exports.getBalance = async function(email) {
+    /*
+        get current balance from user db
+        total rating given - total rating received = balance 
+    */
+    //get current balance from user db
+    
+    
+    //get total rating given (add up all ratings on feedback with email = fbkor)
+    //const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ dueDate: -1 }).toArray();
+    
+    //get total rating received (add up all ratings on feedback with email = fbkee)
+    //const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ dueDate: -1 }).toArray();
+    
+    //subtrack trg from trr
+    //store balance to user db
+}
