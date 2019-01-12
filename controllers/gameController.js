@@ -82,10 +82,8 @@ exports.getBalance = async function(email) {
         //debug("fn--index: " + index + ", rating:" + rec.rating + ", totalRating:" + totalRating );
     }
     /*
-        get current balance from user db
         total rating given - total rating received = balance 
     */
-    //get current balance from user db
     
     const dbParams = await util.setupDB();
     //get total rating given (add up all ratings on feedback with email = fbkor)
@@ -93,13 +91,16 @@ exports.getBalance = async function(email) {
     totalRating = 0;
     myFbksOut.forEach(totalRatingf);
     debug("after out rating sum, totalRating: " + totalRating);
+    trg = totalRating;
     
     //get total rating received (add up all ratings on feedback with email = fbkee)
     const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ dueDate: -1 }).toArray();
     totalRating = 0;
     myFbksIn.forEach(totalRatingf);
     debug("after In rating sum, totalRating: " + totalRating);
+    trr = totalRating;
     
-    //subtrack trg from trr
-    //store balance to user db
+    //subtract trg from trr
+    const balance = trg - trr;
+    return balance;
 }
