@@ -84,26 +84,29 @@ exports.getBalance = async function(email) {
     /*
         total rating given - total rating received = balance 
     */
-    
-    const dbParams = await util.setupDB();
-    //get total rating given (add up all ratings on feedback with email = fbkor)
-    const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ dueDate: -1 }).toArray();
-    totalRating = 0;
-    myFbksOut.forEach(totalRatingf);
-    debug("after out rating sum, totalRating: " + totalRating);
-    trg = totalRating;
-    
-    //get total rating received (add up all ratings on feedback with email = fbkee)
-    const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ dueDate: -1 }).toArray();
-    totalRating = 0;
-    myFbksIn.forEach(totalRatingf);
-    debug("after In rating sum, totalRating: " + totalRating);
-    trr = totalRating;
-    
-    //subtract trg from trr
-    const balance = trg - trr;
-    return balance;
-}
+    try {
+        const dbParams = await util.setupDB();
+        //get total rating given (add up all ratings on feedback with email = fbkor)
+        const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ dueDate: -1 }).toArray();
+        totalRating = 0;
+        myFbksOut.forEach(totalRatingf);
+        debug("after out rating sum, totalRating: " + totalRating);
+        trg = totalRating;
+
+        //get total rating received (add up all ratings on feedback with email = fbkee)
+        const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ dueDate: -1 }).toArray();
+        totalRating = 0;
+        myFbksIn.forEach(totalRatingf);
+        debug("after In rating sum, totalRating: " + totalRating);
+        trr = totalRating;
+
+        //subtract trg from trr
+        const balance = trg - trr;
+        return balance;
+    } catch(err) {
+        debug(err);
+    }
+};
 
 /*
     db.orders.aggregate( [
@@ -113,16 +116,21 @@ exports.getBalance = async function(email) {
 */
 
 exports.getAvgInScore = async function(email) {
-    //first try getting output values for myIn and myOut
-    const agg = await dbParams.collection.aggregate( [ 
-        { $group: { 
-            _id: { fbkee: "fbkee", fbkor: "fbkor" },
-            count: { $sum: 1 }
-        } }
-    ] );
-    return agg;
-}
+    try {
+        const dbParams = await util.setupDB();
+        //first try getting output values for myIn and myOut
+        const agg = await dbParams.collection.aggregate( [ 
+            { $group: { 
+                _id: { fbkee: "fbkee", fbkor: "fbkor" },
+                count: { $sum: 1 }
+            } }
+        ] );
+        return agg;
+    } catch(err) {
+        debug(err);
+    }
+};
 
 exports.getAvgOutScore = async function(email) {
     
-}
+};
