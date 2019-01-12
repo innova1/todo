@@ -144,7 +144,7 @@ exports.getAvgInScore = async function(email) {
                 } 
             }
         ] );
-        aggOr.forEach( (doc) => {
+        aggOut.forEach( (doc) => {
             debug("object: " + JSON.stringify(doc) );
         });
     } catch(err) {
