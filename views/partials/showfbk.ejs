@@ -39,14 +39,15 @@
                        Rating: 
                         <% selectData[parseInt(fbk.rating)+1].selected="selected"; %>
                         <% if (loggedInEmail == fbk.fbkee.email) {%>
-                        <select id="rating" name="rating" onchange="location.href='/fbk/rate/' + selectedIndex + '/id/<%=fbk._id%>'">
-                            <% for (j = 0; j < 5; j++ ) {%>
-                                <option value="<%if (j != 0) {%><%=j-1%><%}%>" <%=selectData[j].selected%> ><%=selectData[j].value%></option>
-                            <%}%>
-                        </select>
+                            <select id="rating" name="rating" onchange="location.href='/fbk/rate/' + selectedIndex + '/id/<%=fbk._id%>'">
+                                <% for (j = 0; j < 5; j++ ) {%>
+                                    <option value="<%if (j != 0) {%><%=j-1%><%}%>" <%=selectData[j].selected%> ><%=selectData[j].value%></option>
+                                <%}%>
+                            </select>
                         <%} else {%>
                             <%=selectData[parseInt(fbk.rating)+1].value%>
                         <%}%>
+                        <% selectData[parseInt(fbk.rating)+1].selected=""; %>
                     </li>
                     <% if (loggedInEmail == fbk.fbkor.email) { %>
                         <li class="nav-item">
