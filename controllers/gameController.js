@@ -116,6 +116,7 @@ exports.getBalance = async function(email) {
 */
 
 exports.getAvgInScore = async function(email) {
+    debug("in getAvgInScore");
     try {
         const dbParams = await util.setupDB();
         //first try getting output values for myIn and myOut
