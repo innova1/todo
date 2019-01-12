@@ -118,7 +118,7 @@ exports.getAvgInScore = async function(email) {
         { $group: { 
             _id: { fbkee: "fbkee", fbkor: "fbkor" },
             count: { $sum: 1 }
-        }
+        } }
     ] );
     return agg;
 }
