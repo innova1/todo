@@ -164,13 +164,15 @@ exports.getAvgInScore = async function(email) {
             }
         ] );
         
+        var aggOutArr = aggOut.toArray();
+        debug("fbk out: " + JSON.stringify(aggOutArr[0]));
         
+        /*
         aggOut.forEach( (doc) => {
             score = doc.score;
             debug("fbk out: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
         });
-        
-        debug("score is " + score);
+        */
                 
         /*
         debug("tf: " + tf + ", oc: " + oc);
