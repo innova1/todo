@@ -173,12 +173,12 @@ exports.getAvgInScore = async function(email) {
         var aggOutArr = a.toArray();
         debug("fbk out: " + JSON.stringify(aggOutArr));
         
-        /*
-        aggOut.forEach( (doc) => {
+        
+        a.forEach( (doc) => {
             score = doc.score;
             debug("fbk out: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
         });
-        */
+        
                 
         /*
         debug("tf: " + tf + ", oc: " + oc);
