@@ -159,7 +159,7 @@ exports.getAvgInScore = async function(email) {
                     sumAllRating: { $sum: '$sumRating' },
                     avgPerDay: { $avg: '$countForDay' },
                     totalFbks: { $sum: '$countForDay' },
-                    score: { $multiply: [ $divide: [ '$sumAllRating', '$totalFbks' ], '$avgPerDay' ] }
+                    score: { $multiply: [ { $divide: [ '$sumAllRating', '$totalFbks' ] }, '$avgPerDay' ] }
                 }
             }
         ] );
