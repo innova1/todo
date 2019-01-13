@@ -72,6 +72,7 @@ exports.saveTask = async (req, res) => {
     try {
         var tempfbk = req.body;
         tempfbk.createDate = new Date();
+        tempfbk.rating = '';
         tempfbk.fbkee = { 'shortname': tempfbk.fbkee.split(",")[0], 'email': tempfbk.fbkee.split(",")[1] };
         tempfbk.fbkor = { 'shortname': tempfbk.fbkor.split(",")[0], 'email': tempfbk.fbkor.split(",")[1] };
         const task = req.body;
