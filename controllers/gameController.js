@@ -115,6 +115,8 @@ exports.getBalance = async function(email) {
     ] )
 */
 
+
+
 exports.getAvgInScore = async function(email) {
     debug("in getAvgInScore--email:" + email);
     try {
@@ -126,12 +128,13 @@ exports.getAvgInScore = async function(email) {
             },
             {    $group: { 
                     _id: { month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
+                    avgRating: { $avg: "$rating" },
                     count: { $sum: 1 }
                 } 
             }
         ] );
         aggIn.forEach( (doc) => {
-            debug("object: " + JSON.stringify(doc) );
+            debug("fbk in object: " + JSON.stringify(doc) );
         });
         
         const aggOut = await dbParams.collection.aggregate( [
