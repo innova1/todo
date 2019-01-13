@@ -16,6 +16,9 @@ router.get('/testlogging', logController.testLog);
 router.get('/user/add', addController.addUserPage);
 router.post('/user/add', addController.addUser);
 
+router.get('/fbk/edit/:id', editController.fixDatePage);
+router.post('/fbk/edit/:id', editController.fixDate);
+
 router.post('/task/complete/:id', completeController.commitComplete);
 router.get('/task/delete/:id', deleteController.deleteTask);
 router.post('/task/delete/:id', deleteController.confirmDelete);
