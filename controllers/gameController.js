@@ -138,9 +138,7 @@ exports.getAvgInScore = async function(email) {
             debug("fbk in object: " + JSON.stringify(doc) );
         });
         
-        async function getFbkOutAgg() { 
-            
-            let fbkOutAgg = await dbParams.collection.aggregate( [
+        let fbkOutAgg = await dbParams.collection.aggregate( [
                 { 
                     $match: { 'fbkor.email': email }
                 },
@@ -165,11 +163,8 @@ exports.getAvgInScore = async function(email) {
                     $project: { _id: false, score: { $multiply: [ { $divide: [ '$sumAllRating', '$totalFbks' ] }, '$avgPerDay' ] } }
                 }
             ] );
-            
-            return fbkOutAgg;
-        }
         
-        var a = await getFbkOutAgg();
+        var a = await fbkOutAgg();
         var aggOutArr = a.toArray();
         debug("fbk out: " + JSON.stringify(aggOutArr));
         
