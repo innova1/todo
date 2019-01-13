@@ -12,7 +12,7 @@
             <div class="form-group">
                 
                 <label for="dueDate" class="text-primary">Due Date:</label>
-                <input type="date" class="form-control" id="dueDate" name="dueDate" value="<%=task.dueDate%>">
+                <input type="date" class="form-control" id="dueDate" name="dueDate" value="<%=fbk.dueDate%>">
                 
 <!--
                 <label for="fbkee" class="text-primary">Who do you want to give feedback to?</label>
@@ -25,7 +25,7 @@
 
                 <label for="direction" class="text-primary">Direction</label>
                 <select class="form-control" id="direction" name="direction">
-                    <% switch(task.direction) {
+                    <% switch(fbk.direction) {
                         case 'increased' : %>
                             <option selected>increased</option>
                             <option>decreased</option>
@@ -46,9 +46,9 @@
                 </select>
 -->
                 <label for="detail" class="text-primary">Details</label>
-                <textarea class="form-control" id="detail" name="detail" value="<%=task.detail%>"></textarea>
+                <textarea class="form-control" id="detail" name="detail" value="<%=fbk.detail%>"></textarea>
             
-                <input id="isComplete" name="isComplete" type="hidden" value="<%=task.isComplete%>">
+                <input id="isComplete" name="isComplete" type="hidden" value="<%=fbk.isComplete%>">
             </div>
                 <input type="submit" class="btn btn-primary" value="Save Feedback">
         </form>
