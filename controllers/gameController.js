@@ -164,8 +164,7 @@ exports.getAvgInScore = async function(email) {
                 }
             ] );
         
-        var a = await fbkOutAgg();
-        var aggOutArr = a.toArray();
+        let aggOutArr = await fbkOutAgg.toArray();
         debug("fbk out: " + JSON.stringify(aggOutArr));
         
         
