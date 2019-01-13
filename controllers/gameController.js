@@ -211,14 +211,14 @@ exports.isNoRating = async function(email) {
     try {
         const dbParams = await util.setupDB();
         let noRatingCount = await dbParams.collection.countDocuments( { 'fbkee.email': { $eq: email } }, { 'rating': { $ne: '' } } );
-        let noRating = async function() {
-            await noRatingCount;
-            if ( noRatingCount < 1 ) {
-                return true;
-            } else {
-                return false;
-            }
-        };
+        let noRating = false;
+        
+        if ( noRatingCount < 1 ) {
+            noRating = true;
+        } else {
+            noRating = false;
+        }
+        
         debug("noRating: " + noRating);
         return noRating;
     } catch(err) {
