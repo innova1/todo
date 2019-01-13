@@ -117,8 +117,8 @@ exports.getBalance = async function(email) {
 
 
 
-exports.getAvgInScore = async function(email) {
-    debug("in getAvgInScore--email:" + email);
+exports.getAvgScores = async function(email) {
+    debug("in getAvgScores w/email:" + email);
     var score = 0;
     try {
         const dbParams = await util.setupDB();
@@ -176,10 +176,12 @@ exports.getAvgInScore = async function(email) {
         ] );
         
         let aggOutArr = await fbkOutAgg.toArray();
-        debug("fbk out: " + JSON.stringify(aggOutArr));
+        debug("fbk out: " + JSON.stringify(aggOutArr[0]));
         
         let aggInArr = await fbkInAgg.toArray();
-        debug("fbk In: " + JSON.stringify(aggInArr));
+        debug("fbk In: " + JSON.stringify(aggInArr[0]));
+        
+        //return { inArray: aggInArr, outArra}
         
         /*
         aggOutArr.forEach( (doc) => {
