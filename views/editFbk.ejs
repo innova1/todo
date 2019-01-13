@@ -8,13 +8,15 @@
     <div class="container">
         <% include ./partials/navfbk %>
         <div class="card" style="width: 50%">
-        <form method="post" action="/task/edit/<%=id%>" style="padding: 20px">
+        <form method="post" action="/fbk/edit/<%=id%>" style="padding: 20px">
             <div class="form-group">
                 
-                <label for="duedate" class="text-primary">Due Date:</label>
-                <input type="date" class="form-control" id="duedate" name="dueDate" value="<%=task.dueDate%>">
+                <label for="dueDate" class="text-primary">Due Date:</label>
+                <input type="date" class="form-control" id="dueDate" name="dueDate" value="<%=task.dueDate%>">
                 
+<!--
                 <label for="fbkee" class="text-primary">Who do you want to give feedback to?</label>
+                <input type="text" class="form-control" id="fbkee" name="fbkee" value="<"
                 <select class="form-control" id="fbkee" name="fbkee">
                     <option>Tom</option>
                     <option>Steve</option>
@@ -42,13 +44,13 @@
                     <option>delivery</option>
                     <option>knowledge</option>
                 </select>
-                
+-->
                 <label for="detail" class="text-primary">Details</label>
-                <input class="form-control" id="detail" name="detail" value="<%=task.detail%>"></textarea>
+                <textarea class="form-control" id="detail" name="detail" value="<%=task.detail%>"></textarea>
             
                 <input id="isComplete" name="isComplete" type="hidden" value="<%=task.isComplete%>">
             </div>
-                <input type="submit" class="btn btn-primary" value="Save Task">
+                <input type="submit" class="btn btn-primary" value="Save Feedback">
         </form>
         </div>
     </div> <!-- container -->
