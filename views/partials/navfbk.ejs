@@ -21,6 +21,8 @@
 <%if (typeof inCount === 'undefined' ) {%>
         ""
     <%} else {%>
-        <div id="scoreboard">
-            <span id="counts">Count In:<%=inCount%>/Out:<%=outCount%></span><br /><span id="scores">Score In:<%=inScore%>/Out:<%=outScore%></span></div>
+        <div id="scoreboard" class="grid-container">
+            <div id="counts">Count In:<%=inCount%>/Out:<%=outCount%></div>
+            <div id="scores">Score In:<%=inScore%>/Out:<%=outScore%></div>
+        </div>
     <%}%>
