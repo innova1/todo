@@ -50,11 +50,11 @@ exports.showMyFbks = async function (req, res) {
     const score = await gameCalc.getScore(email);
     const balance = await gameCalc.getBalance(email);
     const avgScores = await gameCalc.getAvgScores(email);
+    const isNoRating = gameCalc.isNoRating(email);
     //debug("avgInScore: " + avgInScore.length + ", " + JSON.stringify(avgInScore));
     const inCount = counts.inCount;
     const outCount = counts.outCount;
     const selectData = getSelectTagText();
-    const isNoRating = isNoRating(email);
     
     debug("query with email: " + email + ", username: " + username);
     const dbParams = await util.setupDB();
