@@ -163,21 +163,22 @@ exports.getAvgInScore = async function(email) {
             }
         ] );
         
-        /*
+        
         aggOut.forEach( (doc) => {
+            /*
             oc += 1;
             tf += doc.count;
             sr += doc.sumRating;
-            debug("fbk out: " + JSON.stringify(doc) + ", outCount: " + oc + ", totalFbk: " + tf );
+            */
+            debug("fbk out: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
         });
-        */
         
-        debug("json string of aggOut:" + JSON.stringify(aggOut));
-        
+        /*
         debug("tf: " + tf + ", oc: " + oc);
         var avgFDout = tf/oc;
         var avgRatingOut = sr/tf;
         debug("avg fbk/day:" + avgFDout + ", avg rating: " + avgRatingOut);
+        */
         
         dbParams.client.close();
     } catch(err) {
