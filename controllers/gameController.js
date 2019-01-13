@@ -31,8 +31,10 @@ exports.getScore = async function(email) {
     try {
         var totalRating = 0;
         function totalRatingf(rec, index) {
-            totalRating = totalRating + parseInt(rec.rating); //outArray[index].rating;
-            //debug("fn--index: " + index + ", rating:" + rec.rating + ", totalRating:" + totalRating );
+            if( rec.rating !== null && rec.rating !== '' ) {
+                totalRating = totalRating + parseInt(rec.rating); //outArray[index].rating;
+                //debug("fn--index: " + index + ", rating:" + rec.rating + ", totalRating:" + totalRating );
+            }
         }
         const dbParams = await util.setupDB();
         //sum of count of fbk out plus sum of ratings for fbk out
@@ -78,8 +80,10 @@ exports.setRating = async (req, res) => {
 exports.getBalance = async function(email) {
     var totalRating = 0;
     function totalRatingf(rec, index) {
-        totalRating = totalRating + parseInt(rec.rating); //outArray[index].rating;
-        //debug("fn--index: " + index + ", rating:" + rec.rating + ", totalRating:" + totalRating );
+        if ( rec.rating !== null && rec.rating !== '' ) {
+            totalRating = totalRating + parseInt(rec.rating); //outArray[index].rating;
+            //debug("fn--index: " + index + ", rating:" + rec.rating + ", totalRating:" + totalRating );
+        }
     }
     /*
         total rating given - total rating received = balance 
