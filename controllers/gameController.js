@@ -144,6 +144,7 @@ exports.getAvgInScore = async function(email) {
             },
             {    $group: { 
                     _id: { month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
+                    sumRating: { $sum: '$rating' },
                     count: { $sum: 1 }
                 } 
             }
@@ -151,8 +152,9 @@ exports.getAvgInScore = async function(email) {
         aggOut.forEach( (doc) => {
             oc += 1;
             tf += doc.count;
-            debug("fbk out object: " + JSON.stringify(doc) + ", count: " + oc + ", totalFbk: " + tf );
+            debug("fbk out: " + JSON.stringify(doc) + ", outCount: " + oc + ", totalFbk: " + tf );
         });
+        debug("avg fbk/day:" + (tf/oc) + ", avg rating: " + (sumRating/oc));
     } catch(err) {
         debug(err);
     }
