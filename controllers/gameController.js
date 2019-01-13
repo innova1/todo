@@ -208,9 +208,10 @@ exports.getAvgScores = async function(email) {
 };
 
 exports.isNoRating = async function(email) {
+    const email = email;
     try {
         const dbParams = await util.setupDB();
-        let noRatingCount = dbParams.collection.countDocuments( { 'fbkee.email': {$eq email } }, { 'rating': { $ne: '' } } );
+        let noRatingCount = dbParams.collection.countDocuments( { 'fbkee.email': { $eq email } }, { 'rating': { $ne: '' } } );
         let noRating = false; 
         let noRating = await () => {
             if ( noRatingCount < 1 ) {
