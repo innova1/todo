@@ -119,9 +119,7 @@ exports.getBalance = async function(email) {
 
 exports.getAvgInScore = async function(email) {
     debug("in getAvgInScore--email:" + email);
-    var oc = 0;
-    var tf = 0;
-    var sr = 0;
+    var score = 0;
     try {
         const dbParams = await util.setupDB();
         //first try getting output values for myIn and myOut
@@ -168,17 +166,12 @@ exports.getAvgInScore = async function(email) {
         
         
         aggOut.forEach( (doc) => {
-            /*
-            oc += 1;
-            tf += doc.count;
-            sr += doc.sumRating;
-            */
+            score = doc.score;
             debug("fbk out: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
         });
         
-        const t = aggOut.toArray();
-        debug("t array 0: " + t[0]);
-        
+        debug("score is " + score);
+                
         /*
         debug("tf: " + tf + ", oc: " + oc);
         var avgFDout = tf/oc;
