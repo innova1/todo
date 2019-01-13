@@ -176,6 +176,9 @@ exports.getAvgInScore = async function(email) {
             debug("fbk out: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
         });
         
+        const t = aggOut.toArray();
+        debug("t array 0: " + t[0]);
+        
         /*
         debug("tf: " + tf + ", oc: " + oc);
         var avgFDout = tf/oc;
