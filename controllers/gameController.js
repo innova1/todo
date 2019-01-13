@@ -162,7 +162,7 @@ exports.getAvgInScore = async function(email) {
                 }
             },
             {
-                $project: { score: { $multiply: [ { $divide: [ '$sumAllRating', '$totalFbks' ] }, '$avgPerDay' ] } }
+                $project: { _id: false, score: { $multiply: [ { $divide: [ '$sumAllRating', '$totalFbks' ] }, '$avgPerDay' ] } }
             }
         ] );
         
