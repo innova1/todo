@@ -21,8 +21,6 @@
 <%if (typeof inCount === 'undefined' ) {%>
         ""
     <%} else {%>
-        <div style="color: #AAAAAA; font-family: 'courier new'; font-weight: bold; font-size: 14px;">
-            | Count In:<%=inCount%>/Out:<%=outCount%> | Score In:<%=inScore%>/Out:<%=outScore%> |</div>
+        <div id="scoreboard">
+            | <span id="counts">Count In:<%=inCount%>/Out:<%=outCount%> </span>| <span id="scores">Score In:<%=inScore%>/Out:<%=outScore%></span> |</div>
     <%}%>
-
-    
