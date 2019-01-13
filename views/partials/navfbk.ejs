@@ -19,10 +19,10 @@
     </div>
 </nav>
 <%if (typeof inCount === 'undefined' ) {%>
-        ""
+        <!--show nothing-->
     <%} else {%>
         <div id="scoreboard">
-            <div id="counts">Count In: <%=inCount%>/Out: <%=outCount%></div>
+            <div id="counts">Count: In <%=inCount%>/Out <%=outCount%></div>
             <div id="scores">Score: <%=outScore%></div>
         </div>
     <%}%>

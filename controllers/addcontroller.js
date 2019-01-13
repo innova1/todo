@@ -71,6 +71,7 @@ exports.saveTask = async (req, res) => {
     logger.addContext('ip', req.ip);
     try {
         var tempfbk = req.body;
+        tempfbk.createdDate = new Date();
         tempfbk.fbkee = { 'shortname': tempfbk.fbkee.split(",")[0], 'email': tempfbk.fbkee.split(",")[1] };
         tempfbk.fbkor = { 'shortname': tempfbk.fbkor.split(",")[0], 'email': tempfbk.fbkor.split(",")[1] };
         const task = req.body;
