@@ -215,7 +215,7 @@ exports.isNoRating = async function(email) {
         
         const noRatingCount = await noRatingCountlk;
         debug("noRatingCount: " + noRatingCount);
-        if ( noRatingCount < 1 ) {
+        if ( noRatingCount > 1 ) {
             noRating = true;
         } else {
             noRating = false;
