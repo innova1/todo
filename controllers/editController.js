@@ -17,22 +17,41 @@ exports.editFbk = async (req, res) => {
   }
 };
 
+exports.fixDatePage = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const dbParams = await util.setupDB();
+    const fbk = await dbParams.collection.findOne({ _id: new ObjectId(id) });
+    dbParams.client.close();
+    res.render('editFbk', { fbk, id, title: 'Save Changes' });
+  } catch (err) {
+    debug(err);
+  }
+};
+
+exports.fixDate = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const fbk = req.body;
+        task.createdDate = new Date(fbk.dueDate);
+        const dbParams = await util.setupDB();
+        await dbParams.collection.findOneAndUpdate({ _id: new ObjectId(id) }, fbk);
+        dbParams.client.close();
+        res.redirect('/');
+    } catch (err) {
+        debug(err);
+    }
+};
+
 exports.commitEdit = async (req, res) => {
   try {
-    console.log("Hello Newman 2!");
     const { id } = req.params;
-    console.log("Hello Newman 3!");
     const task = req.body;
-    console.log("Hello Newman 4!");
     const dbParams = await util.setupDB();
-    console.log("Hello Newman 5! with id: " + id + ":" + task);
     await dbParams.collection.findOneAndUpdate({ _id: new ObjectId(id) }, task);
-    console.log("Hello Newman 6!");
     dbParams.client.close();
     res.redirect('/');
-  }
-
-  catch (err) {
+  } catch (err) {
     debug(err);
   }
 };

@@ -49,6 +49,9 @@
                         <%}%>
                         <% selectData[parseInt(fbk.rating)+1].selected=""; %>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/fbk/edit/<%=fbk._id%>"> <i class="fas fa-pencil-square-o"></i></a>
+                    </li>
                     <% if (loggedInEmail == fbk.fbkor.email) { %>
                         <li class="nav-item">
                             <a class="nav-link" href="/task/delete/<%=fbk._id%>"> <i class="fas fa-trash-alt"></i></a>
