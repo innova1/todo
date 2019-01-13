@@ -127,10 +127,25 @@ exports.getAvgInScore = async function(email) {
             { 
                 $match: { 'fbkee.email': email }
             },
+            {
+                $addFields: { outRating: { $toInt: "$rating"} }
+            },
             {    $group: { 
                     _id: { month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
-                    count: { $sum: 1 }
+                    sumInRating: { $sum: '$outRating' },
+                    countInForDay: { $sum: 1 }
                 } 
+            },
+            {
+                $group: {
+                    _id: null,
+                    sumAllInRating: { $sum: '$sumInRating' },
+                    avgInPerDay: { $avg: '$countInForDay' },
+                    totalInFbks: { $sum: '$countInForDay' }
+                }
+            },
+            {
+                $project: { _id: false, score: { $multiply: [ { $divide: [ '$sumAllInRating', '$totalInFbks' ] }, '$avgInPerDay' ] } }
             }
         ] );
         
@@ -139,40 +154,43 @@ exports.getAvgInScore = async function(email) {
         });
         
         let fbkOutAgg = await dbParams.collection.aggregate( [
-                { 
-                    $match: { 'fbkor.email': email }
-                },
-                {
-                    $addFields: { intRating: { $toInt: "$rating"} }
-                },
-                {    $group: { 
-                        _id: { month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
-                        sumRating: { $sum: '$intRating' },
-                        countForDay: { $sum: 1 }
-                    } 
-                },
-                {
-                    $group: {
-                        _id: null,
-                        sumAllRating: { $sum: '$sumRating' },
-                        avgPerDay: { $avg: '$countForDay' },
-                        totalFbks: { $sum: '$countForDay' }
-                    }
-                },
-                {
-                    $project: { _id: false, score: { $multiply: [ { $divide: [ '$sumAllRating', '$totalFbks' ] }, '$avgPerDay' ] } }
+            { 
+                $match: { 'fbkor.email': email }
+            },
+            {
+                $addFields: { inRating: { $toInt: "$rating"} }
+            },
+            {    $group: { 
+                    _id: { month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
+                    sumOutRating: { $sum: '$inRating' },
+                    countOutForDay: { $sum: 1 }
+                } 
+            },
+            {
+                $group: {
+                    _id: null,
+                    sumAllOutRating: { $sum: '$sumOutRating' },
+                    avgOutPerDay: { $avg: '$countOutForDay' },
+                    totalOutFbks: { $sum: '$countOutForDay' }
                 }
-            ] );
+            },
+            {
+                $project: { _id: false, score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay' ] } }
+            }
+        ] );
         
         let aggOutArr = await fbkOutAgg.toArray();
-        debug("fbk out1: " + JSON.stringify(aggOutArr));
+        debug("fbk out: " + JSON.stringify(aggOutArr));
         
+        let aggInArr = await fbkInAgg.toArray();
+        debug("fbk In: " + JSON.stringify(aggInArr));
         
+        /*
         aggOutArr.forEach( (doc) => {
             score = doc.score;
             debug("fbk out2: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
         });
-        
+        */
                 
         /*
         debug("tf: " + tf + ", oc: " + oc);
