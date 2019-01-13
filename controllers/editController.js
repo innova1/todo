@@ -38,7 +38,7 @@ exports.fixDate = async (req, res) => {
         await dbParams.collection.findOneAndUpdate({ _id: new ObjectId(id) }, 
         {
             $set: {
-                createDate: new Date(fbk.dueDate);
+                createDate: new Date(fbk.dueDate)
             }
         });
         dbParams.client.close();
