@@ -1,13 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
     <a class="navbar-brand" href="/">The Gift of Feedback</a>
-    <!--div  margin: 5px; padding: 5px;">
-    <%if (typeof inCount === 'undefined' ) {%>
-        ""
-    <%} else {%>
-        Rec'd: <%=inCount%><br/>Given: <%=outCount%><br/>Score: <%=score%>
-    <%}%>
-    </div-->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -25,5 +18,10 @@
         </ul>
     </div>
 </nav>
-<div style="color: #AAAAAA; font-family: 'courier new'; font-weight: bold; font-size: 14px;"> |Rec'd:<%=inCount%>|Given:<%=outCount%>|Score:<%=score%>|Bal:<%=balance%>|</div>
+<%if (typeof inCount === 'undefined' ) {%>
+        ""
+    <%} else {%>
+        <div style="color: #AAAAAA; font-family: 'courier new'; font-weight: bold; font-size: 14px;"> |Rec'd:<%=inCount%>|Given:<%=outCount%>|Score:<%=score%>|Bal:<%=balance%>|</div>
+    <%}%>
+
     
