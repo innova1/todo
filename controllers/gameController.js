@@ -121,6 +121,7 @@ exports.getAvgInScore = async function(email) {
     debug("in getAvgInScore--email:" + email);
     var oc = 0;
     var tf = 0;
+    var sr = 0;
     try {
         const dbParams = await util.setupDB();
         //first try getting output values for myIn and myOut
