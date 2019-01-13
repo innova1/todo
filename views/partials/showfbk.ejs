@@ -44,10 +44,12 @@
                                     <option value="<%if (j != 0) {%><%=j-1%><%}%>" <%=selectData[j].selected%> ><%=selectData[j].value%></option>
                                 <%}%>
                             </select>
-                        <%} else {%>
-                            <%=selectData[parseInt(fbk.rating)+1].value%>
-                        <%}%>
-                        <% selectData[parseInt(fbk.rating)+1].selected=""; %>
+                        <%} else {
+                            if ( fbk.rating !== null && data !== '' ) {%>
+                                <%=selectData[parseInt(fbk.rating)+1].value%>
+                                <% selectData[parseInt(fbk.rating)+1].selected="";
+                            }
+                        }%>
                     </li>
                     <!--li class="nav-item">
                         <a class="nav-link" href="/fbk/edit/<%=fbk._id%>"> <i class="fas fa-pencil-square-o"></i></a>

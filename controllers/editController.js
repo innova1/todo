@@ -33,7 +33,7 @@ exports.fixDate = async (req, res) => {
     try {
         const { id } = req.params;
         const fbk = req.body;
-        fbk.createdDate = new Date(fbk.dueDate);
+        fbk.createDate = new Date(fbk.dueDate);
         const dbParams = await util.setupDB();
         await dbParams.collection.findOneAndUpdate({ _id: new ObjectId(id) }, 
         {
