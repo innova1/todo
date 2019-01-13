@@ -158,7 +158,8 @@ exports.getAvgInScore = async function(email) {
                     _id: null,
                     sumAllRating: { $sum: '$sumRating' },
                     avgPerDay: { $avg: '$countForDay' },
-                    totalDays: { $max: '$countForDay' }
+                    totalDays: { $max: '$countForDay' },
+                    totalFbks: { $sum: '$countForDay' }
                 }
             }
         ] );
