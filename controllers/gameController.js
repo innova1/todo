@@ -152,15 +152,27 @@ exports.getAvgInScore = async function(email) {
                     sumRating: { $sum: '$intRating' },
                     count: { $sum: 1 }
                 } 
+            },
+            {
+                $group: {
+                    _id: null,
+                    sumAllRating: { $sum: '$sumRating' },
+                    avgPerDay: { $avg: count },
+                    totalDays: { $max: count }
+                }
             }
         ] );
         
+        /*
         aggOut.forEach( (doc) => {
             oc += 1;
             tf += doc.count;
             sr += doc.sumRating;
             debug("fbk out: " + JSON.stringify(doc) + ", outCount: " + oc + ", totalFbk: " + tf );
         });
+        */
+        
+        debug("json string of aggOut:" + JSON.stringify(aggOut));
         
         debug("tf: " + tf + ", oc: " + oc);
         var avgFDout = tf/oc;
