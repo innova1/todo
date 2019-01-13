@@ -152,9 +152,10 @@ exports.getAvgInScore = async function(email) {
         aggOut.forEach( (doc) => {
             oc += 1;
             tf += doc.count;
+            sr += doc.sumRating;
             debug("fbk out: " + JSON.stringify(doc) + ", outCount: " + oc + ", totalFbk: " + tf );
         });
-        debug("avg fbk/day:" + (tf/oc) + ", avg rating: " + (sumRating/oc));
+        debug("avg fbk/day:" + (tf/oc) + ", avg rating: " + (sr/tf));
     } catch(err) {
         debug(err);
     }
