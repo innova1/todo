@@ -126,13 +126,8 @@ exports.getAvgInScore = async function(email) {
             { 
                 $match: { 'fbkee.email': email }
             },
-            {   $addFields: {
-                    intRating: { $toInt: "$rating"}
-                }
-            },
             {    $group: { 
                     _id: { month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
-                    avgRating: { $avg: "$intRating" },
                     count: { $sum: 1 }
                 } 
             }
@@ -146,13 +141,13 @@ exports.getAvgInScore = async function(email) {
                 $match: { 'fbkor.email': email }
             },
             {    $group: { 
-                    _id: '$fbkor.email',
+                    _id: { month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
                     count: { $sum: 1 }
                 } 
             }
         ] );
         aggOut.forEach( (doc) => {
-            debug("object: " + JSON.stringify(doc) );
+            debug("fbk out object: " + JSON.stringify(doc) );
         });
     } catch(err) {
         debug(err);
