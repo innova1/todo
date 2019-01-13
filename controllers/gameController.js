@@ -181,7 +181,7 @@ exports.getAvgScores = async function(email) {
         let aggInArr = await fbkInAgg.toArray();
         debug("fbk In: " + JSON.stringify(aggInArr[0]));
         
-        //return { inArray: aggInArr, outArra}
+        return { inScore: aggInArr[0], outScore: aggOutArr[0] };
         
         /*
         aggOutArr.forEach( (doc) => {
