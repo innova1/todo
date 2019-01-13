@@ -143,9 +143,12 @@ exports.getAvgInScore = async function(email) {
             { 
                 $match: { 'fbkor.email': email }
             },
+            {
+                $addFields: { intRating: { $toInt: "$rating"} }
+            },
             {    $group: { 
                     _id: { month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
-                    sumRating: { $sum: '$rating' },
+                    sumRating: { $sum: '$intRating' },
                     count: { $sum: 1 }
                 } 
             }
