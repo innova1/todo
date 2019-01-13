@@ -138,7 +138,7 @@ exports.getAvgInScore = async function(email) {
             debug("fbk in object: " + JSON.stringify(doc) );
         });
         
-        function getFbkOutAgg() { 
+        async function getFbkOutAgg() { 
             
             let fbkOutAgg = await dbParams.collection.aggregate( [
                 { 
