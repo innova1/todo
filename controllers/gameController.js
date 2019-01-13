@@ -150,15 +150,15 @@ exports.getAvgInScore = async function(email) {
             {    $group: { 
                     _id: { month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
                     sumRating: { $sum: '$intRating' },
-                    count: { $sum: 1 }
+                    countForDay: { $sum: 1 }
                 } 
             },
             {
                 $group: {
                     _id: null,
                     sumAllRating: { $sum: '$sumRating' },
-                    avgPerDay: { $avg: count },
-                    totalDays: { $max: count }
+                    avgPerDay: { $avg: '$countForDay' },
+                    totalDays: { $max: '$countForDay' }
                 }
             }
         ] );
