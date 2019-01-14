@@ -263,7 +263,7 @@ exports.getScoreboard = async function() {
         let c = 0;
         allUserFbksOutAgg.forEach( (doc) => {
             score = doc.score;
-            debug(c++ + "scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
+            debug(++c + " :scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
         });
         
     } catch(err) {
