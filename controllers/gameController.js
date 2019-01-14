@@ -251,10 +251,14 @@ exports.getScoreboard = async function() {
                     avgOutPerDay: { $avg: '$countOutForDay' },
                     totalOutFbks: { $sum: '$countOutForDay' }
                 }
-            },
-            {
-                $group: { _id: { fbkor: { email: "$email" } }, score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay' ] } }
             }
+            /*,
+            {
+                $group: {
+                    _id: { fbkor: { email: "$email" } }, 
+                    score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay' ] } 
+                }
+            }*/
         ] );
         
 /*
