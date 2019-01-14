@@ -237,7 +237,7 @@ exports.getScoreboard = async function() {
         const earliestDate = await dbParams.collection.find().sort({createDate: 1}).limit(1);
         
         const oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-        const firstDate = new await Date(earliestDate);
+        const firstDate = await new Date(earliestDate);
         const secondDate = new Date();
         const diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
         
