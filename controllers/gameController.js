@@ -260,7 +260,7 @@ exports.getScoreboard = async function() {
             }
             ,
             {
-                $group: {
+                $project: {
                     _id: { fbkoremail: "$fbkoremail2" },
                     fbkoremail3: { $first: "$fbkoremail2" },
                     sumAllOutRating: { $sum: '$sumOutRating' },
