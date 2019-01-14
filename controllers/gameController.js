@@ -234,14 +234,14 @@ exports.getScoreboard = async function() {
     try {
         const dbParams = await util.setupDB();
         
-        const earliestDate = await dbParams.collection.find().sort({createDate: 1}).limit(1);
-        let c = 0;
-       earliestDate.forEach( (doc) => {
+        const earliestDate = await dbParams.collection.find().sort({createDate: 1}).limit(1).toArray();
+        /*let c = 0;
+        earliestDate.forEach( (doc) => {
             debug(++c + " dates: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
-        });
+        });*/
         
         const oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-        const firstDate = await new Date(earliestDate.createDate);
+        const firstDate = await new Date(earliestDate[0].createDate);
         const secondDate = new Date();
         const diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
         
@@ -291,7 +291,7 @@ exports.getScoreboard = async function() {
         c = 0;
         allUserFbksOutAgg.forEach( (doc) => {
             score = doc.score;
-            debug(++c + " :scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
+            debug(++c + "-scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
         });
         
     } catch(err) {
