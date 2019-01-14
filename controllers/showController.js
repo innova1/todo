@@ -56,7 +56,7 @@ exports.showMyFbks = async function (req, res) {
     const outCount = counts.outCount;
     const selectData = getSelectTagText();
     
-    debug("query with email: " + email + ", username: " + username);
+    debug("query with email: " + email + ", username: " + username + ", isNoRating: " + isNoRating);
     const dbParams = await util.setupDB();
     const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ dueDate: -1 }).toArray();
     const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ dueDate: -1 }).toArray();
