@@ -248,6 +248,7 @@ exports.getScoreboard = async function() {
             {
                 $group: {
                     _id: { fbkoremail: "$fbkoremail2" },
+                    fbkoremail3: { $first: "$fbkoremail2" },
                     sumAllOutRating: { $sum: '$sumOutRating' },
                     avgOutPerDay: { $avg: '$countOutForDay' },
                     totalOutFbks: { $sum: '$countOutForDay' }
@@ -256,7 +257,7 @@ exports.getScoreboard = async function() {
             ,
             {
                 $project: {
-                    _id: { fbkoremail: "$fbkoremail" }, 
+                    _id: { fbkoremail4: "$fbkoremail3" }, 
                     score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay' ] } 
                 }
             }
