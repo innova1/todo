@@ -273,13 +273,13 @@ exports.getScoreboard = async function() {
                     totalOutFbks: { $sum: '$countOutForDay' }
                 }
             }
-            /*,
+            ,
             {
                 $project: {
                     _id: { fbkoremail: "$fbkoremail3" }, 
                     score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay' ] } 
                 }
-            }*/
+            }
         ] );
         
 /*
