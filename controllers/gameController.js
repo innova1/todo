@@ -240,6 +240,7 @@ exports.getScoreboard = async function() {
             },
             {   $group: { 
                     _id: {  fbkoremail: "$fbkoremail" , month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
+                    fbkoremail2: "$fbkoremail",
                     sumOutRating: { $sum: '$intRating' },
                     countOutForDay: { $sum: 1 }
                 } 
