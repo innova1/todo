@@ -256,9 +256,16 @@ exports.getScoreboard = async function(email) {
                 $project: { _id: false, score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay' ] } }
             }
         ] );
-
+/*
         let allUserFbksOutAggArr = await allUserFbksOutAgg.toArray();
         debug("fbk out: " + allUserFbksOutAggArr[0].score);
+*/
+        
+        allUserFbksOutAgg.forEach( (doc) => {
+            score = doc.score;
+            debug("scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
+        });
+        
     } catch(err) {
         debug(err);
     }
