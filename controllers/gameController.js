@@ -239,14 +239,14 @@ exports.getScoreboard = async function(email) {
                 $addFields: { intRating: { $toInt: "$rating"} }
             },
             {   $group: { 
-                    _id: { fbkor: { email: email }, month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
+                    _id: { fbkor: { email: "$email" }, month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
                     sumOutRating: { $sum: '$intRating' },
                     countOutForDay: { $sum: 1 }
                 } 
             },
             {
                 $group: {
-                    _id: { fbkor: { email: email } },
+                    _id: { fbkor: { email: "$email" } },
                     sumAllOutRating: { $sum: '$sumOutRating' },
                     avgOutPerDay: { $avg: '$countOutForDay' },
                     totalOutFbks: { $sum: '$countOutForDay' }
