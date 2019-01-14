@@ -228,8 +228,8 @@ exports.isNoRating = async function(email) {
 }
 };
 
-exports.getScoreboard = async function(email) {
-    debug("in getScoreboard w/email:" + email);
+exports.getScoreboard = async function() {
+    debug("in getScoreboard");
     let score = 0;
     try {
         const dbParams = await util.setupDB();
