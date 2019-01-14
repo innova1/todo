@@ -253,7 +253,7 @@ exports.getScoreboard = async function(email) {
                 }
             },
             {
-                $project: { _id: false, score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay' ] } }
+                $project: { _id: { fbkor: { email: email } }, score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay' ] } }
             }
         ] );
 /*
