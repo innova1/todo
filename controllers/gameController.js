@@ -245,11 +245,11 @@ exports.getScoreboard = async function() {
         const secondDate = new Date();
         const diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
         
-        debug("firstDate: " + firstDate.getTime() + ", secondDate: " + secondDate.getTime() + ", diffDays: " + diffDays);
+        //debug("firstDate: " + firstDate.getTime() + ", secondDate: " + secondDate.getTime() + ", diffDays: " + diffDays);
         
         const allUserFbksOutAgg = await dbParams.collection.aggregate( [
             {
-                $addFields: { intRating: { $toInt: "$rating"}, fbkoremail: "$fbkor.email" }
+                $addFields: { intRating: { $toInt: "$rating"}, fbkoremail: "$fbkor.email", numDays: diffDays }
             },
             {   $group: { 
                     _id: {  fbkoremail: "$fbkoremail" , month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
