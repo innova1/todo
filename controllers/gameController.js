@@ -249,12 +249,11 @@ exports.getScoreboard = async function() {
         
         const allUserFbksOutAgg = await dbParams.collection.aggregate( [
             {
-                $addFields: { intRating: { $toInt: "$rating"}, fbkoremail: "$fbkor.email", numDays: diffDays }
-            }/*,
+                $addFields: { intRating: { $toInt: "$rating"}, fbkoremail: "$fbkor.email" }
+            },
             {   $group: { 
                     _id: {  fbkoremail: "$fbkoremail" , month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
                     fbkoremail2: { $first: "$fbkoremail" },
-                    numdays: { $first: "$numdays" },
                     sumOutRating: { $sum: '$intRating' },
                     countOutForDay: { $sum: 1 }
                 } 
@@ -265,11 +264,11 @@ exports.getScoreboard = async function() {
                     _id: { fbkoremail: "$fbkoremail2" },
                     fbkoremail3: { $first: "$fbkoremail2" },
                     sumAllOutRating: { $sum: '$sumOutRating' },
-                    avgOutPerDay: { $avg: '$countOutForDay' },
+                    avgOutPerDay: { $divide: [ '$countOutForDay', diffDays ] },
                     totalOutFbks: { $sum: '$countOutForDay' }
                 }
             }
-            ,
+            /*,
             {
                 $project: {
                     _id: { fbkoremail: "$fbkoremail3" }, 
