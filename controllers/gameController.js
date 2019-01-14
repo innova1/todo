@@ -235,8 +235,10 @@ exports.getScoreboard = async function() {
         const dbParams = await util.setupDB();
         
         const earliestDate = await dbParams.collection.find().sort({createDate: 1}).limit(1);
-        
-        debug("earliest date: " + earliestDate.createDate);
+        let c = 0;
+       earliestDate.forEach( (doc) => {
+            debug(++c + " dates: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
+        });
         
         const oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
         const firstDate = await new Date(earliestDate.createDate);
@@ -286,7 +288,7 @@ exports.getScoreboard = async function() {
         let allUserFbksOutAggArr = await allUserFbksOutAgg.toArray();
         debug("fbk out: " + allUserFbksOutAggArr[0].score);
 */
-        let c = 0;
+        c = 0;
         allUserFbksOutAgg.forEach( (doc) => {
             score = doc.score;
             debug(++c + " :scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
