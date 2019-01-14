@@ -51,7 +51,7 @@ exports.showMyFbks = async function (req, res) {
     const balance = await gameCalc.getBalance(email);
     const avgScores = await gameCalc.getAvgScores(email);
     const isNoRating = await gameCalc.isNoRating(email);
-    const scoreboard = await gameCalc.getScoreboard(email);
+    const scoreboard = await gameCalc.getScoreboard();
     //debug("avgInScore: " + avgInScore.length + ", " + JSON.stringify(avgInScore));
     const inCount = counts.inCount;
     const outCount = counts.outCount;
