@@ -234,7 +234,7 @@ exports.getScoreboard = async function() {
     try {
         const dbParams = await util.setupDB();
         
-        counst earliestDate = await dbParams.collection.find().sort({createDate: 1}).limit(1);
+        const earliestDate = await dbParams.collection.find().sort({createDate: 1}).limit(1);
         
         const oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
         const firstDate = new await Date(earliestDate);
