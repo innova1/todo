@@ -227,3 +227,39 @@ exports.isNoRating = async function(email) {
      debug(err);
 }
 };
+
+exports.getScoreboard = async function(email) {
+    debug("in getScoreboard w/email:" + email);
+    let score = 0;
+    try {
+        const dbParams = await util.setupDB();
+        
+        const allUserFbksOutAgg = await dbParams.collection.aggregate( [
+            {
+                $addFields: { intRating: { $toInt: "$rating"} }
+            },
+            {   $group: { 
+                    _id: { 'fbkor.email': email, month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
+                    sumOutRating: { $sum: '$intRating' },
+                    countOutForDay: { $sum: 1 }
+                } 
+            },
+            {
+                $group: {
+                    _id: { 'fbkor.email': email },
+                    sumAllOutRating: { $sum: '$sumOutRating' },
+                    avgOutPerDay: { $avg: '$countOutForDay' },
+                    totalOutFbks: { $sum: '$countOutForDay' }
+                }
+            },
+            {
+                $project: { _id: false, score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay' ] } }
+            }
+        ] );
+
+        let allUserFbksOutAggArr = await allUserFbksOutAgg.toArray();
+        debug("fbk out: " + allUserFbksOutAggArr[0].score);
+    } catch(err) {
+        debug(err);
+    }
+};
