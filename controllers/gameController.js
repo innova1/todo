@@ -236,10 +236,10 @@ exports.getScoreboard = async function() {
         
         const allUserFbksOutAgg = await dbParams.collection.aggregate( [
             {
-                $addFields: { intRating: { $toInt: "$rating"} }
+                $addFields: { intRating: { $toInt: "$rating"}, fbkoremail: "$fbkor.email" }
             },
             {   $group: { 
-                    _id: { fbkor: { email: "$email" }, month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
+                    _id: { fbkoremail: "$fbkoremail" }, month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
                     sumOutRating: { $sum: '$intRating' },
                     countOutForDay: { $sum: 1 }
                 } 
