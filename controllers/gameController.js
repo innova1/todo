@@ -245,7 +245,7 @@ exports.getScoreboard = async function() {
         const secondDate = new Date();
         const diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
         
-        debug("firstDate: " + firstDate.getDate().toString() + ", secondDate: " + secondDate.getDate().toString() + ", diffDays: " + diffDays);
+        debug("firstDate: " + firstDate.getTime() + ", secondDate: " + secondDate.getTime() + ", diffDays: " + diffDays);
         
         const allUserFbksOutAgg = await dbParams.collection.aggregate( [
             {
