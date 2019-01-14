@@ -260,10 +260,10 @@ exports.getScoreboard = async function() {
         let allUserFbksOutAggArr = await allUserFbksOutAgg.toArray();
         debug("fbk out: " + allUserFbksOutAggArr[0].score);
 */
-        
+        let c = 0;
         allUserFbksOutAgg.forEach( (doc) => {
             score = doc.score;
-            debug("scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
+            debug(c++ + "scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
         });
         
     } catch(err) {
