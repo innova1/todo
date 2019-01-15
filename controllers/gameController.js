@@ -285,6 +285,9 @@ exports.getScoreboard = async function() {
         //debug("firstDate: " + firstDate.getTime() + ", secondDate: " + secondDate.getTime() + ", diffDays: " + diffDays);
         
         const allUserFbksOutAgg = await dbParams.collection.aggregate( [
+            { 
+                $match: { 'rating': { $ne: '-1' } }
+            },
             {
                 $addFields: { outRating: { $toInt: "$rating"}, fbkoremail: "$fbkor.email" }
             },
