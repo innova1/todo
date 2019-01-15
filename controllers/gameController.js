@@ -31,14 +31,14 @@ exports.getScore = async function(email) {
     try {
         var totalRating = 0;
         function totalRatingf(rec, index) {
-            if( rec.rating !== null && rec.rating !== '' ) {
+            if( rec.rating !== null && rec.rating !== '' && rec.rating !== '-1' ) {
                 totalRating = totalRating + parseInt(rec.rating); //outArray[index].rating;
                 //debug("fn--index: " + index + ", rating:" + rec.rating + ", totalRating:" + totalRating );
             }
         }
         const dbParams = await util.setupDB();
         //sum of count of fbk out plus sum of ratings for fbk out
-        const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ dueDate: -1 }).toArray();
+        const myFbksOut = await dbParams.collection.find( { "fbkor.email": email, "rating": { $ne: '-1' } } ).sort({ dueDate: -1 }).toArray();
         //count fbk out
         outCount = myFbksOut.length;
         //sum of ratings of fbk out
@@ -80,7 +80,7 @@ exports.setRating = async (req, res) => {
 exports.getBalance = async function(email) {
     var totalRating = 0;
     function totalRatingf(rec, index) {
-        if ( rec.rating !== null && rec.rating !== '' ) {
+        if ( rec.rating !== null && rec.rating !== '' && rec.rating !== '-1' ) {
             totalRating = totalRating + parseInt(rec.rating); //outArray[index].rating;
             //debug("fn--index: " + index + ", rating:" + rec.rating + ", totalRating:" + totalRating );
         }
@@ -181,14 +181,14 @@ exports.getAvgScores = async function(email) {
             },
             {
                 $addFields: { outRating: { $toInt: "$rating"}, fbkoremail: "$fbkor.email" }
-            }/*,
+            },
             {    $group: { 
                     _id: { month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
                     fbkoremail: { $first: "$fbkoremail" },
                     sumOutRating: { $sum: '$outRating' },
                     countOutForDay: { $sum: 1 }
                 } 
-            },
+            }/*,
             {
                 $addFields: {   
                     avgOutPerDay: { $divide: [ '$countOutForDay', diffDays ] },
