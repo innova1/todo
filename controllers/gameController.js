@@ -138,6 +138,8 @@ exports.getAvgScores = async function(email) {
         const secondDate = new Date();
         const diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
         
+        debug("in getavg scores--diffDays: " + diffDays);
+        
         const fbkInAgg = await dbParams.collection.aggregate( [
             { 
                 $match: { 'fbkee.email': email, 'rating': { $ne: '' } }
