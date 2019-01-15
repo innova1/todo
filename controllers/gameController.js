@@ -201,14 +201,14 @@ exports.getAvgScores = async function(email) {
                     avgOutPerDay: { $avg: '$countOutForDay' },
                     totalOutFbks: { $sum: '$countOutForDay' }
                 }
-            }/*,
+            },
             {
                 $project: {
                     //_id: { fbkoremail: "$fbkoremail" }, 
                     _id: false,
                     score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay', 100 ] } 
                 }
-            }*/
+            }
         ] ); 
         
         let aggInArr = await fbkInAgg.toArray();
