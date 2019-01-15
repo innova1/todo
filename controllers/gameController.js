@@ -142,7 +142,7 @@ exports.getAvgScores = async function(email) {
         
         const fbkInAgg = await dbParams.collection.aggregate( [
             { 
-                $match: { 'fbkee.email': email, 'rating': { $ne: '' } }
+                $match: { 'fbkee.email': email, 'rating': { $ne: '-1' } }
             },
             {
                 $addFields: { inRating: { $toInt: "$rating"}, fbkeemail: "$fbkee.email" }
@@ -177,7 +177,7 @@ exports.getAvgScores = async function(email) {
         
         const fbkOutAgg = await dbParams.collection.aggregate( [
             { 
-                $match: { 'fbkor.email': email, 'rating': { $ne: '' } }
+                $match: { 'fbkor.email': email, 'rating': { $ne: '-1' } }
             },
             {
                 $addFields: { outRating: { $toInt: "$rating"}, fbkoremail: "$fbkor.email" }
