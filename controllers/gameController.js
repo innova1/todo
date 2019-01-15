@@ -208,13 +208,18 @@ exports.getAvgScores = async function(email) {
                     score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay', 100 ] } 
                 }
             }
-        ] );
+        ] ); 
         
         let aggInArr = await fbkInAgg.toArray();
         debug("fbk In: " + aggInArr[0].score); //JSON.stringify(aggInArr[0]));
         
         let aggOutArr = await fbkOutAgg.toArray();
         debug("fbk out: " + aggOutArr[0].score); //JSON.stringify(aggOutArr[0]));
+                
+        aggOutArr.forEach( (doc) => {
+            score = doc.score;
+            debug("fbk out2: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
+        });
         
         return { inScore: aggInArr[0].score.toFixed(2), outScore: aggOutArr[0].score.toFixed(2) };
         
