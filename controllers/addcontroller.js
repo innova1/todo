@@ -110,7 +110,7 @@ exports.addUser = async (req, res) => {
         //add salt and hash password
         salt = grindSalt();
         tempUser.salt = salt;
-        tempUser.createdDate = new Date('2018-10-10');
+        tempUser.createDate = new Date();
         hashed = hash(password, salt);
         debug("took " + password + " and hashed to " + hashed);
         tempUser.password = hashed;
