@@ -156,9 +156,9 @@ exports.savePassword = async (req, res) => {
         await dbParams.collection.findOneAndUpdate({ _id: new ObjectId(id) }, 
         {
             $set: {
-                { modDate: new Date() },
-                { password: tempUser.password },
-                { shortname: tempUser.shortname }
+                { "modDate:: new Date() },
+                { "password": tempUser.password },
+                { "shortname": tempUser.shortname }
             }
         });
         dbParams.client.close();
