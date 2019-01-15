@@ -206,6 +206,9 @@ exports.getAvgScores = async function(email) {
                 $project: {
                     //_id: { fbkoremail: "$fbkoremail" }, 
                     _id: false,
+                    a: "$avgOutPerDay",
+                    s: "$sumAllOutRating",
+                    t: "$totalOutFbks",
                     score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay', 100 ] } 
                 }
             }
