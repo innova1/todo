@@ -317,9 +317,9 @@ exports.getScoreboard = async function() {
             {
                 $project: {
                     _id: { fbkoremail: "$fbkoremail" },
-                    avgOutPerDay: { $first: "$avgOutPerDay" },
-                    sumAllOutRating: { $sum: '$sumOutRating' },
-                    totalOutFbks: { $sum: '$countOutForDay' }, 
+                    a: "$avgOutPerDay",
+                    s: "$sumAllOutRating",
+                    t: "$totalOutFbks", 
                     score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay', 100 ] } 
                 }
             }
