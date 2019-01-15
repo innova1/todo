@@ -126,19 +126,36 @@ exports.getAvgScores = async function(email) {
     var score = 0;
     try {
         const dbParams = await util.setupDB();
-
+        
+        const earliestDate = await dbParams.collection.find().sort({createDate: 1}).limit(1).toArray();
+        /*let c = 0;
+        earliestDate.forEach( (doc) => {
+            debug(++c + " dates: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
+        });*/
+        
+        const oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+        const firstDate = await new Date(earliestDate[0].createDate);
+        const secondDate = new Date();
+        const diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+        
         const fbkInAgg = await dbParams.collection.aggregate( [
             { 
                 $match: { 'fbkee.email': email, 'rating': { $ne: '' } }
             },
             {
-                $addFields: { outRating: { $toInt: "$rating"} }
+                $addFields: { outRating: { $toInt: "$rating"}, fbkeemail: "$fbkee.email" }
             },
             {    $group: { 
                     _id: { month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
+                    fbkeemail: { $first: "$fbkeemail" },
                     sumInRating: { $sum: '$outRating' },
                     countInForDay: { $sum: 1 }
                 } 
+            },
+            {
+                $addFields: {   
+                    avgOutPerDay: { $divide: [ '$countOutForDay', diffDays ] },
+                }
             },
             {
                 $group: {
@@ -253,7 +270,7 @@ exports.getScoreboard = async function() {
             },
             {   $group: { 
                     _id: {  fbkoremail: "$fbkoremail" , month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
-                    fbkoremail2: { $first: "$fbkoremail" },
+                    fbkoremail: { $first: "$fbkoremail" },
                     sumOutRating: { $sum: '$intRating' },
                     countOutForDay: { $sum: 1 }
                 } 
@@ -267,7 +284,7 @@ exports.getScoreboard = async function() {
             {
                 $group: {
                     _id: { fbkoremail: "$fbkoremail2" },
-                    fbkoremail3: { $first: "$fbkoremail2" },
+                    fbkoremail: { $first: "$fbkoremail" },
                     avgOutPerDay: { $first: "$avgOutPerDay" },
                     sumAllOutRating: { $sum: '$sumOutRating' },
                     totalOutFbks: { $sum: '$countOutForDay' }
@@ -276,7 +293,7 @@ exports.getScoreboard = async function() {
             ,
             {
                 $project: {
-                    _id: { fbkoremail: "$fbkoremail3" }, 
+                    _id: { fbkoremail: "$fbkoremail" }, 
                     score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay', 100 ] } 
                 }
             }
