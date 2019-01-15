@@ -155,16 +155,16 @@ exports.getAvgScores = async function(email) {
                 } 
             },
             {
-                $addFields: {   
-                    avgInPerDay: { $divide: [ '$countInForDay', diffDays ] },
-                }
-            },
-            {
                 $group: {
                     _id: null,
                     avgInPerDay: { $first: '$avgInPerDay' },
                     sumAllInRating: { $sum: '$sumInRating' },
                     totalInFbks: { $sum: '$countInForDay' }
+                }
+            },
+            {
+                $addFields: {   
+                    avgInPerDay: { $divide: [ '$totalInFbks', diffDays ] },
                 }
             },
             {
