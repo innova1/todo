@@ -299,17 +299,16 @@ exports.getScoreboard = async function() {
                 } 
             },
             {
-                $addFields: {  
-                    avgOutPerDay: { $divide: [ '$countOutForDay', diffDays ] },
-                }
-            },
-            {
                 $group: {
                     _id: { fbkoremail: "$fbkoremail" },
                     fbkoremail: { $first: "$fbkoremail" },
-                    avgOutPerDay: { $first: "$avgOutPerDay" },
                     sumAllOutRating: { $sum: '$sumOutRating' },
                     totalOutFbks: { $sum: '$countOutForDay' }
+                }
+            },
+            {
+                $addFields: {  
+                    avgOutPerDay: { $divide: [ '$totalOutFbks', diffDays ] },
                 }
             },
             {
