@@ -26,7 +26,7 @@ function getSelectTagText() {
 exports.showFbks = async function (req, res) {
   try {
     const dbParams = await util.setupDB();
-    const fbks = await dbParams.collection.find({}).sort({ dueDate: -1 }).toArray();
+    const fbks = await dbParams.collection.find({}).sort({ createDate: -1 }).toArray();
     const hostname = os.hostname();
     res.render('showFbks', { fbks, title: 'Feedback List', hostname });
     dbParams.client.close();
@@ -59,8 +59,8 @@ exports.showMyFbks = async function (req, res) {
     
     debug("query with email: " + email + ", username: " + username + ", isNoRating: " + isNoRating);
     const dbParams = await util.setupDB();
-    const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ dueDate: -1 }).toArray();
-    const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ dueDate: -1 }).toArray();
+    const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ createDate: -1 }).toArray();
+    const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ createDate: -1 }).toArray();
     const hostname = os.hostname();
       
     logger.info("viewing feedback: " + email );

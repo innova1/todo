@@ -38,7 +38,7 @@ exports.getScore = async function(email) {
         }
         const dbParams = await util.setupDB();
         //sum of count of fbk out plus sum of ratings for fbk out
-        const myFbksOut = await dbParams.collection.find( { "fbkor.email": email, "rating": { $ne: '-1' } } ).sort({ dueDate: -1 }).toArray();
+        const myFbksOut = await dbParams.collection.find( { "fbkor.email": email, "rating": { $ne: '-1' } } ).sort({ createDate: -1 }).toArray();
         //count fbk out
         outCount = myFbksOut.length;
         //sum of ratings of fbk out
@@ -91,14 +91,14 @@ exports.getBalance = async function(email) {
     try {
         const dbParams = await util.setupDB();
         //get total rating given (add up all ratings on feedback with email = fbkor)
-        const myFbksOut = await dbParams.collection.find( { "fbkor.email": email, "rating": { $ne: '-1'} } ).sort({ dueDate: -1 }).toArray();
+        const myFbksOut = await dbParams.collection.find( { "fbkor.email": email, "rating": { $ne: '-1'} } ).sort({ createDate: -1 }).toArray();
         totalRating = 0;
         myFbksOut.forEach(totalRatingf);
         debug("after out rating sum, totalRating: " + totalRating);
         trg = totalRating;
 
         //get total rating received (add up all ratings on feedback with email = fbkee)
-        const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ dueDate: -1 }).toArray();
+        const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ createDate: -1 }).toArray();
         totalRating = 0;
         myFbksIn.forEach(totalRatingf);
         debug("after In rating sum, totalRating: " + totalRating);
