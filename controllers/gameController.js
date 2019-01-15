@@ -188,7 +188,7 @@ exports.getAvgScores = async function(email) {
                     sumOutRating: { $sum: '$outRating' },
                     countOutForDay: { $sum: 1 }
                 } 
-            },
+            }/*,
             {
                 $addFields: {   
                     avgOutPerDay: { $divide: [ '$countOutForDay', diffDays ] },
@@ -208,7 +208,7 @@ exports.getAvgScores = async function(email) {
                     _id: false,
                     score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay', 100 ] } 
                 }
-            }
+            }*/
         ] ); 
         
         let aggInArr = await fbkInAgg.toArray();
