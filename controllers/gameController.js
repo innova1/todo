@@ -166,7 +166,10 @@ exports.getAvgScores = async function(email) {
                 }
             },
             {
-                $project: { _id: false, score: { $multiply: [ { $divide: [ '$sumAllInRating', '$totalInFbks' ] }, '$avgInPerDay' ] } }
+                $project: {
+                    _id: { fbkeemail: "$fbkeemail" }, 
+                    score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay', 100 ] } 
+                }
             }
         ] );
         
