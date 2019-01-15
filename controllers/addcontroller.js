@@ -88,7 +88,8 @@ exports.saveTask = async (req, res) => {
 
 exports.addUserPage = async (req, res) => {
     try {
-        role = await getRole(req, res);
+        const type = "add";
+        const role = await getRole(req, res);
         debug("in addUser page, role is " + role);
         if(role=="admin") {
            res.render('addUser', { title: 'Adding a user' });
@@ -117,6 +118,48 @@ exports.addUser = async (req, res) => {
         const user = tempUser; //doing this because it seems these variables need to be const for some reason
         const dbParams = await util.setupUserDB();
         await dbParams.collection.insertOne(user);
+        dbParams.client.close();
+        res.redirect('/');
+    }
+
+    catch(err) {
+        debug(err);
+    }
+};
+
+exports.changePasswordPage = async (req, res) => {
+    try {
+        const un = req.cookies.username;
+        const shortname = un.split(",")[0]
+        const emailname = un.split(",")[1]
+        const type = "change";
+        res.render('changePassword', { title: 'Change password', type: type, shortname: shortname, emailname: emailname });
+    }
+    
+};
+
+exports.savePassword = async (req, res) => {
+        tempUser = req.body;
+        var password = tempUser.password;
+        //add salt and hash password
+        salt = grindSalt();
+        tempUser.salt = salt;
+        tempUser.createDate = new Date();
+        hashed = hash(password, salt);
+        debug("took " + password + " and hashed to " + hashed);
+        tempUser.password = hashed;
+    try {
+        const user = tempUser; 
+        const dbParams = await util.setupUserDB();
+        
+        await dbParams.collection.findOneAndUpdate({ _id: new ObjectId(id) }, 
+        {
+            $set: {
+                { modDate: new Date() },
+                { password: tempUser.password },
+                { shortname: tempUser.shortname }
+            }
+        });
         dbParams.client.close();
         res.redirect('/');
     }
