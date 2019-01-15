@@ -179,14 +179,14 @@ exports.getAvgScores = async function(email) {
             },
             {
                 $addFields: { outRating: { $toInt: "$rating"}, fbkoremail: "$fbkor.email" }
-            }/*,
+            },
             {    $group: { 
                     _id: { month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
                     fbkoremail: { $first: "$fbkoremail" },
                     sumOutRating: { $sum: '$outRating' },
                     countOutForDay: { $sum: 1 }
                 } 
-            },
+            }/*,
             {
                 $addFields: {   
                     avgOutPerDay: { $divide: [ '$countOutForDay', diffDays ] },
