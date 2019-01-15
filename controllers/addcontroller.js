@@ -134,8 +134,9 @@ exports.changePasswordPage = async (req, res) => {
         const emailname = un.split(",")[1]
         const type = "change";
         res.render('changePassword', { title: 'Change password', type: type, shortname: shortname, emailname: emailname });
+    } catch(err) {
+        debug(err);
     }
-    
 };
 
 exports.savePassword = async (req, res) => {
