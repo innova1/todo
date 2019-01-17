@@ -214,12 +214,12 @@ exports.getAvgScores = async function(email) {
         let aggInArr = await fbkInAgg.toArray();
         let aggOutArr = await fbkOutAgg.toArray();
         
-        if( ( typeof fbkInArr === 'undefined' || typeof fbkOutArr === 'undefined' ) && (email != 'tom.boulet@exxonmobil.com') ) {
-            if (typeof fbkInArr === 'undefined') {
-                debug("fbkInArr is undefined");
+        if( ( typeof aggInArr === 'undefined' || typeof fbkOutArr === 'undefined' ) && (email != 'tom.boulet@exxonmobil.com') ) {
+            if (typeof aggInArr === 'undefined') {
+                debug("aggInArr is undefined");
             };
-            if (typeof fbkOutArr === 'undefined' ) {
-                debug("fbkOutArr is undefined");
+            if (typeof aggOutArr === 'undefined' ) {
+                debug("aggOutArr is undefined");
             };
             if ( email != 'tom.boulet@exxonmobil.com') {
                 debug("not tom");
