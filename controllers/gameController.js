@@ -29,6 +29,7 @@ exports.getCounts = async function(email) {
 
 exports.getScore = async function(email) {
     try {
+        debug("in getScore with email: " + email);
         var totalRating = 0;
         function totalRatingf(rec, index) {
             if( rec.rating !== null && rec.rating !== '' && rec.rating !== '-1' ) {
@@ -214,7 +215,7 @@ exports.getAvgScores = async function(email) {
         let aggInArr = await fbkInAgg.toArray();
         let aggOutArr = await fbkOutAgg.toArray();
         
-        if ( ( typeof aggInArr === 'undefined' || typeof aggOutArr === 'undefined' ) ) { //&& (email != 'tom.boulet@exxonmobil.com') ) {
+        if ( ( typeof aggInArr === 'undefined' || typeof aggOutArr === 'undefined' ) || (email != 'tom.boulet@exxonmobil.com') ) {
             if (typeof aggInArr === 'undefined') {
                 debug("aggInArr is undefined");
             };
