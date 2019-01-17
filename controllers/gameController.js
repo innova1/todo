@@ -212,7 +212,11 @@ exports.getAvgScores = async function(email) {
         ] ); 
         
         let aggInArr = await fbkInAgg.toArray();
-        debug("fbk In: " + aggInArr[0].score); //JSON.stringify(aggInArr[0]));
+        if(type fbkInArr === undefined ) {
+            debug("fbkInArr is undefined");
+        } else {
+            debug("fbk In: " + aggInArr[0].score); //JSON.stringify(aggInArr[0]));
+        }
         
         let aggOutArr = await fbkOutAgg.toArray();
         debug("fbk out: " + aggOutArr[0].score); //JSON.stringify(aggOutArr[0]));
