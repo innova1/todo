@@ -217,7 +217,7 @@ exports.getAvgScores = async function(email) {
         if( (typeof fbkInArr === 'undefined' || typeof fbkOutArr === 'undefined') || (email != 'tom.boulet@exxonmobil.com') ) {
             if (typeof fbkInArr === 'undefined') {
                 debug("fbkInArr is undefined");
-            } else if (typoeof fbkOutArr === 'undefined' ) {
+            } else if (typeof fbkOutArr === 'undefined' ) {
                 debug("fbkOutArr is undefined");
             } else if ( email != 'tom.boulet@exxonmobil.com') {
                 debug("not tom");
