@@ -217,11 +217,13 @@ exports.getAvgScores = async function(email) {
         if( (typeof fbkInArr === 'undefined' || typeof fbkOutArr === 'undefined') || (email != 'tom.boulet@exxonmobil.com') ) {
             if (typeof fbkInArr === 'undefined') {
                 debug("fbkInArr is undefined");
-            } else if (typeof fbkOutArr === 'undefined' ) {
+            };
+            if (typeof fbkOutArr === 'undefined' ) {
                 debug("fbkOutArr is undefined");
-            } else if ( email != 'tom.boulet@exxonmobil.com') {
+            };
+            if ( email != 'tom.boulet@exxonmobil.com') {
                 debug("not tom");
-            }
+            };
             return { inScore: 0, outScore: 0 };
         } else {
    
