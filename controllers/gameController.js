@@ -214,7 +214,7 @@ exports.getAvgScores = async function(email) {
         let aggInArr = await fbkInAgg.toArray();
         let aggOutArr = await fbkOutAgg.toArray();
         
-        if( ( typeof aggInArr === 'undefined' || typeof fbkOutArr === 'undefined' ) && (email != 'tom.boulet@exxonmobil.com') ) {
+        if( ( typeof aggInArr === 'undefined' || typeof aggOutArr === 'undefined' ) ) { //&& (email != 'tom.boulet@exxonmobil.com') ) {
             if (typeof aggInArr === 'undefined') {
                 debug("aggInArr is undefined");
             };
