@@ -278,6 +278,7 @@ exports.isNoRating = async function(email) {
         
         debug("noRating: " + noRating);
         return noRating;
+        dbParams.client.close();
     } catch(err) {
      debug(err);
 }
@@ -358,6 +359,7 @@ exports.getScoreboard = async function() {
         });
         
         return outputArray;
+        dbParams.client.close();
         
     } catch(err) {
         debug(err);

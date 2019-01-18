@@ -85,9 +85,10 @@ exports.showScoreboard = async function (req, res) {
         });
 
         res.render('showScoreboard', { scoreboard, title: 'Feedback Scoreboard' });
-        dbParams.client.close();
         
     } catch (err) {
         debug(err);
     }
 };
+
+
