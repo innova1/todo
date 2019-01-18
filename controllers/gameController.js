@@ -352,11 +352,12 @@ exports.getScoreboard = async function() {
         debug("fbk out: " + allUserFbksOutAggArr[0].score);
 */
         const outputArray = await allUserFbksOutAgg.toArray();
-        
+        /*
         c = 0;
         outputArray.forEach( (doc) => {
             debug(++c + "-scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
         });
+        */
         
         return outputArray;
         dbParams.client.close();
