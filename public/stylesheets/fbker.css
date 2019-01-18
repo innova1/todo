@@ -41,14 +41,15 @@
 }
 
 #scoreboard > th, td {
-    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     border-bottom: 1px solid #000000
 }
 
 #scoreboard > #email {
     color: blue;
     text-align: left;
-    width: 100px;
+    width: 50px;
 }
 
 #scoreboard > #score {
