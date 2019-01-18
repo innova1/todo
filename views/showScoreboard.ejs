@@ -20,19 +20,24 @@
                 <% if (scoreboard.length == 0) { %>
                     <h5 style="color: #007bff;">No user data. That's weird!</h5>
                 <%} else {%>
-                    <div id="scoreboard">
+                    <table>
+                      <col align="left">
+                      <col align="char">
+                      <col align="right">
+                       <tr>
+                           <th>User email</th>
+                           <th>User score</th>
+                           <th>User sent count</th>
+                        </tr>
                     <% for(let i = 0; i < scoreboard.length; i++) { 
                         score = scoreboard[i] %>
-                        <div id="email">
-                            <%=score._id.fbkoremail%>
-                        </div>
-                        <div id="score">
-                            <%=score.score.toFixed(2)%>
-                        </div>
-                        <div id="totalOut">
-                            <%=score.totalOut%>
-                        </div>
+                        <tr>
+                            <td><%=score._id.fbkoremail%></td>
+                            <td><%=score.score.toFixed(2)%></td>
+                            <td><%=score.totalOut%></td>
+                        </tr>
                     <% } %>
+                    </table>
                     </div>
                 <% } %>
 
