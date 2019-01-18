@@ -33,7 +33,7 @@
 }
 
 #scoreboard {
-    overflow-x: auto;
+    /*overflow-x: auto;*/
     color: #AAAAAA;
     font-family: 'courier new';
     font-weight: bold;
