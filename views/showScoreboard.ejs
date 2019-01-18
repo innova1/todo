@@ -21,24 +21,25 @@
                     <h5 style="color: #007bff;">No user data. That's weird!</h5>
                 <%} else {%>
                     <table>
-                      <col align="left">
-                      <col align="char">
-                      <col align="right">
-                       <tr>
-                           <th>User email</th>
-                           <th>User score</th>
-                           <th>User sent count</th>
+                        <colgroup>
+                            <col align="left">
+                            <col align="char">
+                            <col align="right">
+                        </colgroup>
+                        <tr>
+                            <th>User email</th>
+                            <th>User score</th>
+                            <th>User sent count</th>
                         </tr>
                     <% for(let i = 0; i < scoreboard.length; i++) { 
-                        score = scoreboard[i] %>
+                            score = scoreboard[i] %>
                         <tr>
                             <td><%=score._id.fbkoremail%></td>
                             <td><%=score.score.toFixed(2)%></td>
                             <td><%=score.totalOut%></td>
                         </tr>
-                    <% } %>
+                <% } %>
                     </table>
-                    </div>
                 <% } %>
 
         </div> <!-- container -->
