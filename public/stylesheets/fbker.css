@@ -33,10 +33,7 @@
 }
 
 #scoreboard {
-    display: grid;
-    grid-template-columns: 400px 100px 100px;
-    grid-template-rows: auto;
-
+    overflow-x: auto;
     color: #AAAAAA;
     font-family: 'courier new';
     font-weight: bold;
@@ -45,12 +42,18 @@
 
 #scoreboard > #email {
     color: blue;
+    text-align: left;
+    width: 30%;
 }
 
 #scoreboard > #score {
     color: blue;
+    text-align: right;
+    width: 35%;
 }
 
 #scoreboard > #totalOut {
     color: blue;
+    text-align: right;
+    width: 35%;
 }

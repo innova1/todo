@@ -12,7 +12,7 @@
     </head>
     
     <body>
-        <div class="container">
+        <div id="scoreboard">
     
             <% include ./partials/navfbk %>
             <br />
@@ -22,9 +22,9 @@
                 <%} else {%>
                     <table>
                         <tr>
-                            <th style="text-align: left;" width="40%">User email</th>
-                            <th style="text-align: right;" width="20%">User score</th>
-                            <th style="text-align: right;" width="20%">User sent count</th>
+                            <th id="email">User email</th>
+                            <th id="score">User score</th>
+                            <th id="totalOut">User sent count</th>
                         </tr>
                     <% for(let i = 0; i < scoreboard.length; i++) { 
                             score = scoreboard[i] %>
