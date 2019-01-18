@@ -34,7 +34,7 @@
 
 #scoreboard {
     display: grid;
-    grid-template-columns: 400px;
+    grid-template-columns: 200px;
     grid-template-rows: auto;
 
     color: #AAAAAA;
@@ -44,5 +44,13 @@
 }
 
 #scoreboard > #email {
-    color: lightblue;
+    color: blue;
+}
+
+#scoreboard > #score {
+    color: red;
+}
+
+#scoreboard > #totalOut {
+    color: green;
 }
