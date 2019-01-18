@@ -29,6 +29,7 @@ router.get('/task/addx/', addController.addFbkx);
 router.post('/task/add/', addController.saveTask);
 router.get('/export', exportController.exportFbks);
 router.get('/exportJSON', exportController.exportJSONFbks);
+router.get('/scoreboard', showController.showScoreboard);
 router.get('/login', loginsController.loginPage);
 router.post('/login', loginsController.login);
 router.get('/logout', loginsController.logout);

@@ -50,7 +50,7 @@ exports.showMyFbks = async function (req, res) {
     const score = await gameCalc.getScore(email);
     const balance = await gameCalc.getBalance(email);
     const avgScores = await gameCalc.getAvgScores(email);
-    const scoreboard = await gameCalc.getScoreboard();
+    //const scoreboard = await gameCalc.getScoreboard();
     
     const isNoRating = await gameCalc.isNoRating(email);
     //debug("avgInScore: " + avgInScore.length + ", " + JSON.stringify(avgInScore));
@@ -66,6 +66,21 @@ exports.showMyFbks = async function (req, res) {
       
     logger.info("viewing feedback: " + email );
     res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, outCount, score, inScore: avgScores.inScore, outScore: avgScores.outScore, balance, selectData, isNoRating, title: 'My Feedback List', hostname });
+    dbParams.client.close();
+  }
+  catch (err) {
+    debug(err);
+  }
+};
+
+exports.showScoreboard = async function (req, res) {
+  // need: user fullname and email from cookie
+    logger.addContext('ip', req.ip);
+  try {
+
+    const scoreboard = await gameCalc.getScoreboard();
+      
+    res.render('showScoreboard', { scoreboard, title: 'Feedback Scoreboard' });
     dbParams.client.close();
   }
   catch (err) {

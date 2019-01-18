@@ -334,7 +334,7 @@ exports.getScoreboard = async function() {
                     _id: { fbkoremail: "$fbkoremail" },
                     a: "$avgOutPerDay",
                     s: "$sumAllOutRating",
-                    t: "$totalOutFbks", 
+                    totalOut: "$totalOutFbks", 
                     score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay', 100 ] } 
                 }
             }
@@ -355,6 +355,10 @@ exports.getScoreboard = async function() {
             score = doc.score;
             debug(++c + "-scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
         });
+        
+        const outputArray = await allUserFbksOutAgg.toArray();
+        
+        return outputArray;
         
     } catch(err) {
         debug(err);

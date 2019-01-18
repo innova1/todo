@@ -87,6 +87,7 @@ app.get('/', checkLogin, todoRouter);
 app.get('/all', todoRouter);
 app.get('/export', todoRouter);
 app.get('/exportJSON', todoRouter);
+app.get('/scoreboard', todoRouter);
 
 app.get('/fbk/edit/:id', todoRouter);
 app.post('/fbk/edit/:id', todoRouter);
