@@ -215,7 +215,7 @@ exports.getAvgScores = async function(email) {
         let aggInArr = await fbkInAgg.toArray();
         let aggOutArr = await fbkOutAgg.toArray();
         
-        if ( ( typeof aggInArr === 'undefined' || typeof aggOutArr === 'undefined' ) || (email != 'tom.boulet@exxonmobil.com') ) {
+        if ( ( typeof aggInArr === 'undefined' || typeof aggOutArr === 'undefined' ) ) { // || (email != 'tom.boulet@exxonmobil.com') ) {
             if (typeof aggInArr === 'undefined') {
                 debug("aggInArr is undefined");
             };
@@ -230,18 +230,17 @@ exports.getAvgScores = async function(email) {
             aggOutArr = [ { score: 0 }];
             
             return { inScore: 0, outScore: 0 };
-        } //else {
+        }
    
-            debug("fbk In: " + aggInArr[0].score); //JSON.stringify(aggInArr[0]));
-            debug("fbk out: " + aggOutArr[0].score); //JSON.stringify(aggOutArr[0]));
+        debug("fbk In: " + aggInArr[0].score); //JSON.stringify(aggInArr[0]));
+        debug("fbk out: " + aggOutArr[0].score); //JSON.stringify(aggOutArr[0]));
 
-            aggOutArr.forEach( (doc) => {
-                score = doc.score;
-                debug("fbk out2: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
-            });
+        aggOutArr.forEach( (doc) => {
+            score = doc.score;
+            debug("fbk out2: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
+        });
 
-            return { inScore: aggInArr[0].score.toFixed(2), outScore: aggOutArr[0].score.toFixed(2) };
-        //}
+        return { inScore: aggInArr[0].score.toFixed(2), outScore: aggOutArr[0].score.toFixed(2) };
         
         /*
         aggOutArr.forEach( (doc) => {
