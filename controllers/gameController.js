@@ -308,6 +308,9 @@ exports.getScoreboard = async function() {
                 $match: { 'rating': { $ne: '-1' } }
             },
             {
+                $sort: { 'createDate': 1 }
+            },
+            {
                 $addFields: { outRating: { $toInt: "$rating"}, fbkoremail: "$fbkor.email" }
             },
             {   $group: { 
