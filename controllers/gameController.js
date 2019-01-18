@@ -225,8 +225,12 @@ exports.getAvgScores = async function(email) {
             if ( email != 'tom.boulet@exxonmobil.com') {
                 debug("not tom");
             };
+            
+            aggInArr = [{ score: 0 }];
+            aggOutArr = [ { score: 0 }];
+            
             return { inScore: 0, outScore: 0 };
-        } else {
+        } //else {
    
             debug("fbk In: " + aggInArr[0].score); //JSON.stringify(aggInArr[0]));
             debug("fbk out: " + aggOutArr[0].score); //JSON.stringify(aggOutArr[0]));
@@ -237,7 +241,7 @@ exports.getAvgScores = async function(email) {
             });
 
             return { inScore: aggInArr[0].score.toFixed(2), outScore: aggOutArr[0].score.toFixed(2) };
-        }
+        //}
         
         /*
         aggOutArr.forEach( (doc) => {
