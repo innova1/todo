@@ -314,7 +314,7 @@ exports.getScoreboard = async function() {
                     _id: {  fbkoremail: "$fbkoremail" , month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
                     fbkoremail: { $first: "$fbkoremail" },
                     sumOutRating: { $sum: '$outRating' },
-                    firstCreateDate: { $first: "createDate"},
+                    firstCreateDate: { $first: "$createDate"},
                     countOutForDay: { $sum: 1 }
                 } 
             },
