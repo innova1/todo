@@ -23,13 +23,13 @@
                     <div>
                     <% for(let i = 0; i < scoreboard.length; i++) { 
                         score = scoreboard[i] %>
-                        <div>
+                        <div id="email">
                             <%=score._id.fbkoremail%>
                         </div>
-                        <div>
+                        <div id="score">
                             <%=score.score%>
                         </div>
-                        <div>
+                        <div id="totalOut">
                             <%=score.totalOut%>
                         </div>
                     <% } %>

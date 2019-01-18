@@ -31,3 +31,18 @@
     border-style: solid;
     border-color: #AAAAAA;
 }
+
+#scoreboard {
+    display: grid;
+    grid-template-columns: 400px;
+    grid-template-rows: auto;
+
+    color: #AAAAAA;
+    font-family: 'courier new';
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#scoreboard > #email {
+    color: lightblue;
+}
