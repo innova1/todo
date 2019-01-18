@@ -76,14 +76,18 @@ exports.showMyFbks = async function (req, res) {
 exports.showScoreboard = async function (req, res) {
   // need: user fullname and email from cookie
     logger.addContext('ip', req.ip);
-  try {
+    try {
 
-    const scoreboard = await gameCalc.getScoreboard();
-      
-    res.render('showScoreboard', { scoreboard, title: 'Feedback Scoreboard' });
-    dbParams.client.close();
-  }
-  catch (err) {
-    debug(err);
-  }
+        const scoreboard = await gameCalc.getScoreboard();
+
+        scoreboard.forEach( (doc) => {
+            debug(++c + "-scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
+        });
+
+        res.render('showScoreboard', { scoreboard, title: 'Feedback Scoreboard' });
+        dbParams.client.close();
+        
+    } catch (err) {
+        debug(err);
+    }
 };
