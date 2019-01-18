@@ -43,7 +43,7 @@
 #scoreboard > #email {
     color: blue;
     text-align: left;
-    width: 30%;
+    width: 100px;
 }
 
 #scoreboard > #score {
