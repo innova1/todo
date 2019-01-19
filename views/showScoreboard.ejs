@@ -30,10 +30,10 @@
                     <% for(let i = 0; i < scoreboard.length; i++) { 
                             score = scoreboard[i] %>
                         <tr>
-                            <td style="text-align: left;"><%=score._id.fbkoremail%></td>
-                            <td style="text-align: right;"><%=score.score.toFixed(2)%></td>
-                            <td style="text-align: right;"><%=score.totalOut%></td>
-                            <td style="text-align: right;"><%=score.noRatingOutCount%></td>
+                            <td><%=score._id.fbkoremail%></td>
+                            <td><%=score.score.toFixed(2)%></td>
+                            <td><%=score.totalOut%></td>
+                            <td><%=score.noRating.noRatingOutCount%></td>
                         </tr>
                 <% } %>
                     </table>
