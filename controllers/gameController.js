@@ -308,7 +308,7 @@ exports.getScoreboard = async function() {
                 $match: { 'rating': { $ne: '-1' } }
             },
             {
-                $sort: { 'createDate': 1 }
+                $sort: { 'createDate': -1 }
             },
             {
                 $addFields: { outRating: { $toInt: "$rating"}, fbkoremail: "$fbkor.email" }
@@ -332,7 +332,7 @@ exports.getScoreboard = async function() {
             },
             {
                 $addFields: {  
-                    avgOutPerDay: { $divide: [ '$totalOutFbks', diffDays ] },
+                    avgOutPerDay: { $divide: [ '$totalOutFbks', { diffDays } ] },
                 }
             },
             {
