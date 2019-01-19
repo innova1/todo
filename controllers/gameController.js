@@ -266,7 +266,7 @@ exports.getAvgScores = async function(email) {
     }
 };
 
-exports.isNoRating async function ( dbParams, email ) {
+exports.isNoRating = async function ( dbParams, email ) {
     try {
         let noRatingCountlk = await dbParams.collection.countDocuments( { 'fbkee.email': { $eq: email } ,  'rating': { $eq: '-1' } } );
 
