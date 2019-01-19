@@ -22,18 +22,18 @@
                 <%} else {%>
                     <table>
                         <tr>
-                            <th id="email">User email</th>
-                            <th id="score">score</th>
-                            <th id="totalOut"># sent</th>
-                            <th id="unratedOut"># unrated</th>
+                            <th class="email">User email</th>
+                            <th class="score">score</th>
+                            <th class="totalOut"># sent</th>
+                            <th class="unratedOut"># unrated</th>
                         </tr>
                     <% for(let i = 0; i < scoreboard.length; i++) { 
                             score = scoreboard[i] %>
                         <tr>
-                            <td><%=score._id.fbkoremail%></td>
-                            <td><%=score.score.toFixed(2)%></td>
-                            <td><%=score.totalOut%></td>
-                            <td><%=score.noRating.noRatingOutCount%></td>
+                            <td class="email"><%=score._id.fbkoremail%></td>
+                            <td class="score"><%=score.score.toFixed(2)%></td>
+                            <td class="totalOut"><%=score.totalOut%></td>
+                            <td class="unratedOut"><%=score.noRating.noRatingOutCount%></td>
                         </tr>
                 <% } %>
                     </table>
