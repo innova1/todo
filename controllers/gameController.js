@@ -285,7 +285,7 @@ exports.isNoRating = async function ( dbParams, email ) {
             isNoRatingOut = false;
         }
 
-        debug("noRatingIn: " + noRatingIn);
+        debug("isNoRatingIn: " + isNoRatingIn);
         return { isNoRatingIn: isNoRatingIn, noRatingInCount: noRatingInCount, isNoRatingOut: isNoRatingOut, noRatingOutCount: noRatingOutCount };
         dbParams.client.close();
     } catch(err) {
