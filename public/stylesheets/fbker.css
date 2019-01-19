@@ -48,19 +48,25 @@
     border-bottom: 1px solid #000000
 }
 
-#scoreboard > #email {
+#scoreboard #email {
     color: blue;
     text-align: left;
     width: 50px;
 }
 
-#scoreboard > #score {
+#scoreboard #score {
     color: blue;
     text-align: right;
     width: 35%;
 }
 
-#scoreboard > #totalOut {
+#scoreboard #totalOut {
+    color: blue;
+    text-align: right;
+    width: 35%;
+}
+
+#scoreboard #unratedOut {
     color: blue;
     text-align: right;
     width: 35%;

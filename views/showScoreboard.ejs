@@ -25,6 +25,7 @@
                             <th id="email">User email</th>
                             <th id="score">score</th>
                             <th id="totalOut"># sent</th>
+                            <th id="unratedOut"># unrated</th>
                         </tr>
                     <% for(let i = 0; i < scoreboard.length; i++) { 
                             score = scoreboard[i] %>
@@ -32,6 +33,7 @@
                             <td style="text-align: left;"><%=score._id.fbkoremail%></td>
                             <td style="text-align: right;"><%=score.score.toFixed(2)%></td>
                             <td style="text-align: right;"><%=score.totalOut%></td>
+                            <td style="text-align: right;"><%=score.noRatingOutCount%></td>
                         </tr>
                 <% } %>
                     </table>
