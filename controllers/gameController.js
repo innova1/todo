@@ -284,8 +284,8 @@ exports.isNoRating = async function ( dbParams, email ) {
             isNoRatingOut = false;
         }
 
-        debug(email + " noRatingInCount: " + noRatingInCount + ", noRatingOutCount: " + noRatingOutCount);
-        debug("isNoRatingIn: " + isNoRatingIn + ", isNoRatingOut: " + isNoRatingOut);
+        debug("In noRating function -- " + email + " noRatingInCount: " + noRatingInCount + ", noRatingOutCount: " + noRatingOutCount);
+        debug("In noRating function -- isNoRatingIn: " + isNoRatingIn + ", isNoRatingOut: " + isNoRatingOut);
         return { isNoRatingIn: isNoRatingIn, noRatingInCount: noRatingInCount, isNoRatingOut: isNoRatingOut, noRatingOutCount: noRatingOutCount };
         dbParams.client.close();
     } catch(err) {
@@ -376,7 +376,7 @@ exports.getScoreboard = async function() {
         outputArray.forEach( async function(doc) {
             //debug(++c + "-scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
             doc.noRating = await gameCalc.isNoRating(dbParams, doc._id.fbkoremail);
-            debug("in forEach loop -- no rating: " + outputArray[0].noRating.noRatingOutCount);
+            debug("in forEach loop -- no rating: " + doc.noRating.noRatingOutCount);
         });
         
         return outputArray;
