@@ -42,7 +42,7 @@
     */
 }
 
-#scoreboard > th, #scoreboard > td {
+#scoreboard th, #scoreboard td {
     padding-left: 10px;
     padding-right: 10px;
     border-bottom: 1px solid #000000
