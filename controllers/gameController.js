@@ -300,6 +300,7 @@ exports.getScoreboard = async function() {
         const firstDate = await new Date(earliestDate[0].createDate);
         const secondDate = new Date();
         const diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+        const multiplier = 1; //was 100 but as we start sending more, this will be too high
         
         //debug("firstDate: " + firstDate.getTime() + ", secondDate: " + secondDate.getTime() + ", diffDays: " + diffDays);
         
@@ -337,8 +338,9 @@ exports.getScoreboard = async function() {
                     oneDay: oneDay,
                     todayDate: "$todayDate",
                     dateMinusDate: { $abs: {$subtract: [ '$firstCreateDate', '$todayDate' ] } },
-                    numDays: { $divide: [ { $abs: { $subtract: [ '$firstCreateDate', '$todayDate' ] } }, oneDay ] },
-                    avgOutPerDay: { $divide: [ '$totalOutFbks', { $divide: [ { $abs: { $subtract: [ '$firstCreateDate', '$todayDate' ] } }, oneDay ] } ] }
+                    numDays: { $divide: [ { $abs: { $subtract: [ '$firstCreateDate', '$todayDate' ] } }, '$oneDay' ] },
+                    //avgOutPerDay: { $divide: [ '$totalOutFbks', { $divide: [ { $abs: { $subtract: [ '$firstCreateDate', '$todayDate' ] } }, oneDay ] } ] }
+                    avgOutPerDay: { $divide: [ '$totalOutFbks', '$numDays' ] },
                 }
             },
             {
@@ -352,7 +354,7 @@ exports.getScoreboard = async function() {
                     a: "$avgOutPerDay",
                     s: "$sumAllOutRating",
                     totalOut: "$totalOutFbks", 
-                    score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay', 100 ] } 
+                    score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay', multiplier ] } 
                 }
             }
         ] );
