@@ -268,18 +268,25 @@ exports.getAvgScores = async function(email) {
 
 exports.isNoRating = async function ( dbParams, email ) {
     try {
-        let noRatingCountlk = await dbParams.collection.countDocuments( { 'fbkee.email': { $eq: email } ,  'rating': { $eq: '-1' } } );
+        let noRatingInCountlk = await dbParams.collection.countDocuments( { 'fbkee.email': { $eq: email } ,  'rating': { $eq: '-1' } } );
+        let noRatingOutCountlk = await dbParams.collection.countDocuments( { 'fbkor.email': { $eq: email } ,  'rating': { $eq: '-1' } } );
 
-        const noRatingCount = await noRatingCountlk;
-        debug(email + " noRatingCount: " + noRatingCount);
-        if ( noRatingCount > 0 ) {
-            noRating = true;
+        const noRatingInCount = await noRatingInCountlk;
+        const noRatingOutCount = await noRatingOutCountlk;
+        debug(email + " noRatingInCount: " + noRatingInCount);
+        if ( noRatingInCount > 0 ) {
+            isNoRatingIn = true;
         } else {
-            noRating = false;
+            isNoRatingIn = false;
+        }
+        if ( noRatingOutCount > 0 ) {
+            isNoRatingOut = true;
+        } else {
+            isNoRatingOut = false;
         }
 
         debug("noRating: " + noRating);
-        return { isNoRating: noRating, noRatingCount: noRatingCount };
+        return { isNoRatingIn: isNoRatingIn, noRatingInCount: noRatingInCount, isNoRatingOut: isNoRatingOut, noRatingOutCount: noRatingOutCount };
         dbParams.client.close();
     } catch(err) {
         debug(err);
@@ -368,7 +375,7 @@ exports.getScoreboard = async function() {
         
         outputArray.forEach( (doc) => {
             //debug(++c + "-scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
-            doc.noRatingCount = gameCalc.isNoRating(dbParams, doc._id.fbkoremail);
+            doc.noRating = gameCalc.isNoRating(dbParams, doc._id.fbkoremail);
         });
         
         return outputArray;

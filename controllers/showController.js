@@ -55,19 +55,19 @@ exports.showMyFbks = async function (req, res) {
     const dbParams = await util.setupDB();
       
     const isNoRatingResults = await gameCalc.isNoRating(dbParams, email);
-    const isNoRating = isNoRatingResults.isNoRating;
+    const isNoRatingIn = isNoRatingResults.isNoRatingIn;
     
     const inCount = counts.inCount;
     const outCount = counts.outCount;
     const selectData = getSelectTagText();
     
-    debug("query with email: " + email + ", username: " + username + ", isNoRating: " + isNoRating);
+    debug("query with email: " + email + ", username: " + username + ", isNoRatingIn: " + isNoRatingIn);
     const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ createDate: -1 }).toArray();
     const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ createDate: -1 }).toArray();
     const hostname = os.hostname();
       
     logger.info("viewing feedback: " + email );
-    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, outCount, score, inScore: avgScores.inScore, outScore: avgScores.outScore, balance, selectData, isNoRating, title: 'My Feedback List', hostname });
+    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, outCount, score, inScore: avgScores.inScore, outScore: avgScores.outScore, balance, selectData, isNoRatingIn, title: 'My Feedback List', hostname });
     dbParams.client.close();
   }
   catch (err) {
