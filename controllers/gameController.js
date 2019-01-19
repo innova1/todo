@@ -301,6 +301,7 @@ exports.getScoreboard = async function() {
         const firstDate = new Date('2019-01-16');
         const secondDate = new Date();
         const diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay))); 
+        debug("diffDays: " + diffDays);
         const multiplier = 1; //was 100 but as we start sending more, this will be too high
         
         //debug("firstDate: " + firstDate.getTime() + ", secondDate: " + secondDate.getTime() + ", diffDays: " + diffDays);
@@ -317,7 +318,6 @@ exports.getScoreboard = async function() {
             },
             {   $group: { 
                     _id: {  fbkoremail: "$fbkoremail" , month: { $month: "$createDate" }, day: { $dayOfMonth: "$createDate" }, year: { $year: "$createDate" } },
-                    todayDate: { $first: "$todayDate" },
                     fbkoremail: { $first: "$fbkoremail" },
                     sumOutRating: { $sum: '$outRating' },
                     firstCreateDate: { $first: "$createDate"},
@@ -327,8 +327,6 @@ exports.getScoreboard = async function() {
             {
                 $group: {
                     _id: { fbkoremail: "$fbkoremail" },
-                    todayDate: { $first: "$todayDate" },
-                    firstCreateDate: { $first: "$firstCreateDate" },
                     fbkoremail: { $first: "$fbkoremail" },
                     sumAllOutRating: { $sum: '$sumOutRating' },
                     totalOutFbks: { $sum: '$countOutForDay' }
@@ -336,21 +334,16 @@ exports.getScoreboard = async function() {
             },
             {
                 $addFields: {
-                    oneDay: oneDay,
-                    todayDate: "$todayDate",
-                    dateMinusDate: { $abs: {$subtract: [ '$firstCreateDate', '$todayDate' ] } },
+                    //oneDay: oneDay,
+                    //todayDate: "$todayDate",
+                    //dateMinusDate: { $abs: {$subtract: [ '$firstCreateDate', '$todayDate' ] } },
                     //avgOutPerDay: { $divide: [ '$totalOutFbks', { $divide: [ { $abs: { $subtract: [ '$firstCreateDate', '$todayDate' ] } }, oneDay ] } ] }
                     avgOutPerDay: { $divide: [ '$totalOutFbks', diffDays ] },
                 }
             },
             {
                 $project: {
-                    _id: { fbkoremail: "$fbkoremail" },
-                    oneDay: "$oneDay",
-                    todayDate: "$todayDate",
-                    firstCreateDate: "$firstCreateDate",
-                    dateMinusDate: "$dateMinusDate",
-                    numDays: "$numDays",
+                    _id: { fbkoremail: "$fbkoremail" },/
                     a: "$avgOutPerDay",
                     s: "$sumAllOutRating",
                     totalOut: "$totalOutFbks", 
