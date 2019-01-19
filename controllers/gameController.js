@@ -377,7 +377,7 @@ exports.getScoreboard = async function() {
         outputArray.forEach( async function(doc) {
             //debug(++c + "-scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
             doc.noRating = await gameCalc.isNoRating(dbParams, doc._id.fbkoremail);
-            debug("in forEach loop -- no rating out: " + JSON.stringify(doc));
+            debug("in forEach loop -- no rating out: " + doc.noRating.isNotratingIn);
             c++;
         });
         
