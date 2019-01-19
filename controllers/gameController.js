@@ -331,14 +331,18 @@ exports.getScoreboard = async function() {
                 }
             },
             {
-                $addFields: {  
-                    avgOutPerDay: { $divide: [ '$totalOutFbks', { $divide: [ { $subtract: [ '$firstCreateDate', '$todayDate' ] }, oneDay ] } ] },
+                $addFields: {
+                    dateMinusDate: { $subtract: [ '$firstCreateDate', '$todayDate' ] },
+                    numDays: { $divide: [ { $subtract: [ '$firstCreateDate', '$todayDate' ] }, oneDay ] },
+                    avgOutPerDay: { $divide: [ '$totalOutFbks', { $divide: [ { $subtract: [ '$firstCreateDate', '$todayDate' ] }, oneDay ] } ] }
                 }
             },
             {
                 $project: {
                     _id: { fbkoremail: "$fbkoremail" },
                     firstCreateDate: "$firstCreateDate",
+                    dateMinusDate: "$dateMinusDate",
+                    numDays: "$numDays",
                     a: "$avgOutPerDay",
                     s: "$sumAllOutRating",
                     totalOut: "$totalOutFbks", 
