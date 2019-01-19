@@ -280,7 +280,7 @@ exports.isNoRating = async function(email) {
         }
         
         debug("noRating: " + noRating);
-        return noRating;
+        return { isNoRating: noRating, noRatingCount: noRatingCount };
         dbParams.client.close();
     } catch(err) {
      debug(err);

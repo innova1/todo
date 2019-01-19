@@ -52,8 +52,9 @@ exports.showMyFbks = async function (req, res) {
     const avgScores = await gameCalc.getAvgScores(email);
     //const scoreboard = await gameCalc.getScoreboard();
     
-    const isNoRating = await gameCalc.isNoRating(email);
-    //debug("avgInScore: " + avgInScore.length + ", " + JSON.stringify(avgInScore));
+    const isNoRatingResults = await gameCalc.isNoRating(email);
+    const isNoRating = isNoRatingResults.isNoRating;
+    debug("isNoRating: " + isNoRating);
     const inCount = counts.inCount;
     const outCount = counts.outCount;
     const selectData = getSelectTagText();
