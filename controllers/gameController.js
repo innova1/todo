@@ -324,6 +324,7 @@ exports.getScoreboard = async function() {
             {
                 $group: {
                     _id: { fbkoremail: "$fbkoremail" },
+                    todayDate: "$todayDate",
                     firstCreateDate: { $first: "$firstCreateDate" },
                     fbkoremail: { $first: "$fbkoremail" },
                     sumAllOutRating: { $sum: '$sumOutRating' },
@@ -333,6 +334,7 @@ exports.getScoreboard = async function() {
             {
                 $addFields: {
                     oneDay: oneDay,
+                    todayDate: "$todayDate",
                     dateMinusDate: { $subtract: [ '$firstCreateDate', '$todayDate' ] },
                     numDays: { $divide: [ { $subtract: [ '$firstCreateDate', '$todayDate' ] }, oneDay ] },
                     avgOutPerDay: { $divide: [ '$totalOutFbks', { $divide: [ { $subtract: [ '$firstCreateDate', '$todayDate' ] }, oneDay ] } ] }
