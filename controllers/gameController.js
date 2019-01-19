@@ -271,7 +271,7 @@ exports.isNoRating = async function ( dbParams, email ) {
         let noRatingCountlk = await dbParams.collection.countDocuments( { 'fbkee.email': { $eq: email } ,  'rating': { $eq: '-1' } } );
 
         const noRatingCount = await noRatingCountlk;
-        debug("noRatingCount: " + noRatingCount);
+        debug(email + " noRatingCount: " + noRatingCount);
         if ( noRatingCount > 0 ) {
             noRating = true;
         } else {
