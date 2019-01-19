@@ -128,16 +128,19 @@ exports.getAvgScores = async function(email) {
     try {
         const dbParams = await util.setupDB();
         
-        const earliestDate = await dbParams.collection.find().sort({createDate: 1}).limit(1).toArray();
+        //const earliestDate = await dbParams.collection.find().sort({createDate: 1}).limit(1).toArray();
         /*let c = 0;
         earliestDate.forEach( (doc) => {
             debug(++c + " dates: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
         });*/
         
         const oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-        const firstDate = await new Date(earliestDate[0].createDate);
+        //const firstDate = await new Date(earliestDate[0].createDate); //used this as the REAL app beginning, but decided to use launch date of 1/16/19
+        const firstDate = new Date('2019-01-16');
         const secondDate = new Date();
-        const diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+        const diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay))); 
+        debug("diffDays: " + diffDays);
+        const multiplier = 1; //was 100 but as we start sending more, this will be too high
         
         debug("in getavg scores--diffDays: " + diffDays);
         
@@ -171,7 +174,7 @@ exports.getAvgScores = async function(email) {
             {
                 $project: {
                     _id: { fbkeemail: "$fbkeemail" }, 
-                    score: { $multiply: [ { $divide: [ '$sumAllInRating', '$totalInFbks' ] }, '$avgInPerDay', 100 ] } 
+                    score: { $multiply: [ { $divide: [ '$sumAllInRating', '$totalInFbks' ] }, '$avgInPerDay', multiplier ] } 
                 }
             }
         ] );
@@ -207,7 +210,7 @@ exports.getAvgScores = async function(email) {
                 $project: {
                     //_id: { fbkoremail: "$fbkoremail" }, 
                     _id: false,
-                    score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay', 100 ] } 
+                    score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay', multiplier ] } 
                 }
             }
         ] ); 
