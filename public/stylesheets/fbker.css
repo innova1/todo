@@ -50,25 +50,25 @@
         border-right: 1px solid #000000;
 }
 
-#scoreboard #email {
+#scoreboard .email {
     color: blue;
     text-align: left;
     width: 25%;
 }
 
-#scoreboard #score {
+#scoreboard .score {
     color: blue;
     text-align: right;
     width: 25%;
 }
 
-#scoreboard #totalOut {
+#scoreboard .totalOut {
     color: blue;
     text-align: right;
     width: 25%;
 }
 
-#scoreboard #unratedOut {
+#scoreboard .unratedOut {
     color: blue;
     text-align: right;
     width: 25%;
