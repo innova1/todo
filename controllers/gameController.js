@@ -373,7 +373,7 @@ exports.getScoreboard = async function() {
 */
         const outputArray = await allUserFbksOutAgg.toArray();
         
-        outputArray.forEach( (doc) => {
+        outputArray.forEach( async function(doc) {
             //debug(++c + "-scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
             doc.noRating = await gameCalc.isNoRating(dbParams, doc._id.fbkoremail);
         });
