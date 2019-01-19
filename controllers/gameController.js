@@ -378,6 +378,8 @@ exports.getScoreboard = async function() {
             doc.noRating = gameCalc.isNoRating(dbParams, doc._id.fbkoremail);
         });
         
+        debug("no rating: " + outputArray[0].noRating);
+        
         return outputArray;
         dbParams.client.close();
         
