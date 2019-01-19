@@ -51,23 +51,23 @@
 #scoreboard #email {
     color: blue;
     text-align: left;
-    width: 50px;
+    width: 25%;
 }
 
 #scoreboard #score {
     color: blue;
     text-align: right;
-    width: 35%;
+    width: 25%;
 }
 
 #scoreboard #totalOut {
     color: blue;
     text-align: right;
-    width: 35%;
+    width: 25%;
 }
 
 #scoreboard #unratedOut {
     color: blue;
     text-align: right;
-    width: 35%;
+    width: 25%;
 }
