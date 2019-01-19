@@ -290,16 +290,17 @@ exports.getScoreboard = async function() {
     try {
         const dbParams = await util.setupDB();
         
-        const earliestDate = await dbParams.collection.find().sort({createDate: 1}).limit(1).toArray();
+        //const earliestDate = await dbParams.collection.find().sort({createDate: 1}).limit(1).toArray();
         /*let c = 0;
         earliestDate.forEach( (doc) => {
             debug(++c + " dates: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
         });*/
         
         const oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-        const firstDate = await new Date(earliestDate[0].createDate);
+        //const firstDate = await new Date(earliestDate[0].createDate); //used this as the REAL app beginning, but decided to use launch date of 1/16/19
+        const firstDate = new Date('2019-01-16');
         const secondDate = new Date();
-        const diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+        const diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay))); 
         const multiplier = 1; //was 100 but as we start sending more, this will be too high
         
         //debug("firstDate: " + firstDate.getTime() + ", secondDate: " + secondDate.getTime() + ", diffDays: " + diffDays);
@@ -335,16 +336,11 @@ exports.getScoreboard = async function() {
             },
             {
                 $addFields: {
-                    numDays: { $divide: [ { $abs: { $subtract: [ '$firstCreateDate', '$todayDate' ] } }, oneDay ] }
-                }
-            },
-            {
-                $addFields: {
                     oneDay: oneDay,
                     todayDate: "$todayDate",
                     dateMinusDate: { $abs: {$subtract: [ '$firstCreateDate', '$todayDate' ] } },
                     //avgOutPerDay: { $divide: [ '$totalOutFbks', { $divide: [ { $abs: { $subtract: [ '$firstCreateDate', '$todayDate' ] } }, oneDay ] } ] }
-                    avgOutPerDay: { $divide: [ '$totalOutFbks', '$numDays' ] },
+                    avgOutPerDay: { $divide: [ '$totalOutFbks', diffDays ] },
                 }
             },
             {
