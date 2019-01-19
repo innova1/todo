@@ -344,6 +344,7 @@ exports.getScoreboard = async function() {
                 $project: {
                     _id: { fbkoremail: "$fbkoremail" },
                     oneDay: "$oneDay",
+                    todayDate: "$todayDate",
                     firstCreateDate: "$firstCreateDate",
                     dateMinusDate: "$dateMinusDate",
                     numDays: "$numDays",
