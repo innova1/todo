@@ -1,5 +1,6 @@
 const util = require('./utilController');
 const { ObjectId } = require('mongodb');
+const gameCalc = require('./gameController');
 const log4js = require('log4js');
 const debug = require('debug')('app:gameController');
 
@@ -265,7 +266,7 @@ exports.getAvgScores = async function(email) {
     }
 };
 
-async function isNoRating( dbParams, email ) {
+exports.isNoRating async function ( dbParams, email ) {
     try {
         let noRatingCountlk = await dbParams.collection.countDocuments( { 'fbkee.email': { $eq: email } ,  'rating': { $eq: '-1' } } );
 
@@ -367,7 +368,7 @@ exports.getScoreboard = async function() {
         
         outputArray.forEach( (doc) => {
             //debug(++c + "-scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
-            doc.noRatingCount = isNoRating(dbParams, doc.fbkoremail);
+            doc.noRatingCount = gameCalc.isNoRating(dbParams, doc.fbkoremail);
         });
         
         return outputArray;
