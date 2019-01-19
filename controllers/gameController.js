@@ -332,6 +332,7 @@ exports.getScoreboard = async function() {
             },
             {
                 $addFields: {
+                    oneDay: oneDay,
                     dateMinusDate: { $subtract: [ '$firstCreateDate', '$todayDate' ] },
                     numDays: { $divide: [ { $subtract: [ '$firstCreateDate', '$todayDate' ] }, oneDay ] },
                     avgOutPerDay: { $divide: [ '$totalOutFbks', { $divide: [ { $subtract: [ '$firstCreateDate', '$todayDate' ] }, oneDay ] } ] }
@@ -340,6 +341,7 @@ exports.getScoreboard = async function() {
             {
                 $project: {
                     _id: { fbkoremail: "$fbkoremail" },
+                    oneDay: "$oneDay",
                     firstCreateDate: "$firstCreateDate",
                     dateMinusDate: "$dateMinusDate",
                     numDays: "$numDays",
