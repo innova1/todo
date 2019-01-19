@@ -265,10 +265,8 @@ exports.getAvgScores = async function(email) {
     }
 };
 
-exports.isNoRating = async function(email) {
+exports.isNoRating = async function( dbParams, email ) {
     try {
-        const dbParams = await util.setupDB();
-        
         let noRatingCountlk = await dbParams.collection.countDocuments( { 'fbkee.email': { $eq: email } ,  'rating': { $eq: '-1' } } );
         
         const noRatingCount = await noRatingCountlk;
@@ -366,12 +364,11 @@ exports.getScoreboard = async function() {
         debug("fbk out: " + allUserFbksOutAggArr[0].score);
 */
         const outputArray = await allUserFbksOutAgg.toArray();
-        /*
-        c = 0;
+        
         outputArray.forEach( (doc) => {
-            debug(++c + "-scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
+            //debug(++c + "-scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
+            doc.noRatingCount = isNoRating(dbParams, doc.fbkoremail);
         });
-        */
         
         return outputArray;
         dbParams.client.close();

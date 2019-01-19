@@ -52,15 +52,16 @@ exports.showMyFbks = async function (req, res) {
     const avgScores = await gameCalc.getAvgScores(email);
     //const scoreboard = await gameCalc.getScoreboard();
     
-    const isNoRatingResults = await gameCalc.isNoRating(email);
+    const dbParams = await util.setupDB();
+      
+    const isNoRatingResults = await gameCalc.isNoRating(dbParams, email);
     const isNoRating = isNoRatingResults.isNoRating;
-    debug("isNoRating: " + isNoRating);
+    
     const inCount = counts.inCount;
     const outCount = counts.outCount;
     const selectData = getSelectTagText();
     
     debug("query with email: " + email + ", username: " + username + ", isNoRating: " + isNoRating);
-    const dbParams = await util.setupDB();
     const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ createDate: -1 }).toArray();
     const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ createDate: -1 }).toArray();
     const hostname = os.hostname();
