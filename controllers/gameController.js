@@ -336,9 +336,9 @@ exports.getScoreboard = async function() {
                 $addFields: {
                     oneDay: oneDay,
                     todayDate: "$todayDate",
-                    dateMinusDate: { $subtract: [ '$firstCreateDate', '$todayDate' ] },
+                    dateMinusDate: { $abs: {$subtract: [ '$firstCreateDate', '$todayDate' ] } },
                     numDays: { $divide: [ { $abs: { $subtract: [ '$firstCreateDate', '$todayDate' ] } }, oneDay ] },
-                    avgOutPerDay: { $divide: [ '$totalOutFbks', { $divide: [ { $subtract: [ '$firstCreateDate', '$todayDate' ] }, oneDay ] } ] }
+                    avgOutPerDay: { $divide: [ '$totalOutFbks', { $divide: [ { $abs: { $subtract: [ '$firstCreateDate', '$todayDate' ] } , oneDay ] } ] }
                 }
             },
             {
