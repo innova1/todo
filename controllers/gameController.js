@@ -332,7 +332,7 @@ exports.getScoreboard = async function() {
             },
             {
                 $addFields: {  
-                    avgOutPerDay: { $divide: [ '$totalOutFbks', { diffDays } ] },
+                    avgOutPerDay: { $divide: [ '$totalOutFbks', diffDays ] },
                 }
             },
             {
