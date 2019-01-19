@@ -45,7 +45,9 @@
 #scoreboard th, #scoreboard td {
     padding-left: 10px;
     padding-right: 10px;
-    border-bottom: 1px solid #000000
+    border-bottom: 1px solid #000000;
+        border-left: 1px solid #000000;
+        border-right: 1px solid #000000;
 }
 
 #scoreboard #email {
