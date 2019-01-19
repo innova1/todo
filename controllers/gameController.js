@@ -381,7 +381,7 @@ exports.getScoreboard = async function() {
             c++;
         });
         
-        return outputArray;
+        return await outputArray;
         dbParams.client.close();
         
     } catch(err) {
