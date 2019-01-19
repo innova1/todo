@@ -265,10 +265,10 @@ exports.getAvgScores = async function(email) {
     }
 };
 
-exports.isNoRating = async function( dbParams, email ) {
+async function( dbParams, email ) {
     try {
         let noRatingCountlk = await dbParams.collection.countDocuments( { 'fbkee.email': { $eq: email } ,  'rating': { $eq: '-1' } } );
-        
+
         const noRatingCount = await noRatingCountlk;
         debug("noRatingCount: " + noRatingCount);
         if ( noRatingCount > 0 ) {
@@ -276,14 +276,14 @@ exports.isNoRating = async function( dbParams, email ) {
         } else {
             noRating = false;
         }
-        
+
         debug("noRating: " + noRating);
         return { isNoRating: noRating, noRatingCount: noRatingCount };
         dbParams.client.close();
     } catch(err) {
-     debug(err);
+        debug(err);
+    }
 }
-};
 
 exports.getScoreboard = async function() {
     debug("in getScoreboard");
