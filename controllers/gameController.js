@@ -273,7 +273,6 @@ exports.isNoRating = async function ( dbParams, email ) {
 
         const noRatingInCount = await noRatingInCountlk;
         const noRatingOutCount = await noRatingOutCountlk;
-        debug(email + " noRatingInCount: " + noRatingInCount);
         if ( noRatingInCount > 0 ) {
             isNoRatingIn = true;
         } else {
@@ -285,7 +284,8 @@ exports.isNoRating = async function ( dbParams, email ) {
             isNoRatingOut = false;
         }
 
-        debug("isNoRatingIn: " + isNoRatingIn);
+        debug(email + " noRatingInCount: " + noRatingInCount + ", noRatingOutCount: " + noRatingOutCount);
+        debug("isNoRatingIn: " + isNoRatingIn + ", isNoRatingOut: " + isNoRatingOut);
         return { isNoRatingIn: isNoRatingIn, noRatingInCount: noRatingInCount, isNoRatingOut: isNoRatingOut, noRatingOutCount: noRatingOutCount };
         dbParams.client.close();
     } catch(err) {
