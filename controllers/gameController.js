@@ -382,7 +382,7 @@ exports.getScoreboard = async function() {
         });
         
         let outputArray2 = async function addNoRatingInfo(arr) {
-            for(int i = 0; i < arr.length; i++) {
+            for(i = 0; i < arr.length; i++) {
                 arr[i].noRating = await gameCalc.isNoRating(dbParams, doc._id.fbkoremail);
             }
         }
