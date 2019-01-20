@@ -38,13 +38,17 @@
             %>
         <div class = "row">
             <div class = "col-sm">
-                <ul class="nav justify-content-end nav-pills card-header-pills <% if(rating === -1) {%>unrated<%} else {%>rated<%} %>">
+                <ul class="nav justify-content-end nav-pills card-header-pills">
                     <!--li class="nav-item">
                         <a class="nav-link" href="/task/edit/<%=fbk._id%>"> <i class="fas fa-edit"></i></a>
                     </li-->
                     <!-- Rating shows on all but only editable on fbk in ie items that have the logged in user email on the fbkee field -->
                     <li class="nav-item">
-                       <span class="caption">Rating:</span>
+                        <% if( rating === -1 && loggedInEmail == fbk.fbkee.email ) {%>
+                            <span class="unrated">Needs rating:</span>
+                        <%} else {%>
+                            <span class="rated">Rating:</span>
+                        <%} %>
                         <% /*if ( fbk.rating !== null && fbk.rating !== '' ) {
                             selectData[parseInt(fbk.rating)+1].selected="selected"; 
                         }*/
