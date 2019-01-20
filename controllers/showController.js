@@ -85,10 +85,10 @@ exports.showScoreboard = async function (req, res) {
         let c = 0;
         scoreboard.forEach( (doc) => {
             debug(++c + "-scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
-            debug( "isNoRatingOut: " + scoreboard[0].noRating.isNoRatingIn);
+            //debug( "isNoRatingOut: " + scoreboard[0].noRating.isNoRatingIn);
         });
 
-        res.render('showScoreboard', { scoreboard, title: 'Feedback Scoreboard' });
+        res.render('showScoreboard', { await scoreboard, title: 'Feedback Scoreboard' });
         
     } catch (err) {
         debug(err);
