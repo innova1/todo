@@ -103,7 +103,7 @@ exports.showFAQ = async function (req, res) {
 
         const dbParams = await util.setupFAQDB();
         
-        const faqs = await dbParams.collection.find({}).sort({ order: -1 }).toArray();
+        const faqs = await dbParams.collection.find({}).sort({ order: 1 }).toArray();
 
         res.render('showFAQ', { faqs, title: 'Feedback FAQ' });
         
