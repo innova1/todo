@@ -356,6 +356,9 @@ exports.getScoreboard = async function() {
                     totalOut: "$totalOutFbks", 
                     score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay', multiplier ] } 
                 }
+            },
+            {
+                $sort: { _id: 1 }
             }
         ] );
         
