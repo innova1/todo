@@ -83,7 +83,7 @@ exports.showScoreboard = async function (req, res) {
         const scoreboard = await gameCalc.getScoreboard();
 
         let c = 0;
-        scoreboard.forEach( (doc) => {
+        await scoreboard.forEach( (doc) => {
             debug(++c + "-scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
         });
 
