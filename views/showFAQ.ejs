@@ -10,6 +10,7 @@
  <body>
     <div class="container"> 
         <% include ./partials/navfbk %>
+        <br />
             <%  let faq = {}; %>
             <% if (faqs.length == 0) { %>
                 <h5 style="color: #007bff;">No FAQ. Something's gone wrong. Try again.</h5>
@@ -27,6 +28,7 @@
                 </div>
             <% } %>
     </div> <!-- container -->
+     <p />
      
      <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
