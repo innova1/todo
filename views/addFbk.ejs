@@ -12,7 +12,7 @@
     <div class="container"> 
         <% include ./partials/navfbk %>
         <div class="card" style="width: 100%">
-        <form method="post" action="/task/add/" style="padding: 20px">
+        <form method="post" action="/task/add/" onsumbit="return validateForm()" style="padding: 20px">
             <div class="form-group">
                 
                 <p><span style="color:Tomato;" id="buildfbk">Hi, <%=shortname%></span></p>
@@ -126,6 +126,22 @@
                 buildIt += " by " + ifnot + " using " + behavior;
             }
             return buildIt;
+        }
+            
+        function validateForm() {
+            var duedate = $('#duedate').val();
+            var fbkee = $('#fbkee').val();
+            var direction = $('#direction').val();
+            var outcome = $('#outcome').val();
+            var behavior = $('#behavior').val();
+            
+            if( duedate != '' && fbkee != '' && direction != '' && outcome != '' && behavior != '' ) {
+                return true;
+            } else {
+                return false;
+            }
+            
+            
         }
     </script>  
       
