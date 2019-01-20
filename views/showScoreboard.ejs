@@ -32,7 +32,7 @@
                     <% for(let i = 0; i < scoreboard.length; i++) { 
                             score = scoreboard[i] %>
                         <tr>
-                            <td class="email"><%=score._id.fbkoremail%></td>
+                            <td class="email"><%=score.shortemail%></td>
                             <td class="numcol"><%=score.score.toFixed(2)%></td>
                             <td class="numcol"><%=score.inCount%></td>
                             <td class="numcol"><%=score.noRating.noRatingInCount%></td>
