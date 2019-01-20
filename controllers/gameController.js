@@ -351,8 +351,7 @@ exports.getScoreboard = async function() {
             {
                 $project: {
                     _id: { fbkoremail: "$fbkoremail" },
-                    //shortemail: { $substrBytes: [ "$fbkoremail", 0, { indexOfBytes: [ "$fbkoremail", "@" ] } ] },
-                    tempnum: { $indexOfBytes: [ "$fbkoremail", "@" ] },
+                    shortemail: { $substrBytes: [ "$fbkoremail", 0, { $indexOfBytes: [ "$fbkoremail", "@" ] } ] },
                     a: "$avgOutPerDay",
                     s: "$sumAllOutRating",
                     totalOut: "$totalOutFbks", 
