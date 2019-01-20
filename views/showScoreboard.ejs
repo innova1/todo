@@ -25,17 +25,19 @@
                             <th class="email">User email</th>
                             <th class="numcol">score</th>
                             <th class="numcol">#&nbsp;sent</th>
-                            <th class="numcol">#&nbsp;to&nbsp;you<br />unrated</th>
                             <th class="numcol">#&nbsp;from&nbsp;you<br />unrated</th>
+                            <th class="numcol">#&nbsp;rcv'd</th>
+                            <th class="numcol">#&nbsp;to&nbsp;you<br />unrated</th>
                         </tr>
                     <% for(let i = 0; i < scoreboard.length; i++) { 
                             score = scoreboard[i] %>
                         <tr>
                             <td class="email"><%=score._id.fbkoremail%></td>
                             <td class="numcol"><%=score.score.toFixed(2)%></td>
-                            <td class="numcol"><%=score.totalOut%></td>
-                            <td class="numcol"><%=score.noRating.noRatingInCount%></td>
+                            <td class="numcol"><%=score.outCount%></td>
                             <td class="numcol"><%=score.noRating.noRatingOutCount%></td>
+                            <td class="numcol"><%=score.inCount%></td>
+                            <td class="numcol"><%=score.noRating.noRatingInCount%></td>
                         </tr>
                 <% } %>
                     </table>
