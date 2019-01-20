@@ -30,10 +30,12 @@
     <div class="card-footer">
             <% let rating = 0; 
             if ( fbk.rating !== null && fbk.rating !== '' ) { 
-                    rating = parseInt(fbk.rating) 
+                    rating = parseInt(fbk.rating)
                 } else { 
                     rating = -1
-                } %>
+                } 
+                selData = selectData[rating+1];
+            %>
         <div class = "row">
             <div class = "col-sm">
                 <ul class="nav justify-content-end nav-pills card-header-pills <% if(rating === -1) {%>unrated<%} else {%>rated<%} %>">
@@ -46,7 +48,7 @@
                         <% /*if ( fbk.rating !== null && fbk.rating !== '' ) {
                             selectData[parseInt(fbk.rating)+1].selected="selected"; 
                         }*/
-                        selectData[rating + 1].selected="selected";%>
+                        selData.selected="selected";%>
                         <% if (loggedInEmail == fbk.fbkee.email) {%>
                             <select id="rating" name="rating" onchange="location.href='/fbk/rate/' + selectedIndex + '/id/<%=fbk._id%>'">
                                 <% for (j = 0; j < 5; j++ ) {%>
@@ -55,8 +57,8 @@
                             </select>
                         <%} else {
                             //if ( fbk.rating !== null && fbk.rating !== '' ) {%>
-                                <%=selectData[rating+1].value%>
-                                <% selectData[rating+1].selected="";
+                                <%=selData.value%>
+                                <% selData.selected="";
                             //}
                         }%>
                     </li>
