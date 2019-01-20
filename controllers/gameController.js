@@ -385,7 +385,8 @@ exports.getScoreboard = async function() {
         
        async function addNoRatingInfo(arr) {
             for(i = 0; i < arr.length; i++) {
-                arr[i].noRating = await gameCalc.isNoRating(dbParams, doc._id.fbkoremail);
+                a = arr[i];
+                a.noRating = await gameCalc.isNoRating(dbParams, a._id.fbkoremail);
             }
         }
         
