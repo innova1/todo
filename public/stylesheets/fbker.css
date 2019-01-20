@@ -58,19 +58,7 @@
     width: 25%;
 }
 
-#scoreboard .score {
-    color: blue;
-    text-align: right;
-    width: 25%;
-}
-
-#scoreboard .totalOut {
-    color: blue;
-    text-align: right;
-    width: 25%;
-}
-
-#scoreboard .unratedOut {
+#scoreboard .numcol {
     color: blue;
     text-align: right;
     width: 25%;
