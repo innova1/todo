@@ -373,6 +373,7 @@ exports.getScoreboard = async function() {
 */
         const outputArray = await allUserFbksOutAgg.toArray();
         
+        /*
         let c = 0;
         outputArray.forEach( async function(doc) {
             //debug(++c + "-scoreboard: " + JSON.stringify(doc)); // + ", outCount: " + oc + ", totalFbk: " + tf );
@@ -380,6 +381,7 @@ exports.getScoreboard = async function() {
             debug("in forEach loop -- no rating in: " + doc.noRating.isNoRatingIn);
             //c++;
         });
+        */
         
        async function addNoRatingInfo(arr) {
             for(i = 0; i < arr.length; i++) {
