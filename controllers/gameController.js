@@ -287,7 +287,6 @@ exports.isNoRating = async function ( dbParams, email ) {
         debug("In noRating function -- " + email + " noRatingInCount: " + noRatingInCount + ", noRatingOutCount: " + noRatingOutCount);
         debug("In noRating function -- isNoRatingIn: " + isNoRatingIn + ", isNoRatingOut: " + isNoRatingOut);
         return { isNoRatingIn: isNoRatingIn, noRatingInCount: noRatingInCount, isNoRatingOut: isNoRatingOut, noRatingOutCount: noRatingOutCount };
-        dbParams.client.close();
     } catch(err) {
         debug(err);
     }
@@ -393,7 +392,8 @@ exports.getScoreboard = async function() {
         
         let outputArray2 = await addNoRatingInfo(outputArray);
         
-        debug("after forEach loop: " + JSON.stringify(outputArray[0])); //.noRating.isNoRatingIn);
+        debug("after outputArray2: " + JSON.stringify(outputArray2[0])); //.noRating.isNoRatingIn);
+        
         return outputArray2;
         dbParams.client.close();
         
