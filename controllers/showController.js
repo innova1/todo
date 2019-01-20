@@ -97,4 +97,18 @@ exports.showScoreboard = async function (req, res) {
     }
 };
 
+exports.showFAQ = async function (req, res) {
+    try {
+
+        const dbParams = await util.setupFAQDB();
+        
+        const faqs = await dbParams.collection.find({}).sort({ order: -1 }).toArray();
+
+        res.render('showFAQ', { faqs, title: 'Feedback FAQ' });
+        
+    } catch (err) {
+        debug(err);
+    }
+};
+
 

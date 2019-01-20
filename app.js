@@ -117,6 +117,8 @@ app.get('/login', todoRouter);
 app.post('/login', todoRouter);
 app.get('/logout', todoRouter);
 
+app.get('/faq', todoRouter);
+
 app.get('/testlogging', todoRouter);
 
 // catch favicon requests and respond
