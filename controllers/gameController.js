@@ -305,13 +305,11 @@ exports.getScoreboard = async function() {
         
         const oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
         //const firstDate = await new Date(earliestDate[0].createDate); //used this as the REAL app beginning, but decided to use launch date of 1/16/19
-        const firstDate = new Date('2019-01-16');
-        const secondDate = new Date();
+        const firstDate = new Date('2019-01-16'); //date I demo'd the app to the team
+        const secondDate = new Date();  //current date
         const diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay))); 
         debug("diffDays: " + diffDays);
         const multiplier = 1; //was 100 but as we start sending more, this will be too high
-        
-        //debug("firstDate: " + firstDate.getTime() + ", secondDate: " + secondDate.getTime() + ", diffDays: " + diffDays);
         
         const allUserFbksOutAgg = await dbParams.collection.aggregate( [
             { 
@@ -363,12 +361,6 @@ exports.getScoreboard = async function() {
             }
         ] );
         
-/*
-            {
-                $project: { _id: { fbkor: { email: "$email" } }, score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay' ] } }
-            }
-*/
-        //{ indexOfBytes: [ "$fbkoremail", "@" ] }
 /*
         let allUserFbksOutAggArr = await allUserFbksOutAgg.toArray();
         debug("fbk out: " + allUserFbksOutAggArr[0].score);
