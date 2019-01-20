@@ -98,6 +98,7 @@ exports.showScoreboard = async function (req, res) {
 };
 
 exports.showFAQ = async function (req, res) {
+    debug("in show FAQ");
     try {
 
         const dbParams = await util.setupFAQDB();
