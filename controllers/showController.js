@@ -88,7 +88,7 @@ exports.showScoreboard = async function (req, res) {
             //debug( "isNoRatingOut: " + scoreboard[0].noRating.isNoRatingIn);
         });
 
-        res.render('showScoreboard', { scoreboard, title: 'Feedback Scoreboard' });
+        await res.render('showScoreboard', { scoreboard, title: 'Feedback Scoreboard' });
         
     } catch (err) {
         debug(err);
