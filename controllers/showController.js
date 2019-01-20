@@ -46,9 +46,9 @@ exports.showMyFbks = async function (req, res) {
     } else {
         email = username.split(",")[1]
     }
-    const counts = await gameCalc.getCounts(email);
-    const score = await gameCalc.getScore(email);
-    const balance = await gameCalc.getBalance(email);
+    //const counts = await gameCalc.getCounts(email);
+    //const score = await gameCalc.getScore(email);
+    //const balance = await gameCalc.getBalance(email);
     const avgScores = await gameCalc.getAvgScores(email);
     //const scoreboard = await gameCalc.getScoreboard();
     
@@ -57,8 +57,6 @@ exports.showMyFbks = async function (req, res) {
     const isNoRatingResults = await gameCalc.isNoRating(dbParams, email);
     const isNoRatingIn = isNoRatingResults.isNoRatingIn;
     
-    const inCount = counts.inCount;
-    const outCount = counts.outCount;
     const selectData = getSelectTagText();
     
     debug("query with email: " + email + ", username: " + username + ", isNoRatingIn: " + isNoRatingIn);
@@ -66,8 +64,11 @@ exports.showMyFbks = async function (req, res) {
     const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ createDate: -1 }).toArray();
     const hostname = os.hostname();
       
+    const inCount = await myFbksIn.length;
+    const outCount = await myFbksOut.length;
+      
     logger.info("viewing feedback: " + email );
-    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, outCount, inScore: avgScores.inScore, outScore: avgScores.outScore, balance, selectData, isNoRatingIn, title: 'My Feedback List', hostname });
+    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, outCount, inScore: avgScores.inScore, outScore: avgScores.outScore, selectData, isNoRatingIn, title: 'My Feedback List', hostname });
     dbParams.client.close();
   }
   catch (err) {
