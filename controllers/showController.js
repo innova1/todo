@@ -67,7 +67,7 @@ exports.showMyFbks = async function (req, res) {
     const hostname = os.hostname();
       
     logger.info("viewing feedback: " + email );
-    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, outCount, score, inScore: avgScores.inScore, outScore: avgScores.outScore, balance, selectData, isNoRatingIn, title: 'My Feedback List', hostname });
+    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, outCount, inScore: avgScores.inScore, outScore: avgScores.outScore, balance, selectData, isNoRatingIn, title: 'My Feedback List', hostname });
     dbParams.client.close();
   }
   catch (err) {
