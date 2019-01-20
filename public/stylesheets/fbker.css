@@ -1,3 +1,7 @@
+.unrated .caption {
+    color: red;
+}
+
 #userscoreboard {
     display: grid;
     grid-template-columns: 200px;

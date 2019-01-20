@@ -30,7 +30,7 @@
     <div class="card-footer">
         <div class = "row">
             <div class = "col-sm">
-                <ul class="nav justify-content-end nav-pills card-header-pills">
+                <ul class="nav justify-content-end nav-pills card-header-pills <% if(fbk.rating === "-1") {%>unrated<%} else {%>rated<%} %>">
                     <!--li class="nav-item">
                         <a class="nav-link" href="/task/edit/<%=fbk._id%>"> <i class="fas fa-edit"></i></a>
                     </li-->
@@ -41,7 +41,7 @@
                             selectData[parseInt(fbk.rating)+1].selected="selected"; 
                         }%>
                         <% if (loggedInEmail == fbk.fbkee.email) {%>
-                            <select id="rating" class="<% if(fbk.rating === "-1") {%>unrated<%} else {%>rated<%} %>" name="rating" onchange="location.href='/fbk/rate/' + selectedIndex + '/id/<%=fbk._id%>'">
+                            <select id="rating" name="rating" onchange="location.href='/fbk/rate/' + selectedIndex + '/id/<%=fbk._id%>'">
                                 <% for (j = 0; j < 5; j++ ) {%>
                                     <option value="<%if (j != 0) {%><%=j-1%><%}%>" <%=selectData[j].selected%> ><%=selectData[j].value%></option>
                                 <%}%>
