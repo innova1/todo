@@ -381,14 +381,16 @@ exports.getScoreboard = async function() {
             //c++;
         });
         
-        let outputArray2 = async function addNoRatingInfo(arr) {
+       async function addNoRatingInfo(arr) {
             for(i = 0; i < arr.length; i++) {
                 arr[i].noRating = await gameCalc.isNoRating(dbParams, doc._id.fbkoremail);
             }
         }
         
+        let outputArray2 = await addNoRatingInfo(outputArray);
+        
         debug("after forEach loop: " + JSON.stringify(outputArray[0])); //.noRating.isNoRatingIn);
-        return await outputArray2;
+        return outputArray2;
         dbParams.client.close();
         
     } catch(err) {
