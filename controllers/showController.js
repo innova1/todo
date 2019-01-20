@@ -81,6 +81,7 @@ exports.showScoreboard = async function (req, res) {
     try {
 
         const scoreboard = await gameCalc.getScoreboard();
+        const temp = await scoreboard.noRating.isNoRatingIn;
 
         let c = 0;
         scoreboard.forEach( (doc) => {
@@ -88,7 +89,7 @@ exports.showScoreboard = async function (req, res) {
             //debug( "isNoRatingOut: " + scoreboard[0].noRating.isNoRatingIn);
         });
 
-        await res.render('showScoreboard', { scoreboard, title: 'Feedback Scoreboard' });
+        res.render('showScoreboard', { scoreboard, title: 'Feedback Scoreboard' });
         
     } catch (err) {
         debug(err);
