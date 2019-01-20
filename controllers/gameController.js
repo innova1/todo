@@ -351,7 +351,7 @@ exports.getScoreboard = async function() {
             {
                 $project: {
                     _id: { fbkoremail: "$fbkoremail" },
-                    shortemail: { $substrBytes: [ "$fbkoremail", 0, { indexOfBytes: [ "$fbkoremail", "@" ] } ] },
+                    shortemail: { $substrBytes: [ "$fbkoremail", 0, 6 ] },
                     a: "$avgOutPerDay",
                     s: "$sumAllOutRating",
                     totalOut: "$totalOutFbks", 
@@ -368,7 +368,7 @@ exports.getScoreboard = async function() {
                 $project: { _id: { fbkor: { email: "$email" } }, score: { $multiply: [ { $divide: [ '$sumAllOutRating', '$totalOutFbks' ] }, '$avgOutPerDay' ] } }
             }
 */
-        
+        //{ indexOfBytes: [ "$fbkoremail", "@" ] }
 /*
         let allUserFbksOutAggArr = await allUserFbksOutAgg.toArray();
         debug("fbk out: " + allUserFbksOutAggArr[0].score);
