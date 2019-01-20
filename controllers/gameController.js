@@ -386,6 +386,9 @@ exports.getScoreboard = async function() {
             for(i = 0; i < arr.length; i++) {
                 a = arr[i];
                 a.noRating = await gameCalc.isNoRating(dbParams, a._id.fbkoremail);
+                let counts = await gameCalc.getCounts(dbParams, a._id.fbkoremail);
+                a.inCount = await counts.inCount;
+                a.outCount = await counts.outCount;
             }
            return arr;
         }
