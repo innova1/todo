@@ -381,7 +381,7 @@ exports.getScoreboard = async function() {
             c++;
         });
         
-        debug("after forEach loop: " + outputArray[0].noRating.isNoRatingIn);
+        await debug("after forEach loop: " + outputArray[0].noRating.isNoRatingIn);
         return await outputArray;
         dbParams.client.close();
         
