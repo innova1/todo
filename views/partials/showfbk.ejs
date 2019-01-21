@@ -42,30 +42,25 @@
                 <ul class="nav justify-content-end nav-pills card-header-pills">
                     <!-- Rating shows on all but only editable on fbk in ie items that have the logged in user email on the fbkee field -->
                     <li class="nav-item">
-                        <% if( rating === -1) {
-                            if( isFbkee ) {%>
+                        <% if( isFbkee ) {
+                            if( rating === -1 ) {%>
                                 <span class="unrated">Needs rating:</span>
                             <%} else {%>
                                 <span class="unrated">Rating:</span>
                             <%}
-                        } else {%>
-                            <span class="rated">Rating:</span>
-                        <%} %>
-                        <% /*if ( fbk.rating !== null && fbk.rating !== '' ) {
-                            selectData[parseInt(fbk.rating)+1].selected="selected"; 
-                        }*/
-                        selData.selected="selected";%>
-                        <% if ( isFbkee ) {%>
+                            <%selData.selected="selected"; // set the selected rating to "selected" %>
                             <select id="rating" name="rating" onchange="location.href='/fbk/rate/' + selectedIndex + '/id/<%=fbk._id%>'">
-                                <% for (j = 0; j < 5; j++ ) {%>
-                                    <option value="<%if (j != 0) {%><%=j-1%><%}%>" <%=selectData[j].selected%> ><%=selectData[j].value%></option>
-                                <%}%>
+                            <% for (j = 0; j < 5; j++ ) {%>
+                                <option value="<%if (j != 0) {%><%=j-1%><%}%>" <%=selectData[j].selected%> ><%=selectData[j].value%></option>
+                            <%}%>
                             </select>
-                        <%} else {
-                            //if ( fbk.rating !== null && fbk.rating !== '' ) {%>
+                        } else {
+                            if( rating === -1 ) {%>
+                                <span class="unrated">Needs rating</span>
+                            <%} else {%>
                                 <%=selData.value%>
-                                <% selData.selected=""; 
-                            //}
+                                <% selData.selected="";
+                            }
                         }%>
                     </li>
                     <!--li class="nav-item">
