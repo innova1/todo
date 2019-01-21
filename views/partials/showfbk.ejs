@@ -48,13 +48,14 @@
                             <%} else {%>
                                 <span class="unrated">Rating:</span>
                             <%}
-                            <%selData.selected="selected"; // set the selected rating to "selected" %>
-                            <select id="rating" name="rating" onchange="location.href='/fbk/rate/' + selectedIndex + '/id/<%=fbk._id%>'">
+                            selData.selected="selected"; // set the selected rating to "selected" 
+                            %>
+                                <select id="rating" name="rating" onchange="location.href='/fbk/rate/' + selectedIndex + '/id/<%=fbk._id%>'">
                             <% for (j = 0; j < 5; j++ ) {%>
                                 <option value="<%if (j != 0) {%><%=j-1%><%}%>" <%=selectData[j].selected%> ><%=selectData[j].value%></option>
                             <%}%>
-                            </select>
-                        } else {
+                                </select>
+                        <%} else {
                             if( rating === -1 ) {%>
                                 <span class="unrated">Needs rating</span>
                             <%} else {%>
