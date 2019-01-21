@@ -34,18 +34,16 @@
                 } else { 
                     rating = -1
                 } 
-                selData = selectData[rating+1];
+                let selData = selectData[rating+1];
+                let isFbkee = loggedInEmail == fbk.fbkee.email;
             %>
         <div class = "row">
             <div class = "col-sm">
                 <ul class="nav justify-content-end nav-pills card-header-pills">
-                    <!--li class="nav-item">
-                        <a class="nav-link" href="/task/edit/<%=fbk._id%>"> <i class="fas fa-edit"></i></a>
-                    </li-->
                     <!-- Rating shows on all but only editable on fbk in ie items that have the logged in user email on the fbkee field -->
                     <li class="nav-item">
                         <% if( rating === -1) {
-                            if( loggedInEmail == fbk.fbkee.email ) {%>
+                            if( isFbkee ) {%>
                                 <span class="unrated">Needs rating:</span>
                             <%} else {%>
                                 <span class="unrated">Rating:</span>
@@ -57,7 +55,7 @@
                             selectData[parseInt(fbk.rating)+1].selected="selected"; 
                         }*/
                         selData.selected="selected";%>
-                        <% if (loggedInEmail == fbk.fbkee.email) {%>
+                        <% if ( isFbkee ) {%>
                             <select id="rating" name="rating" onchange="location.href='/fbk/rate/' + selectedIndex + '/id/<%=fbk._id%>'">
                                 <% for (j = 0; j < 5; j++ ) {%>
                                     <option value="<%if (j != 0) {%><%=j-1%><%}%>" <%=selectData[j].selected%> ><%=selectData[j].value%></option>
