@@ -48,27 +48,19 @@
                             if( loggedInEmail == fbk.fbkee.email ) {%>
                                 <span class="unrated">Needs rating:</span>
                             <%} else {%>
-                                <span class="unrated">Rating:</span>
+                                <span class="unrated">Rating: Not yet rated</span>
                             <%}
                         } else {%>
                             <span class="rated">Rating:</span>
                         <%} %>
-                        <% /*if ( fbk.rating !== null && fbk.rating !== '' ) {
-                            selectData[parseInt(fbk.rating)+1].selected="selected"; 
-                        }*/
-                        selData.selected="selected";%>
+                            selData.selected="selected";%>
                         <% if (loggedInEmail == fbk.fbkee.email) {%>
                             <select id="rating" name="rating" onchange="location.href='/fbk/rate/' + selectedIndex + '/id/<%=fbk._id%>'">
                                 <% for (j = 0; j < 5; j++ ) {%>
                                     <option value="<%if (j != 0) {%><%=j-1%><%}%>" <%=selectData[j].selected%> ><%=selectData[j].value%></option>
                                 <%}%>
                             </select>
-                        <%} else {
-                            //if ( fbk.rating !== null && fbk.rating !== '' ) {%>
-                                <%=selData.value%>
-                                <% selData.selected="";
-                            //}
-                        }%>
+                        <%}%>
                     </li>
                     <!--li class="nav-item">
                         <a class="nav-link" href="/fbk/edit/<%=fbk._id%>"> <i class="fas fa-pencil-square-o"></i></a>
