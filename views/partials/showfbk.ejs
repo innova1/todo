@@ -44,9 +44,13 @@
                     </li-->
                     <!-- Rating shows on all but only editable on fbk in ie items that have the logged in user email on the fbkee field -->
                     <li class="nav-item">
-                        <% if( rating === -1 && loggedInEmail == fbk.fbkee.email ) {%>
-                            <span class="unrated">Needs rating:</span>
-                        <%} else {%>
+                        <% if( rating === -1) {
+                            if( loggedInEmail == fbk.fbkee.email ) {%>
+                                <span class="unrated">Needs rating:</span>
+                            <%} else {%>
+                                <span class="unrated">Rating:</span>
+                            <%}
+                        } else {%>
                             <span class="rated">Rating:</span>
                         <%} %>
                         <% /*if ( fbk.rating !== null && fbk.rating !== '' ) {
