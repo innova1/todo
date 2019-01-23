@@ -136,10 +136,11 @@ exports.getAvgScores = async function(email) {
         
         const oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
         const oneWeek = 7*oneDay;
+        const divisor = oneDay;
         //const firstDate = await new Date(earliestDate[0].createDate); //used this as the REAL app beginning, but decided to use launch date of 1/16/19
         const firstDate = new Date('2019-01-16');
         const secondDate = new Date();
-        const diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneWeek))); 
+        const diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(divisor))); 
         debug("diffDays: " + diffDays);
         const multiplier = 1; //was 100 but as we start sending more, this will be too high
         
@@ -306,10 +307,11 @@ exports.getScoreboard = async function() {
         
         const oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
         const oneWeek = 7*oneDay;
+        const divisor = oneDay;
         //const firstDate = await new Date(earliestDate[0].createDate); //used this as the REAL app beginning, but decided to use launch date of 1/16/19
         const firstDate = new Date('2019-01-16'); //date I demo'd the app to the team
         const secondDate = new Date();  //current date
-        const diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneWeek))); 
+        const diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(divisor))); 
         debug("diffDays: " + diffDays);
         const multiplier = 1; //was 100 but as we start sending more, this will be too high
         
