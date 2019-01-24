@@ -12,7 +12,7 @@
     <div class="container"> 
         <% include ./partials/navfbk %>
         <div class="card" style="width: 100%">
-        <form method="post" action="/task/add/" onsumbit="return validateForm()" style="padding: 20px">
+        <form method="post" action="/task/add/" onsubmit="return validateForm()" style="padding: 20px">
             <div class="form-group">
                 
                 <p><span style="color:Tomato;" id="buildfbk">Hi, <%=shortname%></span></p>
@@ -156,7 +156,6 @@
                 retVal = false;
             }
             
-            /*
             if( detailValue != '') {
                 alert( "the value of details is " + detailValue );
                 retVal = false;
@@ -166,8 +165,9 @@
             }
             
             retVal = false;
-            */
+
             console.log("about to return: " + retVal);
+            
             return retVal; 
         }
     </script>  
