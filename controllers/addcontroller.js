@@ -82,7 +82,7 @@ exports.saveTask = async (req, res) => {
         const task = req.body;
         const dbParams = await util.setupDB();
         await dbParams.collection.insertOne(task);
-        logger.info("feedback added: " + tempfbk.fbkee);
+        logger.info("feedback added: " + tempfbk.fbkee.email);
         dbParams.client.close();
         res.redirect('/');
     } catch(err) {
