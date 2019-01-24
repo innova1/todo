@@ -12,7 +12,7 @@
     <div class="container"> 
         <% include ./partials/navfbk %>
         <div class="card" style="width: 100%">
-        <form method="post" action="/task/add/" onsubmit="return validateForm()" style="padding: 20px">
+        <form method="post" action="/task/add/" style="padding: 20px">
             <div class="form-group">
                 
                 <p><span style="color:Tomato;" id="buildfbk">Hi, <%=shortname%></span></p>
@@ -138,7 +138,8 @@
             }
             return buildIt;
         }
-            
+        
+        /*
         function validateForm() {
             console.log("in validateForm()");
             const duedate = $('#duedate').val();
@@ -170,6 +171,8 @@
             
             return retVal; 
         }
+        */
+                          
     </script>  
       
   </body> 
