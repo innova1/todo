@@ -57,8 +57,12 @@ exports.addFbk = async (req, res) => {
     try {
         const dbParams = await util.setupUserDB();
         const users = await dbParams.collection.find().sort({ shortname: 1 }).toArray();
-
-        res.render('addFbk', { users, title: 'Adding some feedback', username: un, shortname: shortname, email: email });
+        
+        if(email === 'tom.boulet@exxonmobil.com') {
+            res.render('addFbk2', { users, title: 'Adding some feedback 2', username: un, shortname: shortname, email: email });
+        } else {
+            res.render('addFbk', { users, title: 'Adding some feedback', username: un, shortname: shortname, email: email });
+        }
         
     }
     

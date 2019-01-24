@@ -1,0 +1,150 @@
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/fontawesome-all.css">
+   
+  </head>
+  <body>
+    <div class="container"> 
+        <% include ./partials/navfbk %>
+        <div class="card" style="width: 100%">
+        <form method="post" action="/task/add/" onsumbit="return validateForm()" style="padding: 20px">
+            <div class="form-group">
+                
+                <p><span style="color:Tomato;" id="buildfbk">Hi, <%=shortname%></span></p>
+                
+                <label for="duedate" class="text-primary">Feedback dates (probably today)</label>
+                <input type="date" class="form-control" id="duedate" name="dueDate" onchange="buildFeedback()"/>
+                
+                <label for="fbkee" class="text-primary">Who do you want to give feedback to?</label>
+                <select class="form-control" id="fbkee" name="fbkee" onchange="buildFeedback()">
+                    <%  let user = {}; %>
+                    <% if (users.length == 0) { %>
+                        <option value="?">No users found</option>
+                    <%} else {%>
+                        <% for(let i = 0; i < users.length; i++) { 
+                            user = users[i] %>
+                        <option value="<%=user.shortname%>,<%=user.emailname%>"><%=user.shortname%></option>
+                        <% } %> 
+                    <% } %>
+                    
+                </select>
+            
+                <label for="direction" class="text-primary">Direction (will add 'decreased' option in future version)</label>
+                <!--data-toggle="tooltip" data-html="true" title="<em>Tooltip</em> <u>with</u> <b>HTML</b>"-->
+                <!--span><b>&#9432;</b></span-->
+
+                <select class="form-control" id="direction" name="direction" onchange="buildFeedback()">
+                    <option>increased</option>
+                    <!-- option>decreased</option -->
+                </select>
+                
+                <label for="type" class="text-primary">Outcome</label>
+                <select class="form-control" id="outcome" name="outcome" onchange="buildFeedback()">
+                    <option>safety</option>
+                    <option>awesomeness</option>
+                    <option>delivery</option>
+                    <option>knowledge</option>
+                </select>
+                
+                <label for="behavior" class="text-primary">Related to behavior</label>
+                <select class="form-control" id="behavior" name="behavior" onchange="buildFeedback()">
+                    <option>team work</option>
+                    <option>empowerment</option>
+                    <option>process maturity</option>
+                    <option>inspect &amp; adapt</option>
+                    <option>business engagement</option>
+                </select>
+                
+                <label for="detail" class="text-primary">Details</label>
+                <textarea class="form-control" id="detail" rows="3" name="detail"></textarea>
+                
+                <input id="isComplete" name="isComplete" type="hidden" value="false" />
+                <input type="hidden" id="fbkor" name="fbkor" value="<%= username %>" />
+            </div>
+                <input type="submit" class="btn btn-primary" value="Add Feedback" />
+                <input type="button" class="btn btn-secondary" onclick="document.location.href='/';" value="Cancel">
+        </form>
+        </div>
+    </div> <!-- container --> 
+      
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script>
+        Date.prototype.toDateInputValue = (function() {
+            var local = new Date(this);
+            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+            return local.toJSON().slice(0,10);
+        });
+        
+        $(document).ready( function() {
+            $('#duedate').val(new Date().toDateInputValue());
+            
+            console.log("username is " + "<%= username %>");
+        })
+        
+        function buildFeedback() {
+            $('#buildfbk').text(buildFeedbackString());
+        }
+        
+        function buildFeedbackString() {
+            var buildIt = "";
+            var ifnot = "";
+            var shortname = "<%=shortname%>";
+            
+            var duedate = $('#duedate').val();
+            if(duedate != "") {
+                buildIt += "On " + duedate;
+            }
+            
+            buildIt += ", " + shortname + " said, ";
+            
+            var fbkee = $('#fbkee').val();
+            if(fbkee != "") {
+                buildIt += " " + fbkee.split(",")[0];
+            }
+            var direction = $('#direction').val();
+            if(direction == "decreased") {
+                ifnot = "not";
+            } else {
+                ifnot = "";
+            }
+            if(direction != "") {
+                buildIt += " " + direction;
+            }
+            var outcome = $('#outcome').val();
+            if(outcome != "") {
+                buildIt += " " + outcome;
+            }
+            var behavior = $('#behavior').val();
+            if(behavior != "") {
+                buildIt += " by " + ifnot + " using " + behavior;
+            }
+            return buildIt;
+        }
+            
+        function validateForm() {
+            var duedate = $('#duedate').val();
+            var fbkee = $('#fbkee').val();
+            var direction = $('#direction').val();
+            var outcome = $('#outcome').val();
+            var behavior = $('#behavior').val();
+            
+            if( duedate != '' && fbkee != '' && direction != '' && outcome != '' && behavior != '' ) {
+                return true;
+            } else {
+                return false;
+            }
+            
+            
+        }
+    </script>  
+      
+  </body> 
+   
+</html>
