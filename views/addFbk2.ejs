@@ -147,19 +147,23 @@
             const behavior = $('#behavior').val();
             const detailValue = $('#detail').val();
             
+            let retVal = false;
+            
             if( duedate != '' && fbkee != '' && direction != '' && outcome != '' && behavior != '' ) {
-                return true;
+                retVal = true;
             } else {
-                return false;
+                retVal = false;
             }
             
             if( detailValue != '') {
                 alert( "the value of details is " + detailValue );
-                return false;
+                retVal = false;
             } else {
                 alert( "The details field is required. Please describe the behavior you are referencing.");
-                return false;
+                retVal = false;
             }
+            
+            return retVal;
             
             
         }
