@@ -140,6 +140,7 @@
         }
             
         function validateForm() {
+            console.log("in validateForm()");
             const duedate = $('#duedate').val();
             const fbkee = $('#fbkee').val();
             const direction = $('#direction').val();
@@ -165,9 +166,7 @@
             
             retVal = false;
             console.log("about to return: " + retVal);
-            return retVal;
-            
-            
+            return retVal; 
         }
     </script>  
       
