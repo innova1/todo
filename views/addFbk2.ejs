@@ -40,7 +40,7 @@
 
                 <select class="form-control" id="direction" name="direction" onchange="buildFeedback()">
                     <option>increased</option>
-                    <!-- option>decreased</option -->
+                    <option>opportunity</option -->
                 </select>
                 
                 <label for="type" class="text-primary">Outcome</label>
@@ -93,27 +93,34 @@
         }
         
         function buildFeedbackString() {
-            var buildIt = "";
-            var ifnot = "";
-            var shortname = "<%=shortname%>";
+            let buildIt = "";
+            let ifnot = "";
+            const shortname = "<%=shortname%>";
             
-            var duedate = $('#duedate').val();
+            const duedate = $('#duedate').val();
             if(duedate != "") {
                 buildIt += "On " + duedate;
             }
             
             buildIt += ", " + shortname + " said, ";
             
-            var fbkee = $('#fbkee').val();
+            const fbkee = $('#fbkee').val();
             if(fbkee != "") {
                 buildIt += " " + fbkee.split(",")[0];
             }
-            var direction = $('#direction').val();
+            
+            let direction = $('#direction').val();
+            
             if(direction == "decreased") {
                 ifnot = "not";
             } else {
                 ifnot = "";
             }
+            
+            if(direction == "opportunity") {
+                direction = "had an opportunity to increase";
+            }
+            
             if(direction != "") {
                 buildIt += " " + direction;
             }
