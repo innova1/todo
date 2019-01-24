@@ -60,7 +60,7 @@
                     <option>business engagement</option>
                 </select>
                 
-                <label for="detail" class="text-primary">Details</label>
+                <label for="detail" class="text-primary">Please give some specific details about the situation you are referencing</label>
                 <textarea class="form-control" id="detail" rows="3" name="detail"></textarea>
                 
                 <input id="isComplete" name="isComplete" type="hidden" value="false" />
@@ -102,14 +102,16 @@
                 buildIt += "On " + duedate;
             }
             
-            buildIt += ", " + shortname + " said, ";
+            
+            buildIt += ", " + shortname + " feels that ";
             
             const fbkee = $('#fbkee').val();
             if(fbkee != "") {
                 buildIt += " " + fbkee.split(",")[0];
             }
             
-            let direction = $('#direction').val();
+            const direction = $('#direction').val();
+            let directionPhrase = "";
             
             if(direction == "decreased") {
                 ifnot = "not";
@@ -118,11 +120,13 @@
             }
             
             if(direction == "opportunity") {
-                direction = "had an opportunity to increase";
+                directionPhrase = "had an opportunity to increase";
+            } else if( direction == "increased") {
+                directionPhrase = "increased" ;
             }
             
-            if(direction != "") {
-                buildIt += " " + direction;
+            if(directionPhrase != "") {
+                buildIt += " " + directionPhrase;
             }
             var outcome = $('#outcome').val();
             if(outcome != "") {
