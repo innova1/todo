@@ -395,7 +395,7 @@ exports.getScoreboard = async function() {
             for( i = 0; i < users.length; i++ ) {
                 debug("users length: " + users.length);
                 user = users[i];
-                debug("going through user " + user.emailname);
+                debug("going through user " + JSON.stringify(user));
                 scdatum = boards[user.emailname] ? boards[user.emailname]:{};
                 scdatum.noRating = await gameCalc.isNoRating(dbParams, scdatum._id.fbkoremail);
                 let counts = await gameCalc.getCounts(dbParams, scdatum._id.fbkoremail);
