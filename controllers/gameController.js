@@ -382,7 +382,8 @@ exports.getScoreboard = async function() {
         */
         
         async function addFbksScoreboardInfoToUsers(scoreboards) {
-            const users = await dbParams.collection.find().sort({ shortname: 1 }).toArray();
+            const dbUserParams = await util.setupUserDB();
+            const users = await dbUserParams.collection.find().sort({ shortname: 1 }).toArray();
             let user;
             let boards = [];
             let scdata;
