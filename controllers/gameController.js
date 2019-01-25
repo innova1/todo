@@ -396,8 +396,10 @@ exports.getScoreboard = async function() {
                 debug("going through user " + user.emailname);
                 email = user.emailname;
                 if (typeof boards[email] === 'undefined') {
+                    debug("setting scdatum.email to " + email);
                     scdatum.email = email;
                 } else {
+                    debug("setting scdatum to " + JSON.stringify(boards[email]));
                     scdatum = boards[email];
                 }
                 scdatum.noRating = await gameCalc.isNoRating(dbParams, scdatum.email);
