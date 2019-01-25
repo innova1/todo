@@ -397,14 +397,14 @@ exports.getScoreboard = async function() {
                 email = user.emailname;
                 if (typeof boards[email] === 'undefined') {
                     debug("setting scdatum.email to " + email);
-                    scdatum.email = email;
+                    scdatum = {"_id":{"fbkoremail":""},"shortemail":"","a":0,"s":0,"totalOut":0,"score":0};
+                    scdatum._id.fbkoremail = email;
                 } else {
                     debug("setting scdatum to " + JSON.stringify(boards[email]));
-                    scdatum.email = email;
-                    scdatum.scoreboard = boards[email];
+                    scdatum = boards[email];
                 }
-                scdatum.noRating = await gameCalc.isNoRating(dbParams, scdatum.email);
-                let counts = await gameCalc.getCounts(dbParams, scdatum.email);
+                scdatum.noRating = await gameCalc.isNoRating(dbParams, scdatum._id.email);
+                let counts = await gameCalc.getCounts(dbParams, scdatum._id.email);
                 scdatum.inCount = await counts.inCount;
                 scdatum.outCount = await counts.outCount;
                 scdata[email] = scdatum;
@@ -426,7 +426,7 @@ exports.getScoreboard = async function() {
         //let outputArray2 = await addNoRatingInfo(outputArray);
         let outputArray2 = await addFbksScoreboardInfoToUsers(outputArray);
         
-        debug("after outputArray2: " + JSON.stringify(outputArray2[0])); //.noRating.isNoRatingIn);
+        debug("after outputArray2: " + JSON.stringify(outputArray2.boards[0])); //.noRating.isNoRatingIn);
         
         return outputArray2;
         dbParams.client.close();
