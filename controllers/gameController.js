@@ -381,7 +381,26 @@ exports.getScoreboard = async function() {
         });
         */
         
-       async function addNoRatingInfo(arr) {
+        async function addFbksScoreboardInfoToUsers(scoreboards) {
+            const users = await dbParams.collection.find().sort({ shortname: 1 }).toArray();
+            let user;
+            let boards;
+            let scdata;
+            for( let scoreboard of scoreboards ) {
+                boards[scoreboard._id.fbkoremail] = scoreboard;
+            }
+            for( let user of users ) {
+                scdatum = scdata[user.emailname];
+                scdatum = boards[user.emailname];
+                scdatum.noRating = await gameCalc.isNoRating(dbParams, scdatum._id.fbkoremail);
+                let counts = await gameCalc.getCounts(dbParams, scdatum._id.fbkoremail);
+                scdatum.inCount = await counts.inCount;
+                scdatum.outCount = await counts.outCount;
+            }
+            return scdata;
+        }
+        
+        async function addNoRatingInfo(arr) {
             for(i = 0; i < arr.length; i++) {
                 a = arr[i];
                 a.noRating = await gameCalc.isNoRating(dbParams, a._id.fbkoremail);
@@ -392,7 +411,8 @@ exports.getScoreboard = async function() {
            return arr;
         }
         
-        let outputArray2 = await addNoRatingInfo(outputArray);
+        //let outputArray2 = await addNoRatingInfo(outputArray);
+        let outputArray2 = await addFbksScoreboardInfoToUsers(outputArray);
         
         debug("after outputArray2: " + JSON.stringify(outputArray2[0])); //.noRating.isNoRatingIn);
         
