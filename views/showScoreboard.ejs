@@ -16,7 +16,6 @@
     
             <% include ./partials/navfbk %>
             <br />
-                <%  for ( let score of scoreboard ) {%>
                     <table>
                         <tr>
                             <th class="email">User email<br />@exxonmobil.com</th>
@@ -26,7 +25,7 @@
                             <th class="numcol">#&nbsp;sent</th>
                             <th class="numcol">#&nbsp;sent<br />unrated</th>
                         </tr>
-                    <% for(let i = 0; i < scoreboard.length; i++) { 
+                    <% for( let score of scoreboard ) { 
                             score = scoreboard[i] %>
                         <tr>
                             <td class="email"><%=score.shortemail%></td>
@@ -38,7 +37,6 @@
                         </tr>
                 <% } %>
                     </table>
-                <% } %>
 
         </div> <!-- container -->
 
