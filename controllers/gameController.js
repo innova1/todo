@@ -384,7 +384,6 @@ exports.getScoreboard = async function() {
         async function addFbksScoreboardInfoToUsers(scoreboards) {
             const dbUserParams = await util.setupUserDB();
             const users = await dbUserParams.collection.find().sort({ shortname: 1 }).toArray();
-            let user;
             let boards = [];
             let scdata;
             for( let scoreboard of scoreboards ) {
@@ -393,16 +392,15 @@ exports.getScoreboard = async function() {
             }
             debug("done with let scoreboard");
             scdatum = {};
-            for( i = 0; i < users.length; i++ ) {
-                debug("users length: " + users.length);
-                user = users[i];
-                debug("going through user " + JSON.stringify(user));
-                scdatum = boards[user.emailname] ? boards[user.emailname]:{};
-                scdatum.noRating = await gameCalc.isNoRating(dbParams, scdatum._id.fbkoremail);
-                let counts = await gameCalc.getCounts(dbParams, scdatum._id.fbkoremail);
+            for( let user of users ) {
+                debug("going through user " + user.emailname);
+                email = user.emailname;
+                scdatum = boards[email] ? boards[email]:email;
+                scdatum.noRating = await gameCalc.isNoRating(dbParams, scdatum.email);
+                let counts = await gameCalc.getCounts(dbParams, scdatum.email);
                 scdatum.inCount = await counts.inCount;
                 scdatum.outCount = await counts.outCount;
-                scdata[user.emailname] = scdatum;
+                scdata[email] = scdatum;
             }
             return scdata;
         }
