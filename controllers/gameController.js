@@ -390,6 +390,7 @@ exports.getScoreboard = async function() {
                 debug("in index by email: " + JSON.stringify(scoreboard)); //._id.fbkoremail);
                 boards[scoreboard._id.fbkoremail] = scoreboard;
             }
+            debug("done with let scoreboard");
             for( let user of users ) {
                 scdatum = boards[user.emailname];
                 scdatum.noRating = await gameCalc.isNoRating(dbParams, scdatum._id.fbkoremail);
