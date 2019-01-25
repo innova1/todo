@@ -431,7 +431,7 @@ exports.getScoreboard = async function() {
         //let outputArray2 = await addNoRatingInfo(outputArray);
         let outputArray2 = await addFbksScoreboardInfoToUsers(outputArray);
         
-        debug("after outputArray2: " + JSON.stringify(outputArray2['tom.boulet@exxonmobil.com'])); //.noRating.isNoRatingIn);
+        debug("after outputArray2: " + JSON.stringify(outputArray2[0])); //.noRating.isNoRatingIn);
         
         return outputArray2;
         dbParams.client.close();
