@@ -25,8 +25,7 @@
                             <th class="numcol">#&nbsp;sent</th>
                             <th class="numcol">#&nbsp;sent<br />unrated</th>
                         </tr>
-                    <% for( let score of scoreboard ) { 
-                            score = scoreboard[i] %>
+                    <% for( let score of scoreboard ) {%>
                         <tr>
                             <td class="email"><%=score.shortemail%></td>
                             <td class="numcol"><%=score.score.toFixed(2)%></td>
