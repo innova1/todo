@@ -387,7 +387,7 @@ exports.getScoreboard = async function() {
             let boards = [];
             let scdata;
             for( let scoreboard of scoreboards ) {
-                debug("in index by email: " + scoreboard._id.fbkoremail);
+                debug("in index by email: " + JSON.stringify(scoreboard)); //._id.fbkoremail);
                 boards[scoreboard._id.fbkoremail] = scoreboard;
             }
             for( let user of users ) {
