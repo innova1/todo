@@ -16,10 +16,7 @@
     
             <% include ./partials/navfbk %>
             <br />
-                <%  let score = {}; %>
-                <% if (scoreboard.length == 0) { %>
-                    <h5 style="color: #007bff;">No user data. That's weird!</h5>
-                <%} else {%>
+                <%  for ( let score of scoreboard ) {%>
                     <table>
                         <tr>
                             <th class="email">User email<br />@exxonmobil.com</th>
