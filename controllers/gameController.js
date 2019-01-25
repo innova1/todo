@@ -397,13 +397,14 @@ exports.getScoreboard = async function() {
                 email = user.emailname;
                 if (typeof boards[email] === 'undefined') {
                     debug("setting scdatum.email to " + email);
-                    scdatum._id.email = email;
+                    scdatum.email = email;
                 } else {
                     debug("setting scdatum to " + JSON.stringify(boards[email]));
-                    scdatum = boards[email];
+                    scdatum.email = email;
+                    scdatum.scoreboard = boards[email];
                 }
-                scdatum.noRating = await gameCalc.isNoRating(dbParams, scdatum._id.email);
-                let counts = await gameCalc.getCounts(dbParams, scdatum._id.email);
+                scdatum.noRating = await gameCalc.isNoRating(dbParams, scdatum.email);
+                let counts = await gameCalc.getCounts(dbParams, scdatum.email);
                 scdatum.inCount = await counts.inCount;
                 scdatum.outCount = await counts.outCount;
                 scdata[email] = scdatum;
