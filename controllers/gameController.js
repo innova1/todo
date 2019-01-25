@@ -400,6 +400,8 @@ exports.getScoreboard = async function() {
                     debug("setting scdatum.email to " + email);
                     scdatum = {"_id":{"fbkoremail":""},"shortemail":"","a":0,"s":0,"totalOut":0,"score":0};
                     scdatum._id.fbkoremail = email;
+                    scdatum.shortemail = email.slice(0, email.indexOf('@',0));
+                    debug("scdatum is now " + JSON.stringify(scdatum));
                 } else {
                     debug("setting scdatum to " + JSON.stringify(boards[email]));
                     scdatum = boards[email];
@@ -427,7 +429,7 @@ exports.getScoreboard = async function() {
         //let outputArray2 = await addNoRatingInfo(outputArray);
         let outputArray2 = await addFbksScoreboardInfoToUsers(outputArray);
         
-        debug("after outputArray2: " + JSON.stringify(outputArray2.boards[0])); //.noRating.isNoRatingIn);
+        debug("after outputArray2: " + JSON.stringify(outputArray2['tom.boulet@exxonmobil.com'])); //.noRating.isNoRatingIn);
         
         return outputArray2;
         dbParams.client.close();
