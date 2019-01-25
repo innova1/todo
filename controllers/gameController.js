@@ -382,8 +382,7 @@ exports.getScoreboard = async function() {
         */
         
         async function addFbksScoreboardInfoToUsers(scoreboards) {
-            const userstemp = await dbParams.collection.find().sort({ shortname: 1 }).toArray();
-            const users = await userstemp;
+            const users = await dbParams.collection.find().sort({ shortname: 1 }).toArray();
             let user;
             let boards = [];
             let scdata;
@@ -394,6 +393,7 @@ exports.getScoreboard = async function() {
             debug("done with let scoreboard");
             scdatum = {};
             for( i = 0; i < users.length; i++ ) {
+                debug("users length: " + users.length);
                 user = users[i];
                 debug("going through user " + user.emailname);
                 scdatum = boards[user.emailname] ? boards[user.emailname]:{};
