@@ -385,7 +385,7 @@ exports.getScoreboard = async function() {
             const dbUserParams = await util.setupUserDB();
             const users = await dbUserParams.collection.find().sort({ shortname: 1 }).toArray();
             let boards = [];
-            let scdata;
+            let scdata = [];
             for( let scoreboard of scoreboards ) {
                 debug("in index by email: " + JSON.stringify(scoreboard)); //._id.fbkoremail);
                 boards[scoreboard._id.fbkoremail] = scoreboard;
