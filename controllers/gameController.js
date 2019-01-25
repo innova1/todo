@@ -403,8 +403,8 @@ exports.getScoreboard = async function() {
                     debug("setting scdatum to " + JSON.stringify(boards[email]));
                     scdatum = boards[email];
                 }
-                scdatum.noRating = await gameCalc.isNoRating(dbParams, scdatum._id.email);
-                let counts = await gameCalc.getCounts(dbParams, scdatum._id.email);
+                scdatum.noRating = await gameCalc.isNoRating(dbParams, scdatum._id.fbkoremail);
+                let counts = await gameCalc.getCounts(dbParams, scdatum._id.fbkoremail);
                 scdatum.inCount = await counts.inCount;
                 scdatum.outCount = await counts.outCount;
                 scdata[email] = scdatum;
