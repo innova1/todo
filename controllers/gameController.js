@@ -393,6 +393,7 @@ exports.getScoreboard = async function() {
             }
             debug("done with let scoreboard");
             scdatum = {};
+            let c = 0;
             for( let user of users ) {
                 debug("going through user " + user.emailname);
                 email = user.emailname;
@@ -410,7 +411,8 @@ exports.getScoreboard = async function() {
                 let counts = await gameCalc.getCounts(dbParams, scdatum._id.fbkoremail);
                 scdatum.inCount = await counts.inCount;
                 scdatum.outCount = await counts.outCount;
-                scdata[email] = scdatum;
+                scdata[c] = scdatum;
+                c++;
             }
             return scdata;
         }
