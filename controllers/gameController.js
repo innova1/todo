@@ -395,7 +395,11 @@ exports.getScoreboard = async function() {
             for( let user of users ) {
                 debug("going through user " + user.emailname);
                 email = user.emailname;
-                scdatum = boards[email] ? boards[email]:email;
+                if (typeof boards[email] === 'undefined') {
+                    scdatum.email = email;
+                } else {
+                    scdatum = boards[email];
+                }
                 scdatum.noRating = await gameCalc.isNoRating(dbParams, scdatum.email);
                 let counts = await gameCalc.getCounts(dbParams, scdatum.email);
                 scdatum.inCount = await counts.inCount;
