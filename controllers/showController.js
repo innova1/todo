@@ -13,15 +13,73 @@ log4js.configure({
 var logger = log4js.getLogger(); 
 logger.level = 'info';
 
-function getSelectTagText() {
-    var selectArr = new Array();
-    selectArr[0] = { value:"Rate Feedback", selected:"" };
-    selectArr[1] = { value:"0-Not helpful", selected:"" };
-    selectArr[2] = { value:"1-Helpful", selected:"" };
-    selectArr[3] = { value:"2-More helpful", selected:"" };
-    selectArr[4] = { value:"3-Most helpful", selected:"" };
-    return selectArr;
+function getSelectTagObjOld() {
+    const selectTagsObj = {
+    selectTextObjs: [
+        { value:"Rate Feedback", selected:"" },
+        { value:"0-Not helpful", selected:"" },
+        { value:"1-Helpful", selected:"" },
+        { value:"2-More helpful", selected:"" },
+        { value:"3-Most helpful", selected:"" }
+        ],
+        clearSelected: function( clr ) {
+            this.selectTextObjs.forEach()
+        },
+        clr: function(val, i, arr) {
+            val.selected = "";
+        },
+        getOptionTags: 
+        
+    }
+    return selectTagsObj;
 }
+    
+function getSelectTagObj() {
+    const selectTagsObj = {
+    selectTextObjs: [
+            { tagValue:"Rate Feedback", isSelected:false },
+            { tagValue:"0-Not helpful", isSelected:false },
+            { tagValue:"1-Helpful", isSelected:false },
+            { tagValue:"2-More helpful", isSelected:false },
+            { tagValue:"3-Most helpful", isSelected:false }
+        ],
+        clearSelected: function() {
+            console.log("in clearSelected");
+            for( x = 0; x < this.selectTextObjs.length; x++ ) {
+                this.selectTextObjs[x].isSelected = false;
+            }
+        },
+        getOptionTags: function() {
+            let selectTag = "";
+            let val = "";
+            let optionText = "";
+            //selectTag = '<option>';
+            for (j = 0; j < this.selectTextObjs.length; j++ ) {
+                //get index number off the selectData
+                optionText = this.selectTextObjs[j].tagValue;
+                if( optionText.indexOf("-") == -1 ) { val = "" } else { val = optionText.charAt(0) };
+                if( this.selectTextObjs[j].isSelected ) { selText = "selected" } else { selText = ""  };
+                selectTag += '<option value="' + val + '" ' + selText + '>' + optionText + '</option>';
+            }
+            //selectTag += '</option>';
+            return selectTag;
+        },
+        setSelectedTag: function(s) {
+            this.clearSelected();
+            this.selectTextObjs[s].isSelected = true;
+        },
+        getSelectedValue: function() {
+            for (j = 0; j < this.selectTextObjs.length; j++ ) {
+                if( this.selectTextObjs[j].isSelected ) {
+                    val = this.selectTextObjs[j].tagValue;
+                }
+            }
+            return val;
+        }
+    }
+    return selectTagsObj;
+}
+
 
 exports.showFbks = async function (req, res) {
   try {
@@ -57,7 +115,7 @@ exports.showMyFbks = async function (req, res) {
     const isNoRatingResults = await gameCalc.isNoRating(dbParams, email);
     const isNoRatingIn = isNoRatingResults.isNoRatingIn;
     
-    const selectData = getSelectTagText();
+    const selectObj = getSelectTagObj();
     
     debug("query with email: " + email + ", username: " + username + ", isNoRatingIn: " + isNoRatingIn);
     const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ createDate: -1 }).toArray();
@@ -68,7 +126,7 @@ exports.showMyFbks = async function (req, res) {
     const outCount = await myFbksOut.length;
       
     logger.info("viewing feedback: " + email );
-    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, outCount, inScore: avgScores.inScore, outScore: avgScores.outScore, selectData, isNoRatingIn, title: 'My Feedback List', hostname });
+    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, outCount, inScore: avgScores.inScore, outScore: avgScores.outScore, selectObj, isNoRatingIn, title: 'My Feedback List', hostname });
     dbParams.client.close();
   }
   catch (err) {
