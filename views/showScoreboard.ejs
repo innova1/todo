@@ -20,19 +20,19 @@
                         <tr>
                             <th class="email">User email<br />@exxonmobil.com</th>
                             <th class="numcol">score</th>
-                            <th class="numcol">#&nbsp;rcv'd</th>
-                            <th class="numcol">#&nbsp;rcv'd<br />unrated</th>
                             <th class="numcol">#&nbsp;sent</th>
                             <th class="numcol">#&nbsp;sent<br />unrated</th>
+                            <th class="numcol">#&nbsp;rcv'd</th>
+                            <th class="numcol">#&nbsp;rcv'd<br />unrated</th>
                         </tr>
                     <% for( let score of scoreboard ) {%>
                         <tr>
                             <td class="email"><%=score.shortemail%></td>
                             <td class="numcol"><%=score.score.toFixed(2)%></td>
-                            <td class="numcol"><%=score.inCount%></td>
-                            <td class="numcol"><%=score.noRating.noRatingInCount%></td>
                             <td class="numcol"><%=score.outCount%></td>
                             <td class="numcol"><%=score.noRating.noRatingOutCount%></td>
+                            <td class="numcol"><%=score.inCount%></td>
+                            <td class="numcol"><%=score.noRating.noRatingInCount%></td>
                         </tr>
                 <% } %>
                     </table>
