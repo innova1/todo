@@ -46,7 +46,7 @@ function getSelectTagObj() {
             { tagValue:"3-Most helpful", isSelected:false }
         ],
         clearSelected: function() {
-            console.log("in clearSelected");
+            //console.log("in clearSelected");
             for( x = 0; x < this.selectTextObjs.length; x++ ) {
                 this.selectTextObjs[x].isSelected = false;
             }
