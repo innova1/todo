@@ -56,12 +56,12 @@ function getSelectTagObj() {
             let val = "";
             let optionText = "";
             //selectTag = '<option>';
-            for (j = 0; j < this.selectTextObjs.length; j++ ) {
+            for (j = 0; j < 5; j++ ) {
                 //get index number off the selectData
                 optionText = this.selectTextObjs[j].tagValue;
-                if( optionText.indexOf("-") == -1 ) { val = "" } else { val = optionText.charAt(0) };
+                //if( optionText.indexOf("-") == -1 ) { val = "" } else { val = optionText.charAt(0) };
                 if( this.selectTextObjs[j].isSelected ) { selText = "selected" } else { selText = ""  };
-                selectTag += '<option value="' + val + '" ' + selText + '>' + optionText + '</option>';
+                selectTag += '<option value="' + j + '" ' + selText + '>' + optionText + '</option>';
             }
             //selectTag += '</option>';
             return selectTag;
