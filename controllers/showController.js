@@ -13,6 +13,7 @@ log4js.configure({
 var logger = log4js.getLogger(); 
 logger.level = 'info';
 
+/*
 function getSelectTagObjOld() {
     const selectTagsObj = {
     selectTextObjs: [
@@ -33,6 +34,7 @@ function getSelectTagObjOld() {
     }
     return selectTagsObj;
 }
+*/
     
 function getSelectTagObj() {
     const selectTagsObj = {
