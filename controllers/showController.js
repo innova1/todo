@@ -65,7 +65,7 @@ function getSelectTagObj() {
                 selectTag += "<option value='" + val + "' "  + selText + ">" + optionText + "</option>";
             }
             
-            return eval(selectTag);
+            return selectTag;
         },
         setSelectedTag: function(s) {
             this.clearSelected();

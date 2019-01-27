@@ -51,7 +51,12 @@
                             <%}%>
                         <select id="rating" name="rating" onchange="location.href='/fbk/rate/' + selectedIndex + '/id/<%=fbk._id%>'">
                             <% let theTags=selectObj.getOptionTags() %>
-                            <%=theTags%>
+                            <% for (j=0; j<5; j++ ) {
+                                optionText = selectObj.selectTextObjs[j].tagValue;
+                                val = j - 1;
+                                if( this.selectTextObjs[j].isSelected ) { selText = "selected" } else { selText = ""  };%>
+                                    <option value="<%=val%>" <%=selText%> ><%=optionText%></option>
+                            <%}%>
                         </select>
                         <%} else {
                             if( rating === -1 ) {%>
