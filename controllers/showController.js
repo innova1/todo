@@ -17,11 +17,11 @@ logger.level = 'info';
 function getSelectTagObj() {
     const selectTagsObj = {
     selectTextObjs: [
-            { tagValue:"Rate Feedback", isSelected:false },
-            { tagValue:"0-Not helpful", isSelected:false },
-            { tagValue:"1-Helpful", isSelected:false },
-            { tagValue:"2-More helpful", isSelected:false },
-            { tagValue:"3-Most helpful", isSelected:false }
+            { tagCode:"-1", tagValue:"Rate Feedback", isSelected:false },
+            { tagCode:"0", tagValue:"0-Not helpful", isSelected:false },
+            { tagCode:"1", tagValue:"1-Helpful", isSelected:false },
+            { tagCode:"2", tagValue:"2-More helpful", isSelected:false },
+            { tagCode:"3", tagValue:"3-Most helpful", isSelected:false }
         ],
         clearSelected: function() {
             //console.log("in clearSelected");
