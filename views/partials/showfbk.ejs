@@ -49,7 +49,10 @@
                             <%} else {%>
                                 <span class="rated">Rating:</span>
                             <%}%>
-                        <select id="rating" name="rating" onchange="location.href='/fbk/rate/' + selectedIndex + '/id/<%=fbk._id%>'"><%=selectObj.getOptionTags()%></select>
+                        <select id="rating" name="rating" onchange="location.href='/fbk/rate/' + selectedIndex + '/id/<%=fbk._id%>'">
+                            <% let theTags=selectObj.getOptionTags() %>
+                            <%=theTags%>
+                        </select>
                         <%} else {
                             if( rating === -1 ) {%>
                                 <span class="unrated">Recipient has not yet rated</span>
