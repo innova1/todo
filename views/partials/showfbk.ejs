@@ -59,7 +59,7 @@
                                 } else { 
                                     selText = ""; 
                                 }%>
-                                    <option value="<%=val%>" <%=selText%> ><%=optionText%></option>
+                                    <option value="<%=val%>" <%=selText%> ><%=optionText%><%=selectObj.getNumOfSelects()</option>
                             <%}%>
                         </select>
                         <%} else {

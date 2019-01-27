@@ -40,6 +40,9 @@ function getSelectTagObj() {
                 }
             }
             return val;
+        },
+        getNumOfSelects: function() {
+            return this.selectTextObjs.length;
         }
     }
     return selectTagsObj;
