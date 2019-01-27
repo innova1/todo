@@ -50,7 +50,6 @@
                                 <span class="rated">Rating:</span>
                             <%}%>
                         <select id="rating" name="rating" onchange="location.href='/fbk/rate/' + selectedIndex + '/id/<%=fbk._id%>'">
-                            <% let theTags=selectObj.getOptionTags() %>
                             <% for (j=0; j<5; j++ ) {
                                 optionText = selectObj.selectTextObjs[j].tagValue;
                                 val = j - 1;
