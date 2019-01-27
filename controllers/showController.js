@@ -13,28 +13,6 @@ log4js.configure({
 var logger = log4js.getLogger(); 
 logger.level = 'info';
 
-/*
-function getSelectTagObjOld() {
-    const selectTagsObj = {
-    selectTextObjs: [
-        { value:"Rate Feedback", selected:"" },
-        { value:"0-Not helpful", selected:"" },
-        { value:"1-Helpful", selected:"" },
-        { value:"2-More helpful", selected:"" },
-        { value:"3-Most helpful", selected:"" }
-        ],
-        clearSelected: function( clr ) {
-            this.selectTextObjs.forEach()
-        },
-        clr: function(val, i, arr) {
-            val.selected = "";
-        },
-        getOptionTags: 
-        
-    }
-    return selectTagsObj;
-}
-*/
     
 function getSelectTagObj() {
     const selectTagsObj = {
@@ -50,22 +28,6 @@ function getSelectTagObj() {
             for( x = 0; x < this.selectTextObjs.length; x++ ) {
                 this.selectTextObjs[x].isSelected = false;
             }
-        },
-        getOptionTags: function() {
-            let selectTag = "";
-            let val = "";
-            let optionText = "";
-            
-            for (j = 0; j < 5; j++ ) {
-                //get index number off the selectData
-                optionText = this.selectTextObjs[j].tagValue;
-                //if( optionText.indexOf("-") == -1 ) { val = "" } else { val = optionText.charAt(0) };
-                val = j-1;
-                if( this.selectTextObjs[j].isSelected ) { selText = "selected" } else { selText = ""  };
-                selectTag += "<option value='" + val + "' "  + selText + ">" + optionText + "</option>";
-            }
-            
-            return selectTag;
         },
         setSelectedTag: function(s) {
             this.clearSelected();
