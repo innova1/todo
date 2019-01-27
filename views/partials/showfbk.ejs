@@ -50,7 +50,7 @@
                                 <span class="rated">Rating:</span>
                             <%}%>
                         <select id="rating" name="rating" onchange="location.href='/fbk/rate/' + selectedIndex + '/id/<%=fbk._id%>'">
-                            <% for ( j = 0 ; j < 5 ; j++ ) {
+                            <% for ( j = 0 ; j < <%=selectObj.getNumOfSelects()%> ; j++ ) {
                                 optionText = selectObj.selectTextObjs[j].tagValue;
                                 //val = j - 1;
                                 val = selectObj.selectTextObjs[j].tagCode;
@@ -59,7 +59,7 @@
                                 } else { 
                                     selText = ""; 
                                 }%>
-                                    <option value="<%=val%>" <%=selText%> ><%=optionText%><%=selectObj.getNumOfSelects()%></option>
+                                    <option value="<%=val%>" <%=selText%> ><%=optionText%></option>
                             <%}%>
                         </select>
                         <%} else {
