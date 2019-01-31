@@ -16,7 +16,7 @@ logger.level = 'info';
     
 function getSelectTagObj() {
     const selectTagsObj = {
-    selectTextObjs: [
+        selectTextObjs: [
             { tagCode:"-1", tagValue:"Rate Feedback", isSelected:false },
             { tagCode:"0", tagValue:"0-Not helpful", isSelected:false },
             { tagCode:"1", tagValue:"1-Helpful", isSelected:false },
@@ -25,18 +25,29 @@ function getSelectTagObj() {
         ],
         clearSelected: function() {
             //console.log("in clearSelected");
-            for( x = 0; x < this.selectTextObjs.length; x++ ) {
-                this.selectTextObjs[x].isSelected = false;
+            let o = "";
+            for ( i = 0; i < this.getNumOfSelects(); i++ ) {
+                o = this.selectTextObjs[i];
+                o.isSelected = false;
             }
         },
         setSelectedTag: function(s) {
             this.clearSelected();
-            this.selectTextObjs[s].isSelected = true;
+            let o = "";
+            for ( i = 0; i < this.getNumOfSelects(); i++ ) {
+                o = this.selectTextObjs[i];
+                if( o.tagCode == s ) {
+                    o.isSelected = true;
+                }
+            }
         },
         getSelectedValue: function() {
-            for (j = 0; j < this.selectTextObjs.length; j++ ) {
-                if( this.selectTextObjs[j].isSelected ) {
-                    val = this.selectTextObjs[j].tagValue;
+            let val = "";
+            let o = "";
+            for ( i = 0; i < this.getNumOfSelects(); i++ ) {
+                o = this.selectTextObjs[i];
+                if( o.isSelected ) {
+                    val = o.tagValue;
                 }
             }
             return val;
