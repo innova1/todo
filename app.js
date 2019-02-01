@@ -84,7 +84,7 @@ app.use('/export*', checkLogin, function(req, res, next) {
 });
 
 app.get('/', checkLogin, todoRouter);
-app.get('/filter/:filter', checkLogin, todoRouter);
+app.get('/filter/:p', checkLogin, todoRouter);
 app.get('/all', todoRouter);
 app.get('/export', todoRouter);
 app.get('/exportJSON', todoRouter);
