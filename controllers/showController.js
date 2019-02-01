@@ -77,7 +77,7 @@ async function getMyFbks( myemail, filter, dbParams ) {
     let FIn = "";
     let FOut = "";
     try {
-        if ( filter ) {
+        if ( filter[0] != "" ) {
             debug("went into filter urls");
             FIn = await dbParams.collection.find( { $and: [ { "fbkee.email": myemail }, { "fbkor.email": { $in: filter } } ] } ).sort({ createDate: -1 }).toArray();
             FOut = await dbParams.collection.find( { $and: [ { "fbkor.email": myemail }, { "fbkee.email": { $in: filter } } ] } ).sort({ createDate: -1 }).toArray();    
