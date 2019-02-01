@@ -43,12 +43,12 @@
             <div id="filterform">
                 <form action="/filter" method="get">
                     Filter: <input type="text" name="filter" />
-                    <input type="submit" class="btn btn-primary" value="Filter" />
+                    <input type="submit" class="btn btn-primary" name="Filter" />
                 </form>
             </div>
         <%} else {%>
             <div id="filterset">
-                Filter: <%=theFilter.toString()%> <input type="button" class="btn btn-primary" onclick="location.href='/'" value="Clear filter" />
+                <input type="button" class="btn btn-primary" onclick="location.href='/'" name="Clear" /> <%=theFilter.toString()%> 
             </div>
         <%}
     }%>
