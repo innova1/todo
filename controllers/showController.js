@@ -78,8 +78,8 @@ async function getMyFbks( myemail, filter, dbParams ) {
     let FOut = "";
     try {
         if ( filter ) {
-            FIn = await dbParams.collection.find( $and [ { "fbkee.email": myemail }, { "fbkor.email": filter[0] } ] ).sort({ createDate: -1 }).toArray();
-            FOut = await dbParams.collection.find( $and [ { "fbkor.email": myemail }, { "fbkor.email": filter[0] } ] ).sort({ createDate: -1 }).toArray();    
+            FIn = await dbParams.collection.find( $and: [ { "fbkee.email": myemail }, { "fbkor.email": filter[0] } ] ).sort({ createDate: -1 }).toArray();
+            FOut = await dbParams.collection.find( $and: [ { "fbkor.email": myemail }, { "fbkor.email": filter[0] } ] ).sort({ createDate: -1 }).toArray();    
         } else {
             FIn = await dbParams.collection.find( { "fbkee.email": myemail } ).sort({ createDate: -1 }).toArray();
             FOut = await dbParams.collection.find( { "fbkor.email": myemail } ).sort({ createDate: -1 }).toArray();    
