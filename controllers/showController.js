@@ -79,7 +79,7 @@ async function getMyFbks( myemail, filter, dbParams ) {
     try {
         if ( filter != undefined && filter[0] != null && filter[0] != "" ) {
             for ( i = 0; i < filter.length; i++ ) {
-                filter[i] = /^ + filter[i] + /;
+                filter[i] = new RexExp( filter[i] );
             }
             debug("went into filter urls with filter = " + JSON.stringify(filter));
             FIn = await dbParams.collection.find( { $and: [ { "fbkee.email": myemail }, { "fbkor.email": { $in: filter } } ] } ).sort({ createDate: -1 }).toArray();
