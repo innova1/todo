@@ -101,6 +101,7 @@ exports.showMyFbks = async function (req, res) {
   // need: user fullname and email from cookie
     logger.addContext('ip', req.ip);
     const tempFilter = req.query.filter;
+    tempFilter.prototype.trim.apply;
     let theFilter = [];
     if ( tempFilter ) {
         theFilter = tempFilter.split(",");
