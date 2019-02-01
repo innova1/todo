@@ -79,7 +79,7 @@ async function getMyFbks( myemail, filter, dbParams ) {
     try {
         if ( filter != undefined && filter[0] != null && filter[0] != "" ) {
             for ( i = 0; i < filter.length; i++ ) {
-                debug("filter[i]: " + JSON.stringify(filter[i]) );
+                debug("filter[" + i + "]: " + JSON.stringify(filter[i]) );
                 filter[i] = new RegExp( filter[i].toLowerCase() );
             }
             //debug("went into filter urls with filter = " + JSON.stringify(filter));; //doesn't show anything I assume because you can't stringify a RegExp
@@ -99,7 +99,7 @@ async function getMyFbks( myemail, filter, dbParams ) {
 exports.showMyFbks = async function (req, res) {
   // need: user fullname and email from cookie
     logger.addContext('ip', req.ip);
-    const theFilter = [ req.query.filter ];
+    const theFilter = req.query.filter;
     debug("filter param: " + JSON.stringify(theFilter));
   try {
     username = req.cookies.username;
