@@ -25,13 +25,16 @@
     </div>
 </nav>
 <%if (typeof inCount === 'undefined' ) {%>
-        <!--show nothing-->
-    <%} else {%>
-        <div id="userscoreboard">
-            <div id="counts">Count: In <%=inCount%>/Out <%=outCount%></div>
-            <div id="scores">Score: <%=outScore%></div>
-            <%if ( isNoRatingIn ) {%>
-                <div id="noRating">Unrated feedback</div>
-            <%}%>
-        </div>
-    <%}%>
+    <!--show nothing-->
+<%} else {%>
+    <div id="userscoreboard">
+        <div id="counts">Count: In <%=inCount%>/Out <%=outCount%></div>
+        <div id="scores">Score: <%=outScore%></div>
+        <%if ( isNoRatingIn ) {%>
+            <div id="noRating">Unrated feedback</div>
+        <%}%>
+    </div>
+<%}%>
+<%if ( loggedInEmail == 'tom.boulet@exxonmobil.com') {%>
+    <form>Filter: <input type="text" /></form>
+<%}%>
