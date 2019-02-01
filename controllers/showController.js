@@ -109,7 +109,7 @@ exports.showMyFbks = async function (req, res) {
     debug("query with email: " + email + ", username: " + username + ", isNoRatingIn: " + isNoRatingIn);
     //const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ createDate: -1 }).toArray();
     //const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ createDate: -1 }).toArray();
-    const myFbks = getMyFbks( email, null, dbParams );
+    const myFbks = await getMyFbks( email, null, dbParams );
     const myFbksIn = myFbks.fbksIn;
     const myFbksOut = myFbks.fbksOut;
     const hostname = os.hostname();
