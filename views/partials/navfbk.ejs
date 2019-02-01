@@ -36,7 +36,7 @@
     </div>
 <%}%>
 <%if ( typeof loggedInEmail != 'undefined' && loggedInEmail == 'tom.boulet@exxonmobil.com') {%>
-    <%if ( !theFilter || typeof theFilter == 'undefined' || theFilter[0] == '' ) {%>
+    <%if ( typeof theFilter == 'undefined' || !theFilter[0] || theFilter[0] == '' ) {%>
         <div id="filterform">
             <form action="/filter" method="get">
                 Filter: <input type="text" class="form-control" name="filter" />
