@@ -78,6 +78,5 @@
 }
 
 .boxed {
-    border: 1px solid black;
-    display: inline;
+    border: 2px solid black;
 }
