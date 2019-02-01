@@ -24,28 +24,33 @@
         </ul>
     </div>
 </nav>
-<%if (typeof inCount === 'undefined' ) {%>
-    <!--show nothing-->
-<%} else {%>
-    <div id="userscoreboard">
-        <div id="counts">Count: In <%=inCount%>/Out <%=outCount%></div>
-        <div id="scores">Score: <%=outScore%></div>
-        <%if ( isNoRatingIn ) {%>
-            <div id="noRating">Unrated feedback</div>
-        <%}%>
-    </div>
-<%}%>
-<%if ( typeof loggedInEmail != 'undefined' && loggedInEmail == 'tom.boulet@exxonmobil.com') {%>
-    <%if ( typeof theFilter == 'undefined' || !theFilter[0] || theFilter[0] == '' ) {%>
-        <div id="filterform">
-            <form action="/filter" method="get">
-                Filter: <input type="text" class="form-control" name="filter" />
-                <input type="submit" class="btn btn-primary" value="Filter" />
-            </form>
-        </div>
+<table>
+    <tr><td>
+    <%if (typeof inCount === 'undefined' ) {%>
+        <!--show nothing-->
     <%} else {%>
-        <div id="filterset">
-            Filter: <%=theFilter.toString()%> <input type="button" class="btn btn-primary" onclick="location.href='/'" value="Clear filter" />
+        <div id="userscoreboard">
+            <div id="counts">Count: In <%=inCount%>/Out <%=outCount%></div>
+            <div id="scores">Score: <%=outScore%></div>
+            <%if ( isNoRatingIn ) {%>
+                <div id="noRating">Unrated feedback</div>
+            <%}%>
         </div>
-    <%}
-}%>
+    <%}%>
+        </td><td>
+    <%if ( typeof loggedInEmail != 'undefined' && loggedInEmail == 'tom.boulet@exxonmobil.com') {%>
+        <%if ( typeof theFilter == 'undefined' || !theFilter[0] || theFilter[0] == '' ) {%>
+            <div id="filterform">
+                <form action="/filter" method="get">
+                    Filter: <input type="text" class="form-control" name="filter" />
+                    <input type="submit" class="btn btn-primary" value="Filter" />
+                </form>
+            </div>
+        <%} else {%>
+            <div id="filterset">
+                Filter: <%=theFilter.toString()%> <input type="button" class="btn btn-primary" onclick="location.href='/'" value="Clear filter" />
+            </div>
+        <%}
+    }%>
+        </td></tr>
+</table>
