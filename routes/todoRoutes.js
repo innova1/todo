@@ -38,7 +38,8 @@ router.post('/user/change/', loginsController.changeUser);
 router.get('/user/changePassword/', addController.changePasswordPage);
 router.post('/user/changePassword/', addController.savePassword);
 router.get('/all', showController.showFbks); //<-- temp, remove after testing
-router.get('/', showController.showMyFbks);
+router.get('/', showController.showMyFilteredFbks);
+router.get('/filter', showController.showMyFbks);
 router.get('/fbk/rate/:rating/id/:id', gameController.setRating);
 router.get('/faq', showController.showFAQ);
 

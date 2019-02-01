@@ -72,6 +72,12 @@ exports.showFbks = async function (req, res) {
     debug(err);
   }
 };
+
+async function getMyFbks( myemail, filter, dbParams ) {
+    const FIn = await dbParams.collection.find( { "fbkee.email": myemail } ).sort({ createDate: -1 }).toArray();
+    const FOut = await dbParams.collection.find( { "fbkor.email": myemail } ).sort({ createDate: -1 }).toArray();
+    return { "fbksIn": FIn, "fbksOut": FOut };
+}
     
 exports.showMyFbks = async function (req, res) {
   // need: user fullname and email from cookie
@@ -88,22 +94,25 @@ exports.showMyFbks = async function (req, res) {
     //const balance = await gameCalc.getBalance(email);
     const avgScores = await gameCalc.getAvgScores(email);
     //const scoreboard = await gameCalc.getScoreboard();
-    
+
     const dbParams = await util.setupDB();
-      
+
     const isNoRatingResults = await gameCalc.isNoRating(dbParams, email);
     const isNoRatingIn = isNoRatingResults.isNoRatingIn;
-    
+
     const selectObj = getSelectTagObj();
-    
+
     debug("query with email: " + email + ", username: " + username + ", isNoRatingIn: " + isNoRatingIn);
-    const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ createDate: -1 }).toArray();
-    const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ createDate: -1 }).toArray();
+    //const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ createDate: -1 }).toArray();
+    //const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ createDate: -1 }).toArray();
+    const myFbks = getMyFbks( email, null, dbParams );
+    const myFbksIn = myFbks.fbksIn;
+    const myFbksOut = myFbks.fbksOut;
     const hostname = os.hostname();
-      
+
     const inCount = await myFbksIn.length;
     const outCount = await myFbksOut.length;
-      
+
     logger.info("viewing feedback: " + email );
     res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, outCount, inScore: avgScores.inScore, outScore: avgScores.outScore, selectObj, isNoRatingIn, title: 'My Feedback List', hostname });
     dbParams.client.close();
