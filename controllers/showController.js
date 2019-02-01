@@ -74,8 +74,12 @@ exports.showFbks = async function (req, res) {
 };
 
 async function getMyFbks( myemail, filter, dbParams ) {
-    const FIn = await dbParams.collection.find( { "fbkee.email": myemail } ).sort({ createDate: -1 }).toArray();
-    const FOut = await dbParams.collection.find( { "fbkor.email": myemail } ).sort({ createDate: -1 }).toArray();
+    try {
+        const FIn = await dbParams.collection.find( { "fbkee.email": myemail } ).sort({ createDate: -1 }).toArray();
+        const FOut = await dbParams.collection.find( { "fbkor.email": myemail } ).sort({ createDate: -1 }).toArray();
+    } catch (err) {
+        debug (err);
+    }
     return { "fbksIn": FIn, "fbksOut": FOut };
 }
     
