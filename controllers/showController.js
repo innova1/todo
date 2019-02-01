@@ -95,7 +95,7 @@ exports.showMyFbks = async function (req, res) {
   // need: user fullname and email from cookie
     logger.addContext('ip', req.ip);
     const theFilter = req.params;
-    debug("filter param: " + theFilter);
+    debug("filter param: " + JSON.stringify(theFilter);
   try {
     username = req.cookies.username;
     if(typeof username === 'undefined') {
