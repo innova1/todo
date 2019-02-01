@@ -100,6 +100,9 @@ exports.showMyFbks = async function (req, res) {
   // need: user fullname and email from cookie
     logger.addContext('ip', req.ip);
     const theFilter = req.query.filter;
+    if ( theFilter ) {
+        theFilter.split(",");
+    }
     debug("filter param: " + JSON.stringify(theFilter));
   try {
     username = req.cookies.username;
@@ -126,7 +129,7 @@ exports.showMyFbks = async function (req, res) {
     //const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ createDate: -1 }).toArray();
     let myFbks = "";
     if ( email == 'tom.boulet@exxonmobil.com' ) {
-        myFbks = await getMyFbks( email, [ theFilter ], dbParams );
+        myFbks = await getMyFbks( email, theFilter, dbParams );
     } else {
         myFbks = await getMyFbks( email, null, dbParams );
     }
