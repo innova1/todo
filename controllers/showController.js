@@ -94,7 +94,7 @@ async function getMyFbks( myemail, filter, dbParams ) {
 exports.showMyFbks = async function (req, res) {
   // need: user fullname and email from cookie
     logger.addContext('ip', req.ip);
-    const { theFilter } = req.params;
+    const theFilter = req.query.filter;
     debug("filter param: " + JSON.stringify(theFilter));
   try {
     username = req.cookies.username;
