@@ -61,7 +61,7 @@ exports.addFbk = async (req, res) => {
         if(email === 'tom.boulet@exxonmobil.com') {
             res.render('addFbk2', { users, title: 'Adding some feedback 2', username: un, shortname: shortname, email: email, loggedInEmail: un });
         } else {
-            res.render('addFbk', { users, title: 'Adding some feedback', username: un, shortname: shortname, email: email }), loggedInEmail: un;
+            res.render('addFbk', { users, title: 'Adding some feedback', username: un, shortname: shortname, email: email, loggedInEmail: un });
         }
         
     }
