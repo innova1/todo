@@ -78,7 +78,7 @@ async function getMyFbks( myemail, filter, dbParams ) {
     let FOut = "";
     try {
         if ( filter != undefined && filter[0] != null && filter[0] != "" ) {
-            for ( i = 0; 0 < filter.length; i++ ) {
+            for ( i = 0; i < filter.length; i++ ) {
                 filter[i] = "/^" + filter[i] + "/";
             }
             debug("went into filter urls with filter = " + JSON.stringify(filter));
