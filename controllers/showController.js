@@ -103,7 +103,7 @@ exports.showMyFbks = async function (req, res) {
     const tempFilter = req.query.filter;
     let theFilter = [];
     if ( tempFilter ) {
-        theFilter = tempFilter.split(",");
+        theFilter = tempFilter.split(",").trim();
     }
     debug("filter param: " + JSON.stringify(theFilter));
   try {

@@ -45,7 +45,7 @@
         </div>
     <%} else {%>
         <div id="filterset">
-            Filter: <%=JSON.stringify(theFilter)%> <input type="button" onclick="location.href='/'" value="Clear filter" />;
+            Filter: <%=theFilter.toString()%> <input type="button" class="btn btn-primary" onclick="location.href='/'" value="Clear filter" />
         </div>
     <%}
 }%>
