@@ -81,7 +81,7 @@ async function getMyFbks( myemail, filter, dbParams ) {
             for ( i = 0; i < filter.length; i++ ) {
                 filter[i] = new RegExp( filter[i].toLowerCase() );
             }
-            debug("went into filter urls with filter = " + JSON.stringify(filter));
+            //debug("went into filter urls with filter = " + JSON.stringify(filter));; //doesn't show anything I assume because you can't stringify a RegExp
             FIn = await dbParams.collection.find( { $and: [ { "fbkee.email": myemail }, { "fbkor.email": { $in: filter } } ] } ).sort({ createDate: -1 }).toArray();
             FOut = await dbParams.collection.find( { $and: [ { "fbkor.email": myemail }, { "fbkee.email": { $in: filter } } ] } ).sort({ createDate: -1 }).toArray();    
         } else {
@@ -137,7 +137,7 @@ exports.showMyFbks = async function (req, res) {
     const outCount = await myFbksOut.length;
 
     logger.info("viewing feedback: " + email );
-    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, outCount, inScore: avgScores.inScore, outScore: avgScores.outScore, selectObj, isNoRatingIn, title: 'My Feedback List', hostname });
+    res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, outCount, inScore: avgScores.inScore, outScore: avgScores.outScore, selectObj, isNoRatingIn, title: 'My Feedback List', hostname, theFilter });
     dbParams.client.close();
   }
   catch (err) {
