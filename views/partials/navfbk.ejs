@@ -24,12 +24,12 @@
         </ul>
     </div>
 </nav>
-<table>
-    <tr><td>
+<div class="container">
+    <div class="row">
     <%if (typeof inCount === 'undefined' ) {%>
         <!--show nothing-->
     <%} else {%>
-        <div id="userscoreboard">
+        <div id="userscoreboard" class="col-sm">
             <div id="counts">Count: In <%=inCount%>/Out <%=outCount%></div>
             <div id="scores">Score: <%=outScore%></div>
             <%if ( isNoRatingIn ) {%>
@@ -37,7 +37,7 @@
             <%}%>
         </div>
     <%}%>
-        </td><td>
+        <div class="col-sm">
     <%if ( typeof loggedInEmail != 'undefined' && loggedInEmail == 'tom.boulet@exxonmobil.com') {%>
         <%if ( typeof theFilter == 'undefined' || !theFilter[0] || theFilter[0] == '' ) {%>
             <div id="filterform">
@@ -52,5 +52,6 @@
             </div>
         <%}
     }%>
-        </td></tr>
-</table>
+        </div>
+    </div>
+</div>
