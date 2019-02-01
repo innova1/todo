@@ -136,7 +136,7 @@ exports.showMyFbks = async function (req, res) {
     const inCount = await myFbksIn.length;
     const outCount = await myFbksOut.length;
 
-    logger.info("viewing feedback: " + email );
+    logger.info("viewing feedback: " + email + " with filter: " + JSON.stringify(theFilter) );
     res.render('showFbks', { loggedInEmail: email, myFbksIn, myFbksOut, inCount, outCount, inScore: avgScores.inScore, outScore: avgScores.outScore, selectObj, isNoRatingIn, title: 'My Feedback List', hostname, theFilter });
     dbParams.client.close();
   }
