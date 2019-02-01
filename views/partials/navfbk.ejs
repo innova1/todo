@@ -37,7 +37,7 @@
 <%}%>
 <%if ( loggedInEmail == 'tom.boulet@exxonmobil.com') {%>
     <div id="filerform">
-        <form action="/filter" method="POST">
+        <form action="/filter" method="GET">
             Filter: <input type="text" name="filter" />
             <input type="submit" value="filter" />
         </form>
