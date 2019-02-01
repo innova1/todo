@@ -78,8 +78,8 @@ async function getMyFbks( myemail, filter, dbParams ) {
     let FOut = "";
     try {
         if ( filter ) {
-            FIn = await dbParams.collection.find( { $and: [ { "fbkee.email": myemail }, { "fbkor.email": filter[0] } ] } ).sort({ createDate: -1 }).toArray();
-            FOut = await dbParams.collection.find( { $and: [ { "fbkor.email": myemail }, { "fbkee.email": filter[0] } ] } ).sort({ createDate: -1 }).toArray();    
+            FIn = await dbParams.collection.find( { $and: [ { "fbkee.email": myemail }, { "fbkor.email": { $in: filter } } ] } ).sort({ createDate: -1 }).toArray();
+            FOut = await dbParams.collection.find( { $and: [ { "fbkor.email": myemail }, { "fbkee.email": { $in: filter } } ] } ).sort({ createDate: -1 }).toArray();    
         } else {
             FIn = await dbParams.collection.find( { "fbkee.email": myemail } ).sort({ createDate: -1 }).toArray();
             FOut = await dbParams.collection.find( { "fbkor.email": myemail } ).sort({ createDate: -1 }).toArray();    
@@ -119,7 +119,7 @@ exports.showMyFbks = async function (req, res) {
     //const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ createDate: -1 }).toArray();
     let myFbks = "";
     if ( email == 'tom.boulet@exxonmobil.com' ) {
-        myFbks = await getMyFbks( email, [ 'hans.p.samios@exxonmobil.com' ], dbParams );
+        myFbks = await getMyFbks( email, [ 'hans.p.samios@exxonmobil.com', 'steven.e.sanchez@exxonmobil.com' ], dbParams );
     } else {
         myFbks = await getMyFbks( email, null, dbParams );
     }
