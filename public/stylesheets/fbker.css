@@ -74,12 +74,13 @@
 
 #scorebadge {
     margin-top: 5px;
-    display: inline;
+    display: inline-block;
+    width:auto;
     border: 1px solid red;
 }
 
 #filterform, #filterset {
     margin-top: 5px;
     margin-left: 0;
-    display: inline;
+    display: inline-block;
 }
