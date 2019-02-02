@@ -46,7 +46,7 @@
             </div>
         <%} else {%>
             <div id="filterset">
-                Filtered on: <div class="boxed"><%=theFilter.toString()%></div> <input type="button" class="btn btn-primary" onclick="location.href='/'" value="Clear" />
+                <span class="badge badge-success">&nbsp;<%=theFilter.toString()%><button type="button" class="btn btn-success" onclick="location.href='/'">Clear</button></span>
             </div>
         <%}
     }%>
