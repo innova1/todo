@@ -76,6 +76,8 @@
     margin-top: 2px;
     display: inline-block;
     width: auto;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
 #filterform, #filterset {
