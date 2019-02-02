@@ -75,6 +75,7 @@
 #scorebadge {
     margin-top: 5px;
     display: inline;
+    border: 1px solid red;
 }
 
 #filterform, #filterset {
