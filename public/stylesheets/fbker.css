@@ -75,8 +75,7 @@
 #scorebadge {
     margin-top: 5px;
     display: inline-block;
-    box-sizing: border-box;
-    width:auto;
+    width: auto;
     border: 1px solid red;
     font-size: 0;
 }
@@ -84,6 +83,7 @@
 #filterform, #filterset {
     margin-top: 5px;
     margin-left: 0;
-    box-sizing: border-box;
+    width: auto;
+    font-size: 0;
     display: inline-block;
 }
