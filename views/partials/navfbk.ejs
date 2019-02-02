@@ -41,7 +41,7 @@
         <%if ( typeof theFilter == 'undefined' || !theFilter[0] || theFilter[0] == '' ) {%>
             <div id="filterform">
                 <form action="/filter" method="get" style="display: inline;">
-                    <span class="badge badge-success">&nbsp;<input type="text" name="filter" size="10" /><button type="button" class="btn btn-success" >Filter</button></span>    
+                    <span class="badge badge-success">&nbsp;<input type="text" name="filter" size="10" /><button type="submit" class="btn btn-success" >Filter</button></span>    
                 </form>
             </div>
         <%} else {%>
