@@ -72,7 +72,7 @@
     width: 15%;
 }
 
-#filterform, #filterset {
+#filterform, #filterset, #badge{
     text-align: right;
     padding: 5px;
 }
