@@ -72,7 +72,11 @@
     width: 15%;
 }
 
-#filterform, #filterset, #badge{
+#scorebadge {
+    margin-top: 5px;
+}
+
+#filterform, #filterset {
     text-align: right;
     padding: 5px;
 }
