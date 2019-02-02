@@ -74,10 +74,10 @@
 
 #scorebadge {
     margin-top: 2px;
-    text-align: left;
+    display: inline;
 }
 
 #filterform, #filterset {
     margin: 2px;
-    text-align: left;
+    display: inline;
 }
