@@ -73,17 +73,10 @@
 }
 
 #scorebadge {
-    margin-top: 5px;
+    margin-top: 2px;
 }
 
 #filterform, #filterset {
     text-align: right;
     padding: 5px;
-}
-
-.boxed {
-    border: 1px solid black;
-    display: inline;
-    padding: 3px;
-    color: green;
 }
