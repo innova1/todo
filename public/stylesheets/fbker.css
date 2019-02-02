@@ -78,6 +78,7 @@
     box-sizing: border-box;
     width:auto;
     border: 1px solid red;
+    font-size: 0;
 }
 
 #filterform, #filterset {
