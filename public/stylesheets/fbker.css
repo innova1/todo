@@ -79,6 +79,7 @@
 
 #filterform, #filterset {
     margin-top: 5px;
+    margin-left: 0;
     display: inline;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
 }
