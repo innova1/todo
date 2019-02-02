@@ -46,7 +46,9 @@
             </div>
         <%} else {%>
             <div id="filterset">
-                <span class="badge badge-success">&nbsp;Filtered on&nbsp;</span><span class="badge badge-light"><%=theFilter.toString()%></span><span class="badge badge-success"><button type="button" class="btn btn-success" onclick="location.href='/'">Clear</button></span>
+                <button type="button" class="btn btn-success" onclick="location.href='/'">
+                    Filtered on&nbsp;<span class="badge badge-light"><%=theFilter.toString()%></span>Clear
+                </button>
             </div>
         <%}
     }%>
