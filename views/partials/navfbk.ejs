@@ -29,7 +29,7 @@
     <%if (typeof inCount === 'undefined' ) {%>
         <!--show nothing-->
     <%} else {%>
-        <div id="userXscoreboard" class="col-sm">            
+        <div id="userscoreboard" class="col-sm">            
             <button type="button" class="btn btn-primary" style="padding-top: 9px; padding-bottom: 9px;">
                 In&nbsp;<span class="badge badge-light"><%=inCount%></span>&nbsp;&nbsp;Out&nbsp;<span class="badge badge-light"><%=outCount%></span>&nbsp;&nbsp;Score&nbsp;<span class="badge badge-light"><%=outScore%></span>
             </button>
@@ -41,7 +41,7 @@
         <div class="col-sm">
     <%if ( typeof loggedInEmail != 'undefined' && loggedInEmail == 'tom.boulet@exxonmobil.com') {%>
         <%if ( typeof theFilter == 'undefined' || !theFilter[0] || theFilter[0] == '' ) {%>
-            <div id="filterXform">
+            <div id="filterform">
                 <form action="/filter" method="get">
                     <div>
                         <span class="badge badge-success">
