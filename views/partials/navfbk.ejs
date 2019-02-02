@@ -41,10 +41,13 @@
         <div class="col-sm">
     <%if ( typeof loggedInEmail != 'undefined' && loggedInEmail == 'tom.boulet@exxonmobil.com') {%>
         <%if ( typeof theFilter == 'undefined' || !theFilter[0] || theFilter[0] == '' ) {%>
-            <div id="filterform">
+            <div id="filterXform">
                 <form action="/filter" method="get">
                     <div>
-                        <span class="badge badge-success"><input type="text" name="filter" size="10" /><button type="button" class="btn btn-success" >Filter</button></span>
+                        <span class="badge badge-success">
+                            <input type="text" name="filter" size="10" />
+                            <button type="button" class="btn btn-success" >Filter</button>
+                        </span>
                     </div>           
                 </form>
             </div>
