@@ -74,9 +74,9 @@
 
 #scorebadge {
     margin-top: 2px;
+    margin-left: 2px;
 }
 
 #filterform, #filterset {
-    text-align: right;
     margin: 2px;
 }
