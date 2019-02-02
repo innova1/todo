@@ -30,7 +30,7 @@
         <!--show nothing-->
     <%} else {%>
         <div id="scorebadge" class="col-sm">            
-            <button type="button" class="btn btn-primary" style="padding-top: 9px; padding-bottom: 9px;">
+            <button type="button" class="btn btn-warning" style="padding-top: 9px; padding-bottom: 9px;">
                 In&nbsp;<span class="badge badge-light"><%=inCount%></span>&nbsp;&nbsp;Out&nbsp;<span class="badge badge-light"><%=outCount%></span>&nbsp;&nbsp;Score&nbsp;<span class="badge badge-light"><%=outScore%></span>
             </button>
             <%if ( isNoRatingIn ) {%>
@@ -43,12 +43,7 @@
         <%if ( typeof theFilter == 'undefined' || !theFilter[0] || theFilter[0] == '' ) {%>
             <div id="filterform">
                 <form action="/filter" method="get">
-                    <div>
-                        <span class="badge badge-success">
-                            <input type="text" name="filter" size="10" />
-                            <button type="button" class="btn btn-success" >Filter</button>
-                        </span>
-                    </div>           
+                    <span class="badge badge-success"><input type="text" name="filter" size="10" /><button type="button" class="btn btn-success" >Filter</button></span>    
                 </form>
             </div>
         <%} else {%>
