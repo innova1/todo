@@ -26,7 +26,7 @@
 </nav>
 <div class="Xcontainer">
     <div class="row no-gutters">
-        <div id="scorebadge" class="col-6" style="border: 1px solid black">
+        <div id="scorebadge" class="col-sm-auto" style="border: 1px solid black">
     <%if (typeof inCount === 'undefined' ) {%>
         <!--show nothing-->
     <%} else {%>           
@@ -38,7 +38,7 @@
             <%}%>
     <%}%>
         </div>
-        <div id="filterform" class="col-6" style="border: 1px solid black">
+        <div id="filterform" class="col-sm-auto" style="border: 1px solid black">
     <%if ( typeof loggedInEmail != 'undefined' && loggedInEmail == 'tom.boulet@exxonmobil.com') {%>
         <%if ( typeof theFilter == 'undefined' || !theFilter[0] || theFilter[0] == '' ) {%>
                 <form action="/filter" method="get" style="display: inline;">
