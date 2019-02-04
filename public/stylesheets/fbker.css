@@ -93,6 +93,6 @@
 
 .row.no-gutters > [class^="col-"],
 .row.no-gutters > [class*=" col-"] {
-  padding-right: 0;
+  padding-right: 2;
   padding-left: 0;
 }
