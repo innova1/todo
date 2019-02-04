@@ -28,28 +28,28 @@
     <%if (typeof inCount === 'undefined' ) {%>
         <!--show nothing-->
     <%} else {%>
-        <div id="scorebadge">            
+        <span id="scorebadge">            
             <button type="button" class="btn btn-warning" style="padding-top: 10px; padding-bottom: 9px;">
                 In&nbsp;<span class="badge badge-light"><%=inCount%></span>&nbsp;&nbsp;Out&nbsp;<span class="badge badge-light"><%=outCount%></span>&nbsp;&nbsp;Score&nbsp;<span class="badge badge-light"><%=outScore%></span>
             </button>
             <%if ( isNoRatingIn ) {%>
                 <div id="noRating">Unrated feedback</div>
             <%}%>
-        </div>
+        </span>
     <%}%>
     <%if ( typeof loggedInEmail != 'undefined' && loggedInEmail == 'tom.boulet@exxonmobil.com') {%>
         <%if ( typeof theFilter == 'undefined' || !theFilter[0] || theFilter[0] == '' ) {%>
-            <div id="filterform">
+            <span id="filterform">
                 <form action="/filter" method="get" style="display: inline;">
                     <span class="badge badge-success">&nbsp;<input type="text" name="filter" size="10" /><button type="submit" class="btn btn-success" >Filter</button></span>    
                 </form>
-            </div>
+            </span>
         <%} else {%>
-            <div id="filterset">
+            <span id="filterset">
                 <button type="button" class="btn btn-success" onclick="location.href='/'">
                     Filtered on&nbsp;<span class="badge badge-light"><%=theFilter.toString()%></span>&nbsp;Clear
                 </button>
-            </div>
+            </span>
         <%}
     }%>
 </div>
