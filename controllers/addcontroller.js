@@ -148,19 +148,19 @@ exports.changePasswordPage = async (req, res) => {
 };
 
 exports.savePassword = async (req, res) => {
-    tempUser = req.body;
-    var password = tempUser.password;
-    //add salt and hash password
-    salt = grindSalt();
-    debug("salt returned");
-    tempUser.salt = salt;
-    debug("salt set in temp");
-    tempUser.createDate = new Date();
-    debug("new date created");
-    hashed = hash(password, salt);
-    debug("took " + password + " and hashed to " + hashed);
-    tempUser.password = hashed;
     try {
+        tempUser = req.body;
+        var password = tempUser.password;
+        //add salt and hash password
+        salt = grindSalt();
+        debug("salt returned");
+        tempUser.salt = salt;
+        debug("salt set in temp");
+        tempUser.createDate = new Date();
+        debug("new date created");
+        hashed = hash(password, salt);
+        debug("took " + password + " and hashed to " + hashed);
+        tempUser.password = hashed;
         const user = tempUser; 
         const dbParams = await util.setupUserDB();
         
