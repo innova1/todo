@@ -23,7 +23,7 @@ function grindSalt() {
 }
 
 function hash(pwd, salt) {
-    debug("in hash()");
+    debug("in hash() with pwd " + pwd + ", salt " + salt);
     //crypto.DEFAULT_ENCODING = 'hex';
     const key = crypto.pbkdf2Sync(pwd, salt, 100000, 64, 'sha512');
     debug("hashed string is " + key.toString('hex'));  // '3745e48...08d59ae'
