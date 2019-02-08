@@ -150,27 +150,25 @@ exports.changePasswordPage = async (req, res) => {
 
 exports.savePassword = async (req, res) => {
     try {
-        tempUser = req.body;
-        var password = tempUser.password1;
+        temp = req.body;
+        const email = temp.email;
+        const password = temp.password1;
         //add salt and hash password
-        salt = grindSalt();
+        const salt = grindSalt();
         debug("salt returned");
-        tempUser.salt = salt;
-        debug("salt set in temp");
-        tempUser.createDate = new Date();
-        debug("new date created");
-        hashed = hash(password, salt);
+        const hashed = hash(password, salt);
         debug("took " + password + " and hashed to " + hashed);
-        tempUser.password = hashed;
-        const user = tempUser; 
         const dbParams = await util.setupUserDB();
         
-        await dbParams.collection.findOneAndUpdate(
-            { _id: new ObjectId(id) }, 
-            { "modDate": new Date() },
-            { "password": tempUser.password },
-            { "shortname": tempUser.shortname }
-        );
+        await dbParams.collection.findOneAndUpdate({ "emailname": email }, 
+        {
+            $set: {
+                "moddate": new Date(),
+                "salt": salt,
+                "password": hashed 
+            }
+        });
+        
         dbParams.client.close();
         res.redirect('/');
     }
