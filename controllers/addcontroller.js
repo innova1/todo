@@ -115,7 +115,7 @@ exports.addUserPage = async (req, res) => {
 
 exports.addUser = async (req, res) => {
         tempUser = req.body;
-        var password = tempUser.password1;
+        var password = tempUser.password;
         //add salt and hash password
         salt = grindSalt();
         tempUser.salt = salt;
@@ -151,7 +151,7 @@ exports.changePasswordPage = async (req, res) => {
 exports.savePassword = async (req, res) => {
     try {
         tempUser = req.body;
-        var password = tempUser.password;
+        var password = tempUser.password1;
         //add salt and hash password
         salt = grindSalt();
         debug("salt returned");
