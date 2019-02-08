@@ -23,6 +23,7 @@ function grindSalt() {
 }
 
 function hash(pwd, salt) {
+    debug("in hash()");
     //crypto.DEFAULT_ENCODING = 'hex';
     const key = crypto.pbkdf2Sync(pwd, salt, 100000, 64, 'sha512');
     debug("hashed string is " + key.toString('hex'));  // '3745e48...08d59ae'
@@ -123,7 +124,7 @@ exports.addUser = async (req, res) => {
         debug("took " + password + " and hashed to " + hashed);
         tempUser.password = hashed;
     try {
-        const user = tempUser; //doing this because it seems these variables need to be const for some reason
+        const user = tempUser;
         const dbParams = await util.setupUserDB();
         await dbParams.collection.insertOne(user);
         dbParams.client.close();
