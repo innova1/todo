@@ -13,9 +13,13 @@ var logger = log4js.getLogger();
 logger.level = 'info';
 
 function grindSalt() {
-    const buf = crypto.randomBytes(16);
-    debug(`${buf.length} bytes of random data: ${buf.toString('hex')}`);
-    return buf.toString('hex');
+    try {
+        const buf = crypto.randomBytes(16);
+        debug(`${buf.length} bytes of random data: ${buf.toString('hex')}`);
+        return buf.toString('hex');
+    } catch(err) {
+        debug(err);
+    }
 }
 
 function hash(pwd, salt) {
