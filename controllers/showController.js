@@ -129,7 +129,7 @@ async function getMyFbks( myemail, filter, dbParams ) {
                     { "fbkee.email": myemail }, 
                     { $or: [ 
                         { "fbkor.email": { $in: regExpFilter } }, 
-                        { { $toLower: "fbkor.shortname": } { $in: regExpFilter } } 
+                        { "fbkor.shortname": { $in: regExpFilter } } 
                         ] 
                     } 
                 ] 
