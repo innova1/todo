@@ -81,7 +81,7 @@ async function getMyFbks( myemail, filter, dbParams ) {
     try {
         if ( filter != undefined && filter[0] != null && filter[0] != "" ) {
             for ( i = 0; i < filter.length; i++ ) {
-                regExpFilter[i] = new RegExp( filter[i] + 'i' );
+                regExpFilter[i] = new RegExp( filter[i] ) + 'i';
                 debug("filter " + i + ": " + regExpFilter[i]);
             }
             
