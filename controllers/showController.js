@@ -81,48 +81,9 @@ async function getMyFbks( myemail, filter, dbParams ) {
     try {
         if ( filter != undefined && filter[0] != null && filter[0] != "" ) {
             for ( i = 0; i < filter.length; i++ ) {
-                regExpFilter[i] = new RegExp( filter[i], "i" );
+                regExpFilter[i] = new RegExp( filter[i], "i" ); //adds the i param which makes it case insensitive
                 debug("filter " + i + ": " + regExpFilter[i]);
             }
-            
-            /*
-                do an aggregation to create an array, then 
-            */
-            /*
-            const tempFIn = await dbParams.collection.aggregate( [
-                {
-                    $match: { 'fbkee.email': myemail }
-                },
-                {
-                    $lookup: {
-                        from: 'users',
-                        localField: 'fbkor.email',
-                        foreignField: 'emailname',
-                        as: 'user'
-                    }
-                },
-                {
-                    $project: { $or: [ { "fbkor.email": { $in: regExpFilter } }, { "fbkor.email": { $in: regExpFilter } } ] }
-                },
-                {
-                    $sort: { createDate: -1 }
-                }
-                
-            ] );
-            */
-            /*
-                     from: "inventory",
-                     localField: "item",
-                     foreignField: "sku",
-                     as: "inventory_docs"
-            */
-            
-            /*
-            const FIn = await tempFIn.toArray();
-            
-            //not correct--do this next
-            FOut = await dbParams.collection.find( { "fbkor.email": myemail } ).sort({ createDate: -1 }).toArray();  
-            */
             
             //debug("went into filter urls with filter = " + JSON.stringify(filter));; //doesn't show anything I assume because you can't stringify a RegExp
             FIn = await dbParams.collection.find( { 
@@ -132,25 +93,20 @@ async function getMyFbks( myemail, filter, dbParams ) {
                             { "fbkor.email": { $in: regExpFilter } }, 
                             { "fbkor.shortname": { $in: regExpFilter } } 
                         ] 
-                    }                  ] 
+                    }                  
+                ] 
             } ).sort({ createDate: -1 }).toArray();
             
-            /*
-                db.inventory.find( {
-                    $and : [
-                        { $or : [ { price : 0.99 }, { price : 1.99 } ] },
-                        { $or : [ { sale : true }, { qty : { $lt : 20 } } ] }
-                    ]
-                } )
-            */
-            
-            FOut = await dbParams.collection.find( { $and: [
-                { "fbkor.email": myemail }, 
-                { $or: [ 
-                    { "fbkee.email": { $in: regExpFilter } }, 
-                    { "fbkee.shortname": { $in: regExpFilter } } 
-                ] } 
-            ] } ).sort({ createDate: -1 }).toArray();    
+            FOut = await dbParams.collection.find( { 
+                $and: [
+                    { "fbkor.email": myemail }, 
+                    { $or: [ 
+                        { "fbkee.email": { $in: regExpFilter } }, 
+                        { "fbkee.shortname": { $in: regExpFilter } } 
+                        ] 
+                    } 
+                ] 
+            } ).sort({ createDate: -1 }).toArray();    
             
         } else {
             FIn = await dbParams.collection.find( { "fbkee.email": myemail } ).sort({ createDate: -1 }).toArray();
