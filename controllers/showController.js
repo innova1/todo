@@ -97,11 +97,11 @@ async function getMyFbks( myemail, filter, dbParams ) {
                         from: 'users',
                         localField: 'fbkor.email',
                         foreignField: 'emailname',
-                        as: 'shortname'
+                        as: 'user'
                     }
                 },
                 {
-                    $project: { $or: [ "fbkor.email": { $in: regExpFilter }, { "fbkor.email": { $in: regExpFilter } } ] }
+                    $project: { $or: [ { "fbkor.email": { $in: regExpFilter } }, { "fbkor.email": { $in: regExpFilter } } ] }
                 },
                 {
                     $sort: { createDate: -1 }
