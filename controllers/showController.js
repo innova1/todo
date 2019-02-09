@@ -125,7 +125,7 @@ async function getMyFbks( myemail, filter, dbParams ) {
             
             //debug("went into filter urls with filter = " + JSON.stringify(filter));; //doesn't show anything I assume because you can't stringify a RegExp
             FIn = await dbParams.collection.find( { $and: [ { "fbkee.email": myemail }, { $or: [ { "fbkor.email": { $in: regExpFilter } }, { "fbkor.shortname": { $in: regExpFilter } } ] } ] } ).sort({ createDate: -1 }).toArray();
-            FOut = await dbParams.collection.find( { $and: [ { "fbkor.email": myemail }, { "fbkee.email": { $in: regExpFilter } } ] } ).sort({ createDate: -1 }).toArray();    
+            FOut = await dbParams.collection.find( { $and: [ { "fbkor.email": myemail }, { $or: [ { "fbkee.email": { $in: regExpFilter } }, { "fbkee.shortname": { $in: regExpFilter } } ] } ] } ).sort({ createDate: -1 }).toArray();    
             
         } else {
             FIn = await dbParams.collection.find( { "fbkee.email": myemail } ).sort({ createDate: -1 }).toArray();
