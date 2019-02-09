@@ -81,7 +81,7 @@ async function getMyFbks( myemail, filter, dbParams ) {
     try {
         if ( filter != undefined && filter[0] != null && filter[0] != "" ) {
             for ( i = 0; i < filter.length; i++ ) {
-                regExpFilter[i] = new RegExp( filter[i] );
+                regExpFilter[i] = new RegExp( filter[i], "i" );
                 debug("filter " + i + ": " + regExpFilter[i]);
             }
             
@@ -130,7 +130,7 @@ async function getMyFbks( myemail, filter, dbParams ) {
                     { "fbkee.email": myemail }, 
                     { $or: [ 
                             { "fbkor.email": { $in: regExpFilter } }, 
-                            { "fbkor.shortname": { $in: regExpFilter + 'i' } } 
+                            { "fbkor.shortname": { $in: regExpFilter } } 
                         ] 
                     }                  ] 
             } ).sort({ createDate: -1 }).toArray();
