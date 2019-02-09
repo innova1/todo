@@ -101,7 +101,7 @@ async function getMyFbks( myemail, filter, dbParams ) {
                     }
                 },
                 {
-                    $project: { $or: { "fbkor.email": { $in: regExpFilter } }, { "fbkor.email": { $in: regExpFilter }} }
+                    $project: { $or: [ "fbkor.email": { $in: regExpFilter }, { "fbkor.email": { $in: regExpFilter } } ] }
                 },
                 {
                     $sort: { createDate: -1 }
