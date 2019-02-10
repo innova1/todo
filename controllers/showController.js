@@ -155,11 +155,11 @@ exports.showMyFbks = async function (req, res) {
     //const myFbksIn = await dbParams.collection.find( { "fbkee.email": email } ).sort({ createDate: -1 }).toArray();
     //const myFbksOut = await dbParams.collection.find( { "fbkor.email": email } ).sort({ createDate: -1 }).toArray();
     let myFbks = "";
-    if ( email == 'tom.boulet@exxonmobil.com' ) {
+    //if ( email == 'tom.boulet@exxonmobil.com' ) {
         myFbks = await getMyFbks( email, theFilter, dbParams );
-    } else {
+    /*} else {
         myFbks = await getMyFbks( email, null, dbParams );
-    }
+    }*/
     const myFbksIn = myFbks.fbksIn;
     const myFbksOut = myFbks.fbksOut;
     const hostname = os.hostname();

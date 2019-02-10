@@ -64,11 +64,10 @@ exports.addFbk = async (req, res) => {
         const users = await dbParams.collection.find().sort({ shortname: 1 }).toArray();
         
         if(email === 'tom.boulet@exxonmobil.com') {
-            res.render('addFbk2', { users, title: 'Adding some feedback 2', username: un, shortname: shortname, email: email, loggedInEmail: un });
+            res.render('addFbk2', { users, title: 'Adding some feedback', username: un, shortname: shortname, email: email, loggedInEmail: un });
         } else {
             res.render('addFbk', { users, title: 'Adding some feedback', username: un, shortname: shortname, email: email, loggedInEmail: un });
         }
-        
     }
     
     catch(err) {
