@@ -37,8 +37,6 @@ exports.login = async (req, res) => {
     const loginAttempt = temploginAttempt+1;
     logger.addContext('ip', req.ip);
 
-    debug("email: " + email + ", pwd: " + userPwd);
-
     try {
 
         const dbParams = await util.setupUserDB();
