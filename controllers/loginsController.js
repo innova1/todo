@@ -28,7 +28,9 @@ exports.loginPage = (req, res) => {
 exports.login = async (req, res) => {
 
     const user = req.body;
-    const email = user.email;
+    debug("email before was " + user.email);
+    const email = user.email.trim().toLowerCase();;
+    debug("email is now" + email);
     const userPwd = user.userPwd;
     const redirectUrl = user.redirectUrl;
     temploginAttempt = parseInt(user.loginAttempt);
